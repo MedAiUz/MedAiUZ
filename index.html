@@ -6,6 +6,10 @@
 
     <title>MedAiUz</title>
 
+    <!-- Telegram Mini App -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,41 +17,56 @@
 
     <!-- HEADER -->
     <header class="header">
+
         <div class="logo">
-            <div class="logo-icon">🩺</div>
+
+            <div class="logo-icon">
+                🩺
+            </div>
 
             <div>
                 <h1>MedAiUz</h1>
                 <span>Medical Intelligence</span>
             </div>
+
         </div>
 
-        <button class="notification-btn">🔔</button>
+        <button class="notification-btn">
+            🔔
+        </button>
+
     </header>
 
 
     <!-- MAIN -->
     <main class="container">
 
-        <!-- GREETING -->
+
+        <!-- WELCOME -->
         <section class="welcome">
-            <p class="small-text">Xush kelibsiz 👋</p>
+
+            <p class="small-text">
+                Xush kelibsiz 👋
+            </p>
 
             <h2>
-                Salom, <span>Samandar!</span>
+                Salom, <span id="userName">Do‘stim!</span>
             </h2>
 
             <p class="description">
                 Tibbiyot bo‘yicha bilim olish va izlanishni
                 MedAiUz bilan osonlashtiring.
             </p>
+
         </section>
 
 
         <!-- SEARCH -->
         <section class="search-box">
 
-            <span class="search-icon">🔍</span>
+            <span class="search-icon">
+                🔍
+            </span>
 
             <input
                 type="text"
@@ -66,46 +85,140 @@
         <section class="section">
 
             <div class="section-title">
-                <h3>Tezkor xizmatlar</h3>
+                <h3>
+                    Tezkor xizmatlar
+                </h3>
             </div>
+
 
             <div class="cards">
 
-                <div class="card blue" onclick="openFeature('Darsliklar')">
-                    <div class="card-icon">📚</div>
-                    <h4>Darsliklar</h4>
-                    <p>Tibbiy kitoblar</p>
+
+                <!-- DARSLIKLAR -->
+                <div
+                    class="card blue"
+                    onclick="openFeature('Darsliklar')"
+                >
+
+                    <div class="card-icon">
+                        📚
+                    </div>
+
+                    <h4>
+                        Darsliklar
+                    </h4>
+
+                    <p>
+                        Tibbiy kitoblar
+                    </p>
+
                 </div>
 
-                <div class="card purple" onclick="openFeature('Testlar')">
-                    <div class="card-icon">🧠</div>
-                    <h4>Testlar</h4>
-                    <p>Bilimingizni sinang</p>
+
+                <!-- TESTLAR -->
+                <div
+                    class="card purple"
+                    onclick="openFeature('Testlar')"
+                >
+
+                    <div class="card-icon">
+                        🧠
+                    </div>
+
+                    <h4>
+                        Testlar
+                    </h4>
+
+                    <p>
+                        Bilimingizni sinang
+                    </p>
+
                 </div>
 
-                <div class="card green" onclick="openFeature('Klinik Case')">
-                    <div class="card-icon">🩻</div>
-                    <h4>Klinik Case</h4>
-                    <p>Amaliy vaziyatlar</p>
+
+                <!-- CLINICAL CASE -->
+                <div
+                    class="card green"
+                    onclick="openFeature('Klinik Case')"
+                >
+
+                    <div class="card-icon">
+                        🩻
+                    </div>
+
+                    <h4>
+                        Klinik Case
+                    </h4>
+
+                    <p>
+                        Amaliy vaziyatlar
+                    </p>
+
                 </div>
 
-                <div class="card orange" onclick="openFeature('Dorilar')">
-                    <div class="card-icon">💊</div>
-                    <h4>Dorilar</h4>
-                    <p>Dori ma'lumotlari</p>
+
+                <!-- DORILAR -->
+                <div
+                    class="card orange"
+                    onclick="openFeature('Dorilar')"
+                >
+
+                    <div class="card-icon">
+                        💊
+                    </div>
+
+                    <h4>
+                        Dorilar
+                    </h4>
+
+                    <p>
+                        Dori ma'lumotlari
+                    </p>
+
                 </div>
 
-                <div class="card red" onclick="openFeature('Terminlar')">
-                    <div class="card-icon">🔬</div>
-                    <h4>Terminlar</h4>
-                    <p>Tibbiy lug‘at</p>
+
+                <!-- TERMINLAR -->
+                <div
+                    class="card red"
+                    onclick="openFeature('Terminlar')"
+                >
+
+                    <div class="card-icon">
+                        🔬
+                    </div>
+
+                    <h4>
+                        Terminlar
+                    </h4>
+
+                    <p>
+                        Tibbiy lug‘at
+                    </p>
+
                 </div>
 
-                <div class="card dark" onclick="openFeature('AI Assistant')">
-                    <div class="card-icon">🤖</div>
-                    <h4>AI Assistant</h4>
-                    <p>AI bilan suhbat</p>
+
+                <!-- AI -->
+                <div
+                    class="card dark"
+                    onclick="openFeature('AI Assistant')"
+                >
+
+                    <div class="card-icon">
+                        🤖
+                    </div>
+
+                    <h4>
+                        AI Assistant
+                    </h4>
+
+                    <p>
+                        AI bilan suhbat
+                    </p>
+
                 </div>
+
 
             </div>
 
@@ -115,13 +228,16 @@
         <!-- AI ASSISTANT -->
         <section class="ai-box">
 
+
             <div class="ai-left">
 
                 <div class="ai-icon">
                     🤖
                 </div>
 
+
                 <div>
+
                     <span class="ai-label">
                         MEDAI AI
                     </span>
@@ -133,13 +249,18 @@
                     <p>
                         AI yordamchisidan foydalaning.
                     </p>
+
                 </div>
 
             </div>
 
-            <button onclick="openFeature('AI Assistant')">
+
+            <button
+                onclick="openFeature('AI Assistant')"
+            >
                 Boshlash →
             </button>
+
 
         </section>
 
@@ -147,34 +268,66 @@
         <!-- RESULTS -->
         <section class="section">
 
+
             <div class="section-title">
-                <h3>Natijalaringiz</h3>
+
+                <h3>
+                    Natijalaringiz
+                </h3>
 
                 <span class="view-all">
                     Hammasi →
                 </span>
+
             </div>
+
 
             <div class="stats">
 
-                <div class="stat">
-                    <strong>0</strong>
-                    <span>Testlar</span>
-                </div>
 
                 <div class="stat">
-                    <strong>0%</strong>
-                    <span>O‘rtacha natija</span>
+
+                    <strong>
+                        0
+                    </strong>
+
+                    <span>
+                        Testlar
+                    </span>
+
                 </div>
 
+
                 <div class="stat">
-                    <strong>0</strong>
-                    <span>Case</span>
+
+                    <strong>
+                        0%
+                    </strong>
+
+                    <span>
+                        O‘rtacha natija
+                    </span>
+
                 </div>
+
+
+                <div class="stat">
+
+                    <strong>
+                        0
+                    </strong>
+
+                    <span>
+                        Case
+                    </span>
+
+                </div>
+
 
             </div>
 
         </section>
+
 
     </main>
 
@@ -182,25 +335,70 @@
     <!-- BOTTOM NAVIGATION -->
     <nav class="bottom-nav">
 
-        <button class="nav-item active" onclick="navigate('home')">
-            <span>⌂</span>
-            <small>Bosh sahifa</small>
+
+        <button
+            class="nav-item active"
+            onclick="navigate('home')"
+        >
+
+            <span>
+                ⌂
+            </span>
+
+            <small>
+                Bosh sahifa
+            </small>
+
         </button>
 
-        <button class="nav-item" onclick="navigate('books')">
-            <span>📚</span>
-            <small>Darsliklar</small>
+
+        <button
+            class="nav-item"
+            onclick="navigate('books')"
+        >
+
+            <span>
+                📚
+            </span>
+
+            <small>
+                Darsliklar
+            </small>
+
         </button>
 
-        <button class="nav-item ai-nav" onclick="navigate('ai')">
-            <span>🤖</span>
-            <small>AI</small>
+
+        <button
+            class="nav-item ai-nav"
+            onclick="navigate('ai')"
+        >
+
+            <span>
+                🤖
+            </span>
+
+            <small>
+                AI
+            </small>
+
         </button>
 
-        <button class="nav-item" onclick="navigate('profile')">
-            <span>👤</span>
-            <small>Profil</small>
+
+        <button
+            class="nav-item"
+            onclick="navigate('profile')"
+        >
+
+            <span>
+                👤
+            </span>
+
+            <small>
+                Profil
+            </small>
+
         </button>
+
 
     </nav>
 

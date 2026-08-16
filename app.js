@@ -1,36 +1,102 @@
-// ===============================
-// MedAiUz - Main JavaScript
-// ===============================
+// =====================================
+// MedAiUz Mini App
+// =====================================
 
 
+// TELEGRAM MINI APP
+
+const tg = window.Telegram?.WebApp;
+
+if (tg) {
+
+    tg.ready();
+
+    tg.expand();
+
+
+    // Telegram foydalanuvchisini olish
+
+    const user = tg.initDataUnsafe?.user;
+
+
+    if (user) {
+
+        const nameElement =
+            document.getElementById("userName");
+
+
+        if (nameElement) {
+
+            const firstName =
+                user.first_name || "Do‘stim";
+
+            nameElement.textContent =
+                firstName + "!";
+
+        }
+
+    }
+
+}
+
+
+// =====================================
 // SEARCH
-const searchInput = document.getElementById("searchInput");
-const searchBtn = document.getElementById("searchBtn");
+// =====================================
 
-searchBtn.addEventListener("click", function () {
+const searchInput =
+    document.getElementById("searchInput");
 
-    const query = searchInput.value.trim();
+const searchBtn =
+    document.getElementById("searchBtn");
 
-    if (query === "") {
-        alert("Iltimos, tibbiy mavzu kiriting.");
-        return;
+
+searchBtn.addEventListener(
+    "click",
+    function () {
+
+        const query =
+            searchInput.value.trim();
+
+
+        if (query === "") {
+
+            alert(
+                "Iltimos, tibbiy mavzu kiriting."
+            );
+
+            return;
+        }
+
+
+        alert(
+            "🔍 Qidirilmoqda: " + query
+        );
+
     }
-
-    alert("🔍 Qidirilmoqda: " + query);
-});
+);
 
 
-// ENTER BILAN QIDIRISH
-searchInput.addEventListener("keydown", function (event) {
+// ENTER BOSILGANDA QIDIRISH
 
-    if (event.key === "Enter") {
-        searchBtn.click();
+searchInput.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key === "Enter") {
+
+            searchBtn.click();
+
+        }
+
     }
+);
 
-});
 
+// =====================================
+// FEATURE
+// =====================================
 
-// FEATURE OCHISH
 function openFeature(feature) {
 
     alert(
@@ -42,50 +108,92 @@ function openFeature(feature) {
 }
 
 
-// BOTTOM NAVIGATION
+// =====================================
+// NAVIGATION
+// =====================================
+
 function navigate(page) {
 
-    // Barcha tugmalardan active ni olib tashlash
-    const navItems = document.querySelectorAll(".nav-item");
-
-    navItems.forEach(function (item) {
-        item.classList.remove("active");
-    });
+    const navItems =
+        document.querySelectorAll(".nav-item");
 
 
-    // Bosilgan tugmani active qilish
-    event.currentTarget.classList.add("active");
+    navItems.forEach(
+        function (item) {
+
+            item.classList.remove("active");
+
+        }
+    );
 
 
-    // Hozircha demo
-    if (page === "home") {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+    if (event?.currentTarget) {
+
+        event.currentTarget
+            .classList.add("active");
+
     }
+
+
+    if (page === "home") {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    }
+
 
     else if (page === "books") {
-        alert("📚 Darsliklar bo‘limi");
+
+        alert(
+            "📚 Darsliklar bo‘limi"
+        );
+
     }
+
 
     else if (page === "ai") {
-        alert("🤖 MedAi AI Assistant");
+
+        alert(
+            "🤖 MedAi AI Assistant"
+        );
+
     }
 
+
     else if (page === "profile") {
-        alert("👤 Profil bo‘limi");
+
+        alert(
+            "👤 Profil bo‘limi"
+        );
+
     }
 
 }
 
 
-// NOTIFICATION
+// =====================================
+// NOTIFICATIONS
+// =====================================
+
 const notificationBtn =
-    document.querySelector(".notification-btn");
+    document.querySelector(
+        ".notification-btn"
+    );
 
-notificationBtn.addEventListener("click", function () {
 
-    alert("🔔 Hozircha yangi bildirishnomalar yo‘q.");
+notificationBtn.addEventListener(
+    "click",
+    function () {
 
-});
+        alert(
+            "🔔 Hozircha yangi bildirishnomalar yo‘q."
+        );
+
+    }
+);
