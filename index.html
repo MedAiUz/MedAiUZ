@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MedAiUz</title>
-
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <title>MedAiUz — Offline</title>
 
     <style>
         * {
@@ -35,6 +33,8 @@
         }
 
         .logo {
+            max-width: 900px;
+            margin: auto;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -62,6 +62,17 @@
             margin-top: 3px;
         }
 
+        .offline {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 4px 8px;
+            border-radius: 8px;
+            background: #dcfce7;
+            color: #166534;
+            font-size: 9px;
+            font-weight: bold;
+        }
+
         .container {
             max-width: 900px;
             margin: auto;
@@ -84,7 +95,7 @@
         .welcome p {
             font-size: 13px;
             line-height: 1.6;
-            opacity: .9;
+            opacity: .92;
         }
 
         .ai-button {
@@ -132,7 +143,7 @@
 
         .card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,.07);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .07);
         }
 
         .card-icon {
@@ -158,13 +169,28 @@
             line-height: 1.4;
         }
 
+        .info {
+            margin-top: 20px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 16px;
+            font-size: 11px;
+            line-height: 1.6;
+            color: #6b7280;
+        }
+
+        .info strong {
+            color: #111827;
+        }
+
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             height: 70px;
-            background: rgba(255,255,255,.96);
+            background: rgba(255, 255, 255, .97);
             backdrop-filter: blur(12px);
             border-top: 1px solid #e5e7eb;
             display: flex;
@@ -197,6 +223,10 @@
             .menu {
                 grid-template-columns: 1fr 1fr;
             }
+
+            .welcome h2 {
+                font-size: 21px;
+            }
         }
     </style>
 </head>
@@ -204,162 +234,247 @@
 <body>
 
 <header class="header">
+
     <div class="logo">
-        <div class="logo-icon">🩺</div>
+
+        <div class="logo-icon">
+            🩺
+        </div>
 
         <div>
             <h1>MedAiUz</h1>
             <p>Tibbiyot uchun aqlli yordamchi</p>
+
+            <span class="offline">
+                🟢 OFFLINE REJIM
+            </span>
         </div>
+
     </div>
+
 </header>
+
 
 <main class="container">
 
     <section class="welcome">
 
-        <h2 id="welcomeTitle">
+        <h2>
             Assalomu alaykum! 👋
         </h2>
 
         <p>
             MedAiUz — tibbiyot talabalari va
             tibbiyot sohasi vakillari uchun
-            bilim, darslik, test va AI yordamchi
-            platformasi.
+            darslik, test, klinik holatlar,
+            terminlar va boshqa foydali
+            bo‘limlarni bir joyga jamlaydi.
         </p>
 
         <button
             class="ai-button"
             onclick="openAI()"
         >
-            🤖 AI yordamchiga kirish
+            🤖 AI yordamchi
         </button>
 
     </section>
 
+
     <div class="section-title">
-        <h2>Asosiy bo‘limlar</h2>
-        <span>MedAiUz</span>
+
+        <h2>
+            Asosiy bo‘limlar
+        </h2>
+
+        <span>
+            Offline
+        </span>
+
     </div>
+
 
     <section class="menu">
 
-        <!-- DARSLIKLAR -->
+
         <button
             class="card"
             onclick="openBooks()"
         >
-            <div class="card-icon">📚</div>
 
-            <h3>Darsliklar</h3>
+            <div class="card-icon">
+                📚
+            </div>
+
+            <h3>
+                Darsliklar
+            </h3>
 
             <p>
                 Tibbiy elektron kutubxona
             </p>
+
         </button>
 
-        <!-- TESTLAR -->
+
         <button
             class="card"
             onclick="openTests()"
         >
-            <div class="card-icon">🧠</div>
 
-            <h3>Testlar</h3>
+            <div class="card-icon">
+                🧠
+            </div>
+
+            <h3>
+                Testlar
+            </h3>
 
             <p>
                 Bilimingizni sinab ko‘ring
             </p>
+
         </button>
 
-        <!-- KLINIK -->
+
         <button
             class="card"
             onclick="openClinical()"
         >
-            <div class="card-icon">🩻</div>
 
-            <h3>Klinik holatlar</h3>
+            <div class="card-icon">
+                🩻
+            </div>
+
+            <h3>
+                Klinik holatlar
+            </h3>
 
             <p>
                 Klinik vaziyatlarni tahlil qiling
             </p>
+
         </button>
 
-        <!-- DORILAR -->
+
         <button
             class="card"
             onclick="openDrugs()"
         >
-            <div class="card-icon">💊</div>
 
-            <h3>Dorilar</h3>
+            <div class="card-icon">
+                💊
+            </div>
+
+            <h3>
+                Dorilar
+            </h3>
 
             <p>
                 Dori vositalari haqida ma’lumot
             </p>
+
         </button>
 
-        <!-- TERMINLAR -->
+
         <button
             class="card"
             onclick="openTerms()"
         >
-            <div class="card-icon">🔬</div>
 
-            <h3>Tibbiy terminlar</h3>
+            <div class="card-icon">
+                🔬
+            </div>
+
+            <h3>
+                Tibbiy terminlar
+            </h3>
 
             <p>
                 Tibbiy atamalar lug‘ati
             </p>
+
         </button>
 
-        <!-- AI -->
+
         <button
             class="card"
             onclick="openAI()"
         >
-            <div class="card-icon">🤖</div>
 
-            <h3>AI yordamchi</h3>
+            <div class="card-icon">
+                🤖
+            </div>
+
+            <h3>
+                AI yordamchi
+            </h3>
 
             <p>
-                Tibbiyot bo‘yicha aqlli yordamchi
+                Tibbiyot bo‘yicha yordamchi
             </p>
+
         </button>
 
-        <!-- NATIJALAR -->
+
         <button
             class="card"
             onclick="openResults()"
         >
-            <div class="card-icon">📊</div>
 
-            <h3>Natijalar</h3>
+            <div class="card-icon">
+                📊
+            </div>
+
+            <h3>
+                Natijalar
+            </h3>
 
             <p>
                 Test va o‘qish natijalaringiz
             </p>
+
         </button>
 
-        <!-- PROFIL -->
+
         <button
             class="card"
             onclick="openProfile()"
         >
-            <div class="card-icon">👤</div>
 
-            <h3>Profil</h3>
+            <div class="card-icon">
+                👤
+            </div>
+
+            <h3>
+                Profil
+            </h3>
 
             <p>
                 Shaxsiy profilingiz
             </p>
+
         </button>
 
     </section>
 
+
+    <div class="info">
+
+        <strong>📡 Offline rejim haqida</strong>
+
+        <br>
+
+        Bu sahifaning asosiy qismi internet
+        talab qilmaydi. Darsliklar, testlar,
+        terminlar va boshqa ma’lumotlarni
+        qurilmaning o‘zida saqlab, internet
+        bo‘lmagan holatda ham ishlatish mumkin.
+
+    </div>
+
 </main>
+
 
 <nav class="bottom-nav">
 
@@ -371,6 +486,7 @@
         Bosh sahifa
     </button>
 
+
     <button
         class="nav-btn"
         onclick="openBooks()"
@@ -379,6 +495,7 @@
         Darsliklar
     </button>
 
+
     <button
         class="nav-btn"
         onclick="openAI()"
@@ -386,6 +503,7 @@
         <span>🤖</span>
         AI
     </button>
+
 
     <button
         class="nav-btn"
@@ -397,148 +515,102 @@
 
 </nav>
 
+
 <script>
 
-const tg =
-    window.Telegram?.WebApp;
+    function openBooks() {
 
-if (tg) {
-    tg.ready();
-    tg.expand();
-}
+        window.location.href = "books.html";
 
-if (
-    tg &&
-    tg.initDataUnsafe &&
-    tg.initDataUnsafe.user
-) {
-
-    const user =
-        tg.initDataUnsafe.user;
-
-    const name =
-        user.first_name || "foydalanuvchi";
-
-    document.getElementById(
-        "welcomeTitle"
-    ).textContent =
-        "Assalomu alaykum, " +
-        name +
-        "! 👋";
-}
+    }
 
 
-/* DARSLIKLAR */
+    function openTests() {
 
-function openBooks() {
+        alert(
+            "🧠 Testlar\n\n" +
+            "Test bo‘limini hozir offline " +
+            "qilib yaratamiz."
+        );
 
-    window.location.href =
-        "./books.html";
-
-}
-
-
-/* AI */
-
-function openAI() {
-
-    alert(
-        "🤖 AI yordamchi\n\n" +
-        "Bu bo‘limni keyingi bosqichda " +
-        "to‘liq ishga tushiramiz."
-    );
-
-}
+    }
 
 
-/* TEST */
+    function openClinical() {
 
-function openTests() {
+        alert(
+            "🩻 Klinik holatlar\n\n" +
+            "Bu bo‘lim keyingi bosqichda " +
+            "offline ishlaydigan qilinadi."
+        );
 
-    alert(
-        "🧠 Testlar\n\n" +
-        "Test tizimi keyingi bosqichda " +
-        "qo‘shiladi."
-    );
-
-}
+    }
 
 
-/* CLINICAL */
+    function openDrugs() {
 
-function openClinical() {
+        alert(
+            "💊 Dorilar\n\n" +
+            "Dori ma’lumotlar bazasi keyingi " +
+            "bosqichda offline qo‘shiladi."
+        );
 
-    alert(
-        "🩻 Klinik holatlar\n\n" +
-        "Klinik Case tizimi keyingi bosqichda " +
-        "qo‘shiladi."
-    );
-
-}
+    }
 
 
-/* DRUGS */
+    function openTerms() {
 
-function openDrugs() {
+        alert(
+            "🔬 Tibbiy terminlar\n\n" +
+            "Terminlar lug‘ati keyingi " +
+            "bosqichda offline qo‘shiladi."
+        );
 
-    alert(
-        "💊 Dorilar\n\n" +
-        "Dori ma’lumotlar bazasi keyingi " +
-        "bosqichda qo‘shiladi."
-    );
-
-}
+    }
 
 
-/* TERMS */
+    function openAI() {
 
-function openTerms() {
+        alert(
+            "🤖 AI yordamchi\n\n" +
+            "Haqiqiy AI ishlashi uchun internet " +
+            "yoki qurilmada ishlaydigan lokal AI " +
+            "modeli kerak bo‘ladi."
+        );
 
-    alert(
-        "🔬 Tibbiy terminlar\n\n" +
-        "Terminlar lug‘ati keyingi bosqichda " +
-        "qo‘shiladi."
-    );
-
-}
-
-
-/* RESULTS */
-
-function openResults() {
-
-    alert(
-        "📊 Natijalar\n\n" +
-        "Natijalar bo‘limi keyingi bosqichda " +
-        "qo‘shiladi."
-    );
-
-}
+    }
 
 
-/* PROFILE */
+    function openResults() {
 
-function openProfile() {
+        alert(
+            "📊 Natijalar\n\n" +
+            "Natijalar bo‘limi keyingi bosqichda " +
+            "offline ishlaydigan qilinadi."
+        );
 
-    alert(
-        "👤 Profil\n\n" +
-        "Profil bo‘limi keyingi bosqichda " +
-        "qo‘shiladi."
-    );
-
-}
+    }
 
 
-/* HOME */
+    function openProfile() {
 
-function goHome() {
+        alert(
+            "👤 Profil\n\n" +
+            "Profil bo‘limi keyingi bosqichda " +
+            "offline ishlaydigan qilinadi."
+        );
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    }
 
-}
+
+    function goHome() {
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
 
 </script>
 
