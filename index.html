@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="uz">
 <head>
@@ -203,25 +204,17 @@
 <body>
 
 <header class="header">
-
     <div class="logo">
-
-        <div class="logo-icon">
-            🩺
-        </div>
+        <div class="logo-icon">🩺</div>
 
         <div>
             <h1>MedAiUz</h1>
             <p>Tibbiyot uchun aqlli yordamchi</p>
         </div>
-
     </div>
-
 </header>
 
-
 <main class="container">
-
 
     <section class="welcome">
 
@@ -245,206 +238,128 @@
 
     </section>
 
-
     <div class="section-title">
-
-        <h2>
-            Asosiy bo‘limlar
-        </h2>
-
-        <span>
-            MedAiUz
-        </span>
-
+        <h2>Asosiy bo‘limlar</h2>
+        <span>MedAiUz</span>
     </div>
-
 
     <section class="menu">
 
-
         <!-- DARSLIKLAR -->
-
         <button
             class="card"
             onclick="openBooks()"
         >
+            <div class="card-icon">📚</div>
 
-            <div class="card-icon">
-                📚
-            </div>
-
-            <h3>
-                Darsliklar
-            </h3>
+            <h3>Darsliklar</h3>
 
             <p>
                 Tibbiy elektron kutubxona
             </p>
-
         </button>
 
-
         <!-- TESTLAR -->
-
         <button
             class="card"
             onclick="openTests()"
         >
+            <div class="card-icon">🧠</div>
 
-            <div class="card-icon">
-                🧠
-            </div>
-
-            <h3>
-                Testlar
-            </h3>
+            <h3>Testlar</h3>
 
             <p>
                 Bilimingizni sinab ko‘ring
             </p>
-
         </button>
 
-
         <!-- KLINIK -->
-
         <button
             class="card"
             onclick="openClinical()"
         >
+            <div class="card-icon">🩻</div>
 
-            <div class="card-icon">
-                🩻
-            </div>
-
-            <h3>
-                Klinik holatlar
-            </h3>
+            <h3>Klinik holatlar</h3>
 
             <p>
                 Klinik vaziyatlarni tahlil qiling
             </p>
-
         </button>
 
-
         <!-- DORILAR -->
-
         <button
             class="card"
             onclick="openDrugs()"
         >
+            <div class="card-icon">💊</div>
 
-            <div class="card-icon">
-                💊
-            </div>
-
-            <h3>
-                Dorilar
-            </h3>
+            <h3>Dorilar</h3>
 
             <p>
                 Dori vositalari haqida ma’lumot
             </p>
-
         </button>
 
-
         <!-- TERMINLAR -->
-
         <button
             class="card"
             onclick="openTerms()"
         >
+            <div class="card-icon">🔬</div>
 
-            <div class="card-icon">
-                🔬
-            </div>
-
-            <h3>
-                Tibbiy terminlar
-            </h3>
+            <h3>Tibbiy terminlar</h3>
 
             <p>
                 Tibbiy atamalar lug‘ati
             </p>
-
         </button>
 
-
         <!-- AI -->
-
         <button
             class="card"
             onclick="openAI()"
         >
+            <div class="card-icon">🤖</div>
 
-            <div class="card-icon">
-                🤖
-            </div>
-
-            <h3>
-                AI yordamchi
-            </h3>
+            <h3>AI yordamchi</h3>
 
             <p>
                 Tibbiyot bo‘yicha aqlli yordamchi
             </p>
-
         </button>
 
-
         <!-- NATIJALAR -->
-
         <button
             class="card"
             onclick="openResults()"
         >
+            <div class="card-icon">📊</div>
 
-            <div class="card-icon">
-                📊
-            </div>
-
-            <h3>
-                Natijalar
-            </h3>
+            <h3>Natijalar</h3>
 
             <p>
                 Test va o‘qish natijalaringiz
             </p>
-
         </button>
 
-
         <!-- PROFIL -->
-
         <button
             class="card"
             onclick="openProfile()"
         >
+            <div class="card-icon">👤</div>
 
-            <div class="card-icon">
-                👤
-            </div>
-
-            <h3>
-                Profil
-            </h3>
+            <h3>Profil</h3>
 
             <p>
                 Shaxsiy profilingiz
             </p>
-
         </button>
-
 
     </section>
 
-
 </main>
-
-
-<!-- BOTTOM NAVIGATION -->
 
 <nav class="bottom-nav">
 
@@ -452,205 +367,181 @@
         class="nav-btn active"
         onclick="goHome()"
     >
-
         <span>🏠</span>
-
         Bosh sahifa
-
     </button>
-
 
     <button
         class="nav-btn"
         onclick="openBooks()"
     >
-
         <span>📚</span>
-
         Darsliklar
-
     </button>
-
 
     <button
         class="nav-btn"
         onclick="openAI()"
     >
-
         <span>🤖</span>
-
         AI
-
     </button>
-
 
     <button
         class="nav-btn"
         onclick="openProfile()"
     >
-
         <span>👤</span>
-
         Profil
-
     </button>
 
 </nav>
 
-
 <script>
 
-    /* TELEGRAM MINI APP */
+const tg =
+    window.Telegram?.WebApp;
 
-    const tg =
-        window.Telegram?.WebApp;
+if (tg) {
+    tg.ready();
+    tg.expand();
+}
 
-    if (tg) {
+if (
+    tg &&
+    tg.initDataUnsafe &&
+    tg.initDataUnsafe.user
+) {
 
-        tg.ready();
+    const user =
+        tg.initDataUnsafe.user;
 
-        tg.expand();
+    const name =
+        user.first_name || "foydalanuvchi";
 
-    }
-
-
-    /* USER NAME */
-
-    if (
-        tg &&
-        tg.initDataUnsafe &&
-        tg.initDataUnsafe.user
-    ) {
-
-        const user =
-            tg.initDataUnsafe.user;
-
-        const name =
-            user.first_name || "foydalanuvchi";
-
-        document.getElementById(
-            "welcomeTitle"
-        ).textContent =
-            "Assalomu alaykum, " +
-            name +
-            "! 👋";
-
-    }
+    document.getElementById(
+        "welcomeTitle"
+    ).textContent =
+        "Assalomu alaykum, " +
+        name +
+        "! 👋";
+}
 
 
-    /* DARSLIKLAR */
+/* DARSLIKLAR */
 
-    function openBooks() {
+function openBooks() {
 
-        window.location.href =
-            "books.html";
+    window.location.href =
+        "./books.html";
 
-    }
-
-
-    /* AI */
-
-    function openAI() {
-
-        alert(
-            "🤖 AI yordamchi\n\n" +
-            "Bu bo‘limni keyingi bosqichda " +
-            "to‘liq ishga tushiramiz."
-        );
-
-    }
+}
 
 
-    /* TEST */
+/* AI */
 
-    function openTests() {
+function openAI() {
 
-        alert(
-            "🧠 Testlar\n\n" +
-            "Test tizimi keyingi bosqichda " +
-            "qo‘shiladi."
-        );
+    alert(
+        "🤖 AI yordamchi\n\n" +
+        "Bu bo‘limni keyingi bosqichda " +
+        "to‘liq ishga tushiramiz."
+    );
 
-    }
-
-
-    /* CLINICAL */
-
-    function openClinical() {
-
-        alert(
-            "🩻 Klinik holatlar\n\n" +
-            "Klinik Case tizimi keyingi bosqichda " +
-            "qo‘shiladi."
-        );
-
-    }
+}
 
 
-    /* DRUGS */
+/* TEST */
 
-    function openDrugs() {
+function openTests() {
 
-        alert(
-            "💊 Dorilar\n\n" +
-            "Dori ma’lumotlar bazasi keyingi " +
-            "bosqichda qo‘shiladi."
-        );
+    alert(
+        "🧠 Testlar\n\n" +
+        "Test tizimi keyingi bosqichda " +
+        "qo‘shiladi."
+    );
 
-    }
-
-
-    /* TERMS */
-
-    function openTerms() {
-
-        alert(
-            "🔬 Tibbiy terminlar\n\n" +
-            "Terminlar lug‘ati keyingi bosqichda " +
-            "qo‘shiladi."
-        );
-
-    }
+}
 
 
-    /* RESULTS */
+/* CLINICAL */
 
-    function openResults() {
+function openClinical() {
 
-        alert(
-            "📊 Natijalar\n\n" +
-            "Natijalar bo‘limi keyingi bosqichda " +
-            "qo‘shiladi."
-        );
+    alert(
+        "🩻 Klinik holatlar\n\n" +
+        "Klinik Case tizimi keyingi bosqichda " +
+        "qo‘shiladi."
+    );
 
-    }
-
-
-    /* PROFILE */
-
-    function openProfile() {
-
-        alert(
-            "👤 Profil\n\n" +
-            "Profil bo‘limi keyingi bosqichda " +
-            "qo‘shiladi."
-        );
-
-    }
+}
 
 
-    /* HOME */
+/* DRUGS */
 
-    function goHome() {
+function openDrugs() {
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+    alert(
+        "💊 Dorilar\n\n" +
+        "Dori ma’lumotlar bazasi keyingi " +
+        "bosqichda qo‘shiladi."
+    );
 
-    }
+}
+
+
+/* TERMS */
+
+function openTerms() {
+
+    alert(
+        "🔬 Tibbiy terminlar\n\n" +
+        "Terminlar lug‘ati keyingi bosqichda " +
+        "qo‘shiladi."
+    );
+
+}
+
+
+/* RESULTS */
+
+function openResults() {
+
+    alert(
+        "📊 Natijalar\n\n" +
+        "Natijalar bo‘limi keyingi bosqichda " +
+        "qo‘shiladi."
+    );
+
+}
+
+
+/* PROFILE */
+
+function openProfile() {
+
+    alert(
+        "👤 Profil\n\n" +
+        "Profil bo‘limi keyingi bosqichda " +
+        "qo‘shiladi."
+    );
+
+}
+
+
+/* HOME */
+
+function goHome() {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
 
 </script>
 
 </body>
 </html>
+```
