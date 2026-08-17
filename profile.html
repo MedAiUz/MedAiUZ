@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profil — MedAiUz</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #111827;
+            padding-bottom: 90px;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .header {
+            padding: 20px 18px 15px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .header-row {
+            max-width: 900px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            color: #111827;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-row h1 {
+            font-size: 19px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 18px;
+        }
+
+        .profile-hero {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            border-radius: 24px;
+            padding: 26px 22px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 78px;
+            height: 78px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .18);
+            border: 3px solid rgba(255, 255, 255, .5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: bold;
+            margin: 0 auto 12px;
+        }
+
+        .profile-hero h2 {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .profile-hero p {
+            font-size: 12.5px;
+            opacity: .9;
+            margin-bottom: 12px;
+        }
+
+        .role-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, .18);
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-size: 11.5px;
+            font-weight: bold;
+        }
+
+        .edit-btn {
+            margin-top: 16px;
+            width: 100%;
+            border: none;
+            border-radius: 14px;
+            padding: 13px;
+            background: white;
+            color: #2563eb;
+            font-weight: bold;
+            font-size: 13.5px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 14px 6px;
+            text-align: center;
+        }
+
+        .stat-card .num {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .stat-card .lbl {
+            font-size: 10px;
+            color: #6b7280;
+            margin-top: 3px;
+            line-height: 1.3;
+        }
+
+        .section-title {
+            font-size: 12px;
+            font-weight: bold;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            margin: 20px 0 10px;
+        }
+
+        .list {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .row {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            background: white;
+            border: none;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: left;
+        }
+
+        .row:last-child {
+            border-bottom: none;
+        }
+
+        .row-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 11px;
+            background: #eff6ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+
+        .row-text {
+            flex: 1;
+        }
+
+        .row-title {
+            font-size: 13.5px;
+            font-weight: bold;
+        }
+
+        .row-sub {
+            font-size: 10.5px;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+
+        .row-chev {
+            color: #9ca3af;
+            font-size: 16px;
+        }
+
+        .row.danger .row-title {
+            color: #dc2626;
+        }
+
+        .row.danger .row-icon {
+            background: #fee2e2;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(255, 255, 255, .97);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            border: none;
+            background: transparent;
+            color: #6b7280;
+            font-size: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-btn span {
+            font-size: 22px;
+        }
+
+        .nav-btn.active {
+            color: #2563eb;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="header-row">
+        <button class="back-btn" onclick="goHome()">←</button>
+        <h1>Profil</h1>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="profile-hero">
+        <div class="avatar" id="avatarInitials">AZ</div>
+        <h2 id="profileName">Foydalanuvchi</h2>
+        <p id="profileEmail">Ma'lumot kiritilmagan</p>
+        <span class="role-tag">🎓 <span id="profileRole">Talaba</span></span>
+        <button class="edit-btn" onclick="openEdit()">✎ Profilni tahrirlash</button>
+    </section>
+
+    <section class="stats">
+        <div class="stat-card">
+            <div class="num" id="statTests">0</div>
+            <div class="lbl">Testlar<br>topshirildi</div>
+        </div>
+        <div class="stat-card">
+            <div class="num" id="statAvg">—</div>
+            <div class="lbl">O'rtacha<br>ball</div>
+        </div>
+        <div class="stat-card">
+            <div class="num" id="statStreak">0</div>
+            <div class="lbl">Kunlik<br>seriya</div>
+        </div>
+    </section>
+
+    <div class="section-title">Hisob</div>
+    <section class="list">
+        <button class="row" onclick="openResults()">
+            <div class="row-icon">📊</div>
+            <div class="row-text">
+                <div class="row-title">Mening natijalarim</div>
+                <div class="row-sub">Test va o'qish tarixi</div>
+            </div>
+            <div class="row-chev">›</div>
+        </button>
+        <button class="row" onclick="alert('Saqlangan materiallar keyingi bosqichda qo\'shiladi.')">
+            <div class="row-icon">🔖</div>
+            <div class="row-text">
+                <div class="row-title">Saqlangan materiallar</div>
+                <div class="row-sub">Darslik va holatlar</div>
+            </div>
+            <div class="row-chev">›</div>
+        </button>
+    </section>
+
+    <div class="section-title">Sozlamalar</div>
+    <section class="list">
+        <button class="row" onclick="alert('Til tanlash keyingi bosqichda qo\'shiladi.')">
+            <div class="row-icon">🌐</div>
+            <div class="row-text">
+                <div class="row-title">Til</div>
+                <div class="row-sub">O'zbekcha</div>
+            </div>
+            <div class="row-chev">›</div>
+        </button>
+    </section>
+
+    <div class="section-title">&nbsp;</div>
+    <section class="list">
+        <button class="row danger" onclick="alert('Tizimdan chiqish keyingi bosqichda qo\'shiladi.')">
+            <div class="row-icon">🚪</div>
+            <div class="row-text">
+                <div class="row-title">Chiqish</div>
+            </div>
+        </button>
+    </section>
+
+</main>
+
+<nav class="bottom-nav">
+    <button class="nav-btn" onclick="goHome()">
+        <span>🏠</span>
+        Bosh sahifa
+    </button>
+    <button class="nav-btn" onclick="openBooks()">
+        <span>📚</span>
+        Darsliklar
+    </button>
+    <button class="nav-btn" onclick="openAI()">
+        <span>🤖</span>
+        AI
+    </button>
+    <button class="nav-btn active" onclick="">
+        <span>👤</span>
+        Profil
+    </button>
+</nav>
+
+<script>
+    const state = {
+        name: "Foydalanuvchi",
+        email: "",
+        role: "Talaba"
+    };
+
+    function initials(name) {
+        return name.trim().split(/\s+/).map(w => w[0]).join("").slice(0, 2).toUpperCase();
+    }
+
+    function renderProfile() {
+        document.getElementById('profileName').textContent = state.name;
+        document.getElementById('profileEmail').textContent = state.email || "Email kiritilmagan";
+        document.getElementById('profileRole').textContent = state.role;
+        document.getElementById('avatarInitials').textContent = initials(state.name);
+    }
+
+    function openEdit() {
+        const newName = prompt("Ismingizni kiriting:", state.name);
+        if (newName) {
+            state.name = newName;
+            renderProfile();
+        }
+    }
+
+    function openBooks() {
+        window.location.href = "books.html";
+    }
+
+    function openAI() {
+        window.location.href = "ai.html";
+    }
+
+    function openResults() {
+        alert(
+            "📊 Natijalar\n\n" +
+            "Natijalar bo'limi keyingi bosqichda " +
+            "offline ishlaydigan qilinadi."
+        );
+    }
+
+    function goHome() {
+        window.location.href = "index.html";
+    }
+
+    if (window.Telegram && window.Telegram.WebApp) {
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        const user = tg.initDataUnsafe && tg.initDataUnsafe.user;
+        if (user) {
+            state.name = [user.first_name, user.last_name].filter(Boolean).join(" ") || state.name;
+            state.email = user.username ? "@" + user.username : "";
+        }
+    }
+
+    renderProfile();
+</script>
+
+</body>
+</html>
