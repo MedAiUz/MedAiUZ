@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil — MedAiUZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0f14;
+    --surface: #121a22;
+    --surface-2: #19232d;
+    --border: #223040;
+    --text: #eef2f5;
+    --text-dim: #8ea0af;
+    --accent: #2fd88a;      /* offline/success green, matches site badge */
+    --accent-dim: #1c8f5d;
+    --accent-soft: rgba(47,216,138,0.12);
+    --pulse: #46c1ff;       /* medical cyan for secondary accents */
+    --danger: #ff6b6b;
+    --danger-soft: rgba(255,107,107,0.12);
+    --radius: 18px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    display:flex;
+    justify-content:center;
+    min-height:100vh;
+  }
+
+  .app{
+    width:100%;
+    max-width:430px;
+    min-height:100vh;
+    background: var(--bg);
+    position:relative;
+    padding-bottom:88px;
+  }
+
+  /* ---------- Header ---------- */
+  .topbar{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:20px 20px 8px;
+  }
+  .back-btn{
+    width:38px; height:38px;
+    border-radius:12px;
+    background: var(--surface);
+    border:1px solid var(--border);
+    color:var(--text);
+    display:flex; align-items:center; justify-content:center;
+    font-size:18px;
+    cursor:pointer;
+  }
+  .topbar h1{
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:20px;
+    font-weight:700;
+  }
+
+  /* ---------- Hero / identity card ---------- */
+  .hero{
+    margin:18px 20px 0;
+    background: linear-gradient(160deg, var(--surface-2), var(--surface));
+    border:1px solid var(--border);
+    border-radius: 24px;
+    padding:26px 20px 22px;
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(47,216,138,0.16), transparent 45%),
+      radial-gradient(circle at 90% 10%, rgba(70,193,255,0.12), transparent 40%);
+    pointer-events:none;
+  }
+
+  .avatar-ring{
+    position:relative;
+    width:104px; height:104px;
+    margin:0 auto 14px;
+  }
+  .avatar-ring svg{ position:absolute; inset:0; transform:rotate(-90deg); }
+  .avatar-ring svg circle{
+    fill:none;
+    stroke-width:6;
+  }
+  .ring-track{ stroke: var(--border); }
+  .ring-progress{
+    stroke: var(--accent);
+    stroke-linecap:round;
+    transition: stroke-dashoffset 0.8s ease;
+  }
+  .avatar-core{
+    position:absolute; inset:10px;
+    border-radius:50%;
+    background: var(--surface);
+    display:flex; align-items:center; justify-content:center;
+    font-size:34px;
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-weight:800;
+    color:var(--accent);
+  }
+  .ring-label{
+    position:absolute;
+    bottom:-4px; left:50%;
+    transform:translateX(-50%);
+    background: var(--accent);
+    color:#04150c;
+    font-size:11px;
+    font-weight:700;
+    padding:2px 9px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+
+  .hero h2{
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:21px;
+    font-weight:700;
+    margin-top:8px;
+  }
+  .hero .role{
+    color: var(--text-dim);
+    font-size:13.5px;
+    margin-top:3px;
+  }
+  .hero .role-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    margin-top:10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size:12px;
+    font-weight:600;
+    padding:5px 12px;
+    border-radius:999px;
+  }
+
+  .edit-btn{
+    margin-top:16px;
+    width:100%;
+    background: var(--surface);
+    border:1px solid var(--border);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:14px;
+    padding:11px;
+    border-radius:14px;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    position:relative;
+    z-index:1;
+  }
+  .edit-btn:active{ transform: scale(0.98); }
+
+  /* ---------- ECG divider (signature motif) ---------- */
+  .ecg-divider{
+    margin:22px 20px 4px;
+    height:30px;
+    opacity:0.55;
+  }
+  .ecg-divider svg{ width:100%; height:100%; display:block; }
+  .ecg-divider path{
+    fill:none;
+    stroke: var(--pulse);
+    stroke-width:1.6;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+
+  /* ---------- Stats ---------- */
+  .stats{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:10px;
+    margin:10px 20px 0;
+  }
+  .stat-card{
+    background: var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:14px 8px;
+    text-align:center;
+  }
+  .stat-card .num{
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:19px;
+    font-weight:800;
+  }
+  .stat-card.green .num{ color: var(--accent); }
+  .stat-card.blue .num{ color: var(--pulse); }
+  .stat-card .lbl{
+    font-size:11px;
+    color: var(--text-dim);
+    margin-top:3px;
+    line-height:1.3;
+  }
+
+  /* ---------- Section ---------- */
+  .section{
+    margin:26px 20px 0;
+  }
+  .section-title{
+    font-size:12.5px;
+    font-weight:700;
+    color: var(--text-dim);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-bottom:10px;
+    padding-left:2px;
+  }
+
+  .list{
+    background: var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    overflow:hidden;
+  }
+  .row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 14px;
+    border-bottom:1px solid var(--border);
+    cursor:pointer;
+  }
+  .row:last-child{ border-bottom:none; }
+  .row-icon{
+    width:34px; height:34px;
+    border-radius:10px;
+    background: var(--surface-2);
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px;
+    flex-shrink:0;
+  }
+  .row-text{ flex:1; min-width:0; }
+  .row-title{ font-size:14.5px; font-weight:600; }
+  .row-sub{ font-size:12px; color:var(--text-dim); margin-top:2px; }
+  .row-chev{ color:var(--text-dim); font-size:14px; }
+
+  /* toggle switch */
+  .switch{
+    width:42px; height:24px;
+    background: var(--border);
+    border-radius:999px;
+    position:relative;
+    flex-shrink:0;
+    transition: background 0.2s ease;
+    border:none;
+    cursor:pointer;
+  }
+  .switch::after{
+    content:"";
+    position:absolute;
+    top:3px; left:3px;
+    width:18px; height:18px;
+    background:#fff;
+    border-radius:50%;
+    transition: transform 0.2s ease;
+  }
+  .switch.on{ background: var(--accent); }
+  .switch.on::after{ transform: translateX(18px); }
+
+  .row.danger .row-title{ color: var(--danger); }
+  .row.danger .row-icon{ background: var(--danger-soft); }
+
+  /* ---------- Bottom nav (matches existing site) ---------- */
+  .bottom-nav{
+    position:fixed;
+    bottom:0; left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:430px;
+    background: var(--surface);
+    border-top:1px solid var(--border);
+    display:flex;
+    justify-content:space-around;
+    padding:10px 8px 14px;
+  }
+  .nav-item{
+    display:flex; flex-direction:column; align-items:center; gap:3px;
+    font-size:10.5px;
+    color: var(--text-dim);
+    cursor:pointer;
+  }
+  .nav-item span:first-child{ font-size:19px; }
+  .nav-item.active{ color: var(--accent); }
+
+  /* ---------- Edit modal ---------- */
+  .overlay{
+    position:fixed; inset:0;
+    background: rgba(4,8,12,0.6);
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    z-index:50;
+  }
+  .overlay.open{ display:flex; }
+  .modal{
+    width:100%;
+    max-width:430px;
+    background: var(--surface);
+    border-top-left-radius:24px;
+    border-top-right-radius:24px;
+    padding:22px 20px 26px;
+    border:1px solid var(--border);
+    border-bottom:none;
+  }
+  .modal h3{
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:17px;
+    margin-bottom:16px;
+  }
+  .field{ margin-bottom:14px; }
+  .field label{
+    display:block;
+    font-size:12px;
+    color:var(--text-dim);
+    margin-bottom:6px;
+  }
+  .field input, .field select{
+    width:100%;
+    background: var(--surface-2);
+    border:1px solid var(--border);
+    color:var(--text);
+    padding:11px 12px;
+    border-radius:12px;
+    font-size:14px;
+    font-family:'Inter', sans-serif;
+  }
+  .modal-actions{
+    display:flex; gap:10px;
+    margin-top:8px;
+  }
+  .btn{
+    flex:1;
+    padding:12px;
+    border-radius:12px;
+    font-weight:700;
+    font-size:14px;
+    border:none;
+    cursor:pointer;
+    font-family:'Inter', sans-serif;
+  }
+  .btn-cancel{ background: var(--surface-2); color:var(--text); border:1px solid var(--border); }
+  .btn-save{ background: var(--accent); color:#04150c; }
+
+  .toast{
+    position:fixed;
+    top:20px; left:50%;
+    transform:translateX(-50%) translateY(-140%);
+    background: var(--accent);
+    color:#04150c;
+    font-weight:700;
+    font-size:13.5px;
+    padding:11px 18px;
+    border-radius:12px;
+    z-index:60;
+    transition: transform 0.3s ease;
+  }
+  .toast.show{ transform:translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <div class="topbar">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <h1>Profil</h1>
+  </div>
+
+  <!-- Identity hero -->
+  <div class="hero">
+    <div class="avatar-ring">
+      <svg viewBox="0 0 104 104">
+        <circle class="ring-track" cx="52" cy="52" r="46"></circle>
+        <circle id="ringProgress" class="ring-progress" cx="52" cy="52" r="46"
+          stroke-dasharray="289" stroke-dashoffset="289"></circle>
+      </svg>
+      <div class="avatar-core" id="avatarInitials">AZ</div>
+      <div class="ring-label" id="ringLabel">0%</div>
+    </div>
+    <h2 id="profileName">Aziza Karimova</h2>
+    <div class="role" id="profileEmail">aziza.karimova@medaiuz.uz</div>
+    <div class="role-tag">🎓 <span id="profileRole">3-kurs talabasi</span></div>
+
+    <button class="edit-btn" onclick="openEdit()">✎ Profilni tahrirlash</button>
+  </div>
+
+  <!-- ECG signature divider -->
+  <div class="ecg-divider">
+    <svg viewBox="0 0 400 30" preserveAspectRatio="none">
+      <path d="M0,15 L60,15 L75,15 L85,3 L95,27 L105,15 L120,15 L400,15" />
+    </svg>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat-card green">
+      <div class="num" id="statTests">128</div>
+      <div class="lbl">Testlar<br>topshirildi</div>
+    </div>
+    <div class="stat-card blue">
+      <div class="num" id="statAvg">84%</div>
+      <div class="lbl">O'rtacha<br>ball</div>
+    </div>
+    <div class="stat-card green">
+      <div class="num" id="statStreak">12 🔥</div>
+      <div class="lbl">Kunlik<br>seriya</div>
+    </div>
+  </div>
+
+  <!-- Account -->
+  <div class="section">
+    <div class="section-title">Hisob</div>
+    <div class="list">
+      <div class="row" onclick="showToast('Natijalar bo\'limi ochilmoqda')">
+        <div class="row-icon">📊</div>
+        <div class="row-text">
+          <div class="row-title">Mening natijalarim</div>
+          <div class="row-sub">Test va o'qish tarixi</div>
+        </div>
+        <div class="row-chev">›</div>
+      </div>
+      <div class="row" onclick="showToast('Saqlanganlar ochilmoqda')">
+        <div class="row-icon">🔖</div>
+        <div class="row-text">
+          <div class="row-title">Saqlangan materiallar</div>
+          <div class="row-sub">Darslik va holatlar</div>
+        </div>
+        <div class="row-chev">›</div>
+      </div>
+      <div class="row" onclick="showToast('Sertifikatlar ochilmoqda')">
+        <div class="row-icon">🏅</div>
+        <div class="row-text">
+          <div class="row-title">Sertifikatlar</div>
+          <div class="row-sub">3 ta yakunlangan kurs</div>
+        </div>
+        <div class="row-chev">›</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings -->
+  <div class="section">
+    <div class="section-title">Sozlamalar</div>
+    <div class="list">
+      <div class="row">
+        <div class="row-icon">🔔</div>
+        <div class="row-text">
+          <div class="row-title">Bildirishnomalar</div>
+          <div class="row-sub">Eslatma va yangiliklar</div>
+        </div>
+        <button class="switch on" id="toggleNotif" onclick="toggleSwitch(this)"></button>
+      </div>
+      <div class="row">
+        <div class="row-icon">📡</div>
+        <div class="row-text">
+          <div class="row-title">Offline rejim</div>
+          <div class="row-sub">Ma'lumotlarni qurilmada saqlash</div>
+        </div>
+        <button class="switch on" id="toggleOffline" onclick="toggleSwitch(this)"></button>
+      </div>
+      <div class="row" onclick="showToast('Til tanlash ochilmoqda')">
+        <div class="row-icon">🌐</div>
+        <div class="row-text">
+          <div class="row-title">Til</div>
+          <div class="row-sub">O'zbekcha</div>
+        </div>
+        <div class="row-chev">›</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Danger zone -->
+  <div class="section">
+    <div class="list">
+      <div class="row danger" onclick="showToast('Tizimdan chiqildi')">
+        <div class="row-icon">🚪</div>
+        <div class="row-text">
+          <div class="row-title">Chiqish</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom nav -->
+  <div class="bottom-nav">
+    <div class="nav-item"><span>🏠</span><span>Bosh sahifa</span></div>
+    <div class="nav-item"><span>📚</span><span>Darsliklar</span></div>
+    <div class="nav-item"><span>🤖</span><span>AI</span></div>
+    <div class="nav-item active"><span>👤</span><span>Profil</span></div>
+  </div>
+</div>
+
+<!-- Edit modal -->
+<div class="overlay" id="editOverlay">
+  <div class="modal">
+    <h3>Profilni tahrirlash</h3>
+    <div class="field">
+      <label>Ism va familiya</label>
+      <input type="text" id="inputName" value="Aziza Karimova">
+    </div>
+    <div class="field">
+      <label>Email</label>
+      <input type="email" id="inputEmail" value="aziza.karimova@medaiuz.uz">
+    </div>
+    <div class="field">
+      <label>Maqom</label>
+      <select id="inputRole">
+        <option>1-kurs talabasi</option>
+        <option>2-kurs talabasi</option>
+        <option selected>3-kurs talabasi</option>
+        <option>4-kurs talabasi</option>
+        <option>Shifokor</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-cancel" onclick="closeEdit()">Bekor qilish</button>
+      <button class="btn btn-save" onclick="saveProfile()">Saqlash</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ---- Sample state (replace with real data source / API / localStorage on your own deployment) ----
+  const state = {
+    name: "Aziza Karimova",
+    email: "aziza.karimova@medaiuz.uz",
+    role: "3-kurs talabasi",
+    progress: 68 // course completion %, drives the ring
+  };
+
+  function initials(name){
+    return name.trim().split(/\s+/).map(w => w[0]).join("").slice(0,2).toUpperCase();
+  }
+
+  function renderProfile(){
+    document.getElementById('profileName').textContent = state.name;
+    document.getElementById('profileEmail').textContent = state.email;
+    document.getElementById('profileRole').textContent = state.role;
+    document.getElementById('avatarInitials').textContent = initials(state.name);
+
+    const circumference = 2 * Math.PI * 46;
+    const offset = circumference - (state.progress / 100) * circumference;
+    const ring = document.getElementById('ringProgress');
+    ring.style.strokeDasharray = circumference;
+    ring.style.strokeDashoffset = offset;
+    document.getElementById('ringLabel').textContent = state.progress + '%';
+  }
+
+  function openEdit(){
+    document.getElementById('inputName').value = state.name;
+    document.getElementById('inputEmail').value = state.email;
+    document.getElementById('inputRole').value = state.role;
+    document.getElementById('editOverlay').classList.add('open');
+  }
+  function closeEdit(){
+    document.getElementById('editOverlay').classList.remove('open');
+  }
+  function saveProfile(){
+    state.name = document.getElementById('inputName').value.trim() || state.name;
+    state.email = document.getElementById('inputEmail').value.trim() || state.email;
+    state.role = document.getElementById('inputRole').value;
+    renderProfile();
+    closeEdit();
+    showToast('Profil yangilandi ✓');
+  }
+
+  function toggleSwitch(el){
+    el.classList.toggle('on');
+  }
+
+  let toastTimer;
+  function showToast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  renderProfile();
+</script>
+
+</body>
+</html>
