@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dorilar — MedAiUz</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #111827;
+            padding-bottom: 40px;
+        }
+        .header {
+            padding: 18px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .back-btn {
+            border: none;
+            background: #eff6ff;
+            color: #2563eb;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .header h1 { font-size: 18px; }
+        .container { max-width: 900px; margin: auto; padding: 18px; }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 14px;
+            border: 1px solid #e5e7eb;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+
+        .drug-list { display: flex; flex-direction: column; gap: 12px; }
+        .drug-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 16px;
+            text-align: left;
+            width: 100%;
+            cursor: pointer;
+        }
+        .drug-card h3 { font-size: 14px; margin-bottom: 4px; }
+        .drug-card p { font-size: 11px; color: #6b7280; }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <button class="back-btn" onclick="goBack()">←</button>
+    <h1>💊 Dorilar</h1>
+</header>
+
+<main class="container">
+
+    <input
+        type="text"
+        class="search-box"
+        placeholder="Dori nomini qidirish..."
+        id="searchInput"
+        oninput="filterDrugs()"
+    >
+
+    <div class="drug-list" id="drugList">
+
+        <button class="drug-card" onclick="openDrug('Paratsetamol')">
+            <h3>Paratsetamol</h3>
+            <p>Og'riq qoldiruvchi va harorat pasaytiruvchi vosita</p>
+        </button>
+
+        <button class="drug-card" onclick="openDrug('Amoksitsillin')">
+            <h3>Amoksitsillin</h3>
+            <p>Keng ta'sir spektrli antibiotik</p>
+        </button>
+
+        <button class="drug-card" onclick="openDrug('Ibuprofen')">
+            <h3>Ibuprofen</h3>
+            <p>Yallig'lanishga qarshi, og'riq qoldiruvchi vosita</p>
+        </button>
+
+        <button class="drug-card" onclick="openDrug('Omeprazol')">
+            <h3>Omeprazol</h3>
+            <p>Oshqozon kislotasini kamaytiruvchi vosita</p>
+        </button>
+
+    </div>
+</main>
+
+<script>
+function goBack() {
+    window.location.href = "./index.html";
+}
+function openDrug(name) {
+    alert("💊 " + name + "\n\nTo'liq ma'lumot (dozalar, ko'rsatmalar, qarshi ko'rsatmalar) tez orada qo'shiladi.");
+}
+function filterDrugs() {
+    const query = document.getElementById("searchInput").value.toLowerCase();
+    const cards = document.querySelectorAll(".drug-card");
+    cards.forEach(card => {
+        const name = card.querySelector("h3").textContent.toLowerCase();
+        card.style.display = name.includes(query) ? "block" : "none";
+    });
+}
+</script>
+
+</body>
+</html>
