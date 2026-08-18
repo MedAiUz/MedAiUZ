@@ -165,9 +165,9 @@ app.post("/api/chat", async (req, res) => {
         const userMessage =
             req.body.message;
 
-        // ------------------------------
+        // ======================================
         // XABARNI TEKSHIRISH
-        // ------------------------------
+        // ======================================
 
         if (
             !userMessage ||
@@ -177,7 +177,7 @@ app.post("/api/chat", async (req, res) => {
 
             return res.status(400).json({
                 error:
-                    "Xabar bo'sh bo'lishi mumkin emas"
+                    "Xabar bo'sh bo'lishi mumkin emas."
             });
 
         }
@@ -187,65 +187,113 @@ app.post("/api/chat", async (req, res) => {
             userMessage.substring(0, 150)
         );
 
-        // ------------------------------
-        // ANTHROPIC SO'ROVI
-        // ------------------------------
+        // ======================================
+        // AI SO'ROVI
+        // ======================================
 
         const response =
             await anthropic.messages.create({
 
                 model: "claude-sonnet-4-6",
 
-                // Javobni qisqartirdik:
-                // 1000 -> 500
+                // Qisqa va tezroq javob
                 max_tokens: 500,
 
+                // ==================================
+                // KUCHAYTIRILGAN O'ZBEK TILI PROMPTI
+                // ==================================
+
                 system:
+
                     "Sen MedAiUz platformasining " +
-                    "tibbiy AI yordamchisisan. " +
+                    "professional tibbiy AI yordamchisisan. " +
 
-                    "Har doim o'zbek tilida javob ber. " +
+                    "Har doim zamonaviy, adabiy, tabiiy va " +
+                    "grammatik jihatdan to'g'ri o'zbek tilida javob ber. " +
 
-                    "Tibbiyot talabalari va tibbiyot " +
-                    "sohasi vakillariga tushunarli, " +
-                    "aniq va foydali ma'lumot ber. " +
+                    "Faqat o'zbek lotin yozuvidan foydalan. " +
 
-                    "Javoblarni qisqa, tartibli va " +
-                    "amaliy qil. " +
+                    "Javoblarda o'zbek tilining maxsus harflarini " +
+                    "to'g'ri ishlat: o‘, g‘. " +
 
-                    "Keraksiz uzun izohlardan qoch. " +
+                    "Apostroflarni to'g'ri ishlat. " +
 
-                    "Klinik holatlarda ehtimoliy " +
-                    "tashxislarni aniq fakt sifatida " +
-                    "ko'rsatma. " +
+                    "Masalan: o‘zbek, o‘pka, o‘tkir, " +
+                    "qo‘llash, to‘g‘ri, bo‘ladi, " +
+                    "ko‘rsatma, ma’lumot, g‘ayritabiiy. " +
 
-                    "Zarur bo'lsa differensial tashxis " +
-                    "va kerakli tekshiruvlarni ayt. " +
+                    "O'zbekcha so'zlarni ruscha yoki inglizcha " +
+                    "gap tuzilishida yozma. " +
 
-                    "Xavfli belgilar bo'lsa ularni " +
+                    "Jumlalar tabiiy o'zbek tilida bo'lsin. " +
+
+                    "Ruscha, inglizcha yoki boshqa tildagi " +
+                    "keraksiz so'zlarni ishlatma. " +
+
+                    "Tibbiy atamalarni zarur bo'lsa o'zbekcha " +
+                    "tushuntirib ber. " +
+
+                    "Har bir javobni yuborishdan oldin " +
+                    "ichki ravishda qayta o'qib chiq. " +
+
+                    "Yuborishdan oldin quyidagilarni tekshir: " +
+                    "imlo, grammatika, so'zlarning to'g'ri yozilishi, " +
+                    "o‘zbekcha maxsus harflar, apostroflar, " +
+                    "tinish belgilari va gaplarning tabiiyligi. " +
+
+                    "Agar jumlada imlo yoki grammatik xato bo'lsa, " +
+                    "uni yuborishdan oldin tuzat. " +
+
+                    "Javobni qayta tekshirmasdan yuborma. " +
+
+                    "Javoblarni qisqa, aniq, foydali va tartibli qil. " +
+
+                    "Keraksiz takrorlashlardan qoch. " +
+
+                    "Oddiy savollarga ortiqcha uzun javob yozma. " +
+
+                    "Murakkab tibbiy savollarda esa asosiy " +
+                    "ma'lumotlarni punktlar bilan tushuntir. " +
+
+                    "Tibbiy savollarda aniq va ehtiyotkor bo'l. " +
+
+                    "Klinik holatlarda ehtimoliy tashxislarni " +
+                    "tasdiqlangan tashxis sifatida ko'rsatma. " +
+
+                    "Zarur bo'lsa differensial tashxisni ko'rsat. " +
+
+                    "Kerak bo'lishi mumkin bo'lgan tekshiruvlarni ayt. " +
+
+                    "Xavfli belgilar mavjud bo'lsa, ularni " +
                     "alohida ko'rsat. " +
 
-                    "Real bemor uchun AI javobi " +
-                    "shifokor ko'rigini almashtirmasligini " +
-                    "eslat. " +
+                    "Shoshilinch holatlarda tez tibbiy yordam " +
+                    "kerakligini aniq ayt. " +
 
-                    "Agar savol tibbiyotga aloqador " +
-                    "bo'lmasa, muloyimlik bilan " +
-                    "MedAiUz tibbiy yordamchi ekanini " +
-                    "eslat.",
+                    "Real bemor uchun AI javobi shifokor " +
+                    "ko'rigini almashtirmasligini eslat. " +
+
+                    "Agar savol tibbiyotga aloqador bo'lmasa, " +
+                    "muloyimlik bilan MedAiUz tibbiy yordamchi " +
+                    "ekanini eslat.",
+
+                // ==================================
+                // USER MESSAGE
+                // ==================================
 
                 messages: [
                     {
                         role: "user",
-                        content: userMessage.trim()
+                        content:
+                            userMessage.trim()
                     }
                 ]
 
             });
 
-        // ------------------------------
+        // ======================================
         // AI JAVOBINI OLISH
-        // ------------------------------
+        // ======================================
 
         const reply =
             response.content
@@ -255,20 +303,23 @@ app.post("/api/chat", async (req, res) => {
                 .map(function (block) {
                     return block.text;
                 })
-                .join("\n");
+                .join("\n")
+                .trim();
 
         console.log(
             "✅ AI javobi tayyor"
         );
 
-        // ------------------------------
-        // JAVOB
-        // ------------------------------
+        // ======================================
+        // JAVOBNI QAYTARISH
+        // ======================================
 
         return res.json({
+
             reply:
                 reply ||
                 "AI javob qaytarmadi."
+
         });
 
     } catch (error) {
@@ -278,9 +329,9 @@ app.post("/api/chat", async (req, res) => {
             error.message
         );
 
-        // ------------------------------
+        // ======================================
         // ANTHROPIC CREDIT ERROR
-        // ------------------------------
+        // ======================================
 
         if (
             error.message &&
@@ -299,9 +350,9 @@ app.post("/api/chat", async (req, res) => {
 
         }
 
-        // ------------------------------
+        // ======================================
         // UMUMIY XATO
-        // ------------------------------
+        // ======================================
 
         return res.status(500).json({
 
