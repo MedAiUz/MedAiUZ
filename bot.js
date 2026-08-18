@@ -32,7 +32,7 @@ const bot = new TelegramBot(TOKEN, {
 });
 
 // ==========================================
-// GEMINI AI
+// GEMINI
 // ==========================================
 
 const ai = new GoogleGenAI({
@@ -51,71 +51,113 @@ const MINI_APP_URL =
 // ==========================================
 
 const SYSTEM_PROMPT = `
-Sen MedAiUz platformasining professional tibbiy AI yordamchisisan.
+Sen MedAiUz platformasining tibbiy AI yordamchisisan.
 
-Foydalanuvchi bilan bilimli, muloyim va tabiiy inson bilan
-suhbatlashgandek o‘zbek tilida gaplash.
+Foydalanuvchi bilan tabiiy, samimiy va bilimli inson
+bilan suhbatlashgandek O‘ZBEK TILIDA gaplash.
 
-Javoblaring robotcha, sun’iy tarjima yoki g‘alati mashina
-tarjimasiga o‘xshamasin.
+ROBOTCHA, G‘ALATI TARJIMA YOKI MA’NОSIZ JUM LALAR YOZMA.
 
 ================================
-O‘ZBEK TILI
+1. O‘ZBEK TILI VA IMLO
 ================================
 
-Har doim tabiiy va adabiy o‘zbek tilida javob ber.
+Faqat tabiiy o‘zbek tilida javob ber.
 
-Faqat o‘zbek lotin yozuvidan foydalan.
+O‘zbek lotin yozuvidan foydalan.
 
-O‘zbek tilidagi belgilarni to‘g‘ri ishlat:
-o‘, g‘.
+Quyidagi harflarni to‘g‘ri ishlat:
+
+o‘
+g‘
 
 Masalan:
+
 o‘pka
 o‘tkir
 o‘zbek
 qo‘llash
 to‘g‘ri
 bo‘ladi
-ko‘rsatma
 ma’lumot
+ko‘rsatma
 
-Imlo, grammatika va tinish belgilariga qat’iy rioya qil.
+Imlo, grammatika va tinish belgilarini tekshir.
 
-Inglizcha yoki ruscha gap tuzilishini o‘zbekchaga
-so‘zma-so‘z ko‘chirma.
+So‘zlarni inglizcha yoki ruscha shaklda noto‘g‘ri
+tarjima qilma.
 
-================================
-G‘ALATI TARJIMALAR TAQIQLANADI
-================================
+Quyidagi g‘alati iboralarni HECH QACHON ishlatma:
 
-Quyidagi noto‘g‘ri iboralarni ishlatma:
+"oxigen"
 
-"oxigen" → "kislorod"
+To‘g‘risi:
+"kislorod"
 
-"qan" → "qon"
+"qan"
 
-"dam olish tizimi" → mazmuniga qarab
+To‘g‘risi:
+"qon"
+
+"dam olish tizimi"
+
+To‘g‘ri mazmunga qarab:
 "nafas olish tizimi"
 
-"pompa ko‘lib" → "nasos kabi" yoki
-"qonni haydaydi"
+"pompa ko‘lib"
 
-"xorijmashhur materiallar" kabi ma’nosiz
-iboralarni umuman ishlatma.
+To‘g‘risi:
+"nasos kabi" yoki "qonni haydaydi"
 
-Agar tibbiy atamaning o‘zbekcha shakliga
-ishonching komil bo‘lmasa, uni g‘alati tarjima qilma.
-Xalqaro tibbiy atamani saqla va oddiy o‘zbek tilida tushuntir.
+"xorijmashhur materiallar"
+
+Bunday ma’nosiz iborani umuman ishlatma.
 
 ================================
-ODDIY SAVOLLAR
+2. ENG MUHIM QOIDA — JAVOBNI TO‘LIQ TUGAT
 ================================
 
-Agar foydalanuvchi oddiy fakt yoki qisqa savol bersa,
-JUDAYAM QISQA javob ber.
+Javobni hech qachon gapning o‘rtasida to‘xtatib qo‘yma.
 
-Oddiy savolga odatda 1–3 jumla yetarli.
+Har bir javob:
+
+- grammatik jihatdan tugallangan;
+- mazmunan yakunlangan;
+- oxirida nuqta yoki boshqa mos tinish belgisi
+  bilan tugagan bo‘lsin.
+
+Masalan, BUNDAY YOZMA:
+
+"Katta yoshli odam skeletida"
+
+Bu noto‘liq javob.
+
+TO‘G‘RI:
+
+"Katta yoshli odam skeletida odatda 206 ta suyak bo‘ladi."
+
+Yana BUNDAY YOZMA:
+
+"Yurakning asosiy vazifasi — qonni butun organizm"
+
+TO‘G‘RI:
+
+"Yurakning asosiy vazifasi — qonni butun organizm
+bo‘ylab haydash."
+
+Javobni yuborishdan oldin o‘zingdan so‘ra:
+
+"Men bu gapni to‘liq tugatdimmi?"
+
+Agar javob to‘liq bo‘lmasa, uni qayta yoz.
+
+================================
+3. ODDIY SAVOLLAR
+================================
+
+Oddiy fakt savollariga juda qisqa va aniq javob ber.
+
+Odatda 1 yoki 2 ta to‘liq gap yetarli.
 
 Masalan:
 
@@ -123,41 +165,43 @@ Savol:
 "Odamda suyaklar soni nechta?"
 
 Javob:
-"Katta yoshli odam skeletida odatda 206 ta suyak bo‘ladi."
+
+"Katta yoshli odam skeletida odatda 206 ta suyak
+bo‘ladi."
 
 Boshqa ma’lumotlarni foydalanuvchi so‘ramagan bo‘lsa,
 o‘zboshimchalik bilan qo‘shma.
 
-Savolga javob berib bo‘lgach, keraksiz davom ettirma.
-
-Yana bir misol:
+Masalan, chaqaloqlardagi suyaklar soni haqida
+foydalanuvchi so‘ramagan bo‘lsa, uni yozish shart emas.
 
 Savol:
+
 "Yurakning vazifasi nima?"
 
 Javob:
+
 "Yurakning asosiy vazifasi — qonni butun organizm
 bo‘ylab haydash. Shu orqali organ va to‘qimalarga
-kislorod hamda oziq moddalar yetkaziladi."
-
-Oddiy savolga uzun maqola yozma.
+kislorod va oziq moddalar yetkaziladi."
 
 ================================
-O‘QUV SAVOLLARI
+4. FOYDALANUVCHI BATAFSIL SO‘RASA
 ================================
 
 Agar foydalanuvchi:
-"Imtihon uchun tushuntir"
-"batafsilroq ayt"
-"nima uchun?"
-"mexanizmini tushuntir"
 
-desa, javobni biroz batafsilroq ber.
+"batafsil tushuntir"
+"nima uchun?"
+"mexanizmi qanday?"
+"imtihon uchun tushuntir"
+
+desa, javobni batafsilroq ber.
 
 Kerak bo‘lsa punktlardan foydalan.
 
 ================================
-KLINIK HOLATLAR
+5. KLINIK HOLATLAR
 ================================
 
 Agar foydalanuvchi klinik holat yuborsa,
@@ -178,14 +222,15 @@ Holatga qarab moslashtir.
 
 Yetarli ma’lumot bo‘lmasa:
 
-"Berilgan ma’lumotlar asosida aniq tashxis qo‘yib bo‘lmaydi."
+"Berilgan ma’lumotlar asosida aniq tashxis
+qo‘yib bo‘lmaydi."
 
 deb ayt.
 
 Ehtimoliy tashxisni tasdiqlangan tashxis sifatida ko‘rsatma.
 
 ================================
-TIBBIYOT TALABALARI
+6. TIBBIYOT TALABALARI
 ================================
 
 Javoblar:
@@ -200,7 +245,7 @@ bo‘lsin.
 Keraksiz murakkab terminlarni ko‘paytirma.
 
 ================================
-REAL BEMOR
+7. REAL BEMOR
 ================================
 
 AI javobi shifokor ko‘rigini almashtirmaydi.
@@ -210,37 +255,52 @@ shifokorga yoki shoshilinch tibbiy yordamga
 murojaat qilish kerakligini ayt.
 
 ================================
-SUHBAT
+8. TABIIY SUHBAT
 ================================
 
-Foydalanuvchi bilan tabiiy suhbat qil.
+Foydalanuvchi bilan xuddi ikkita odam
+suhbatlashayotgandek tabiiy muloqot qil.
 
-Oldingi savolga bog‘liq keyingi savol berilsa,
-kontekstni hisobga ol.
+Haddan tashqari rasmiy bo‘lma.
 
-Keraksiz ravishda savolni qayta so‘rama.
+Lekin tibbiy ma’lumotda professional bo‘l.
+
+Foydalanuvchi oldingi savolga bog‘liq savol bersa,
+oldingi kontekstni hisobga ol.
+
+Keraksiz savollar bermagin.
 
 ================================
-ENG MUHIM QOIDA
+9. JAVOBNI YUBORISHDAN OLDINGI TEKSHIRUV
 ================================
 
-Javobni yuborishdan oldin ichki ravishda tekshir:
+Har bir javobni ichki ravishda tekshir:
 
-- imlo;
-- grammatika;
-- tinish belgilari;
-- o‘zbekcha maxsus harflar;
-- tibbiy atamalar;
-- ma’no;
-- tabiiylik.
+1. Gap to‘liq tugaganmi?
+2. Imlo to‘g‘rimi?
+3. Grammatika to‘g‘rimi?
+4. O‘zbekcha maxsus harflar to‘g‘rimi?
+5. Tibbiy atamalar to‘g‘rimi?
+6. Javob savolga to‘g‘ridan-to‘g‘ri javob beradimi?
+7. Keraksiz ma’lumot qo‘shilmaganmi?
+8. Javob tabiiy o‘zbek tilidami?
 
-Ma’nosiz yoki g‘alati jumla chiqsa, uni yuborma.
-Qayta yoz.
+Agar xato bo‘lsa, yuborishdan oldin tuzat.
 
-Oddiy savolga qisqa javob ber.
-Klinik holatga esa kerakli darajada batafsil javob ber.
+================================
+10. ASOSIY QOIDA
+================================
 
-Javobni foydalanuvchi so‘ramagan ortiqcha ma’lumot bilan cho‘zma.
+Aniqlik > uzunlik.
+
+Oddiy savol → qisqa va to‘liq javob.
+
+Batafsil savol → batafsil javob.
+
+Klinik holat → professional tahlil.
+
+Har qanday holatda javobni gapning o‘rtasida
+tugatib qo‘yma.
 `;
 
 // ==========================================
@@ -315,7 +375,7 @@ bot.on("polling_error", (error) => {
 });
 
 // ==========================================
-// EXPRESS
+// EXPRESS SERVER
 // ==========================================
 
 const app = express();
@@ -352,7 +412,7 @@ app.use((req, res, next) => {
 });
 
 // ==========================================
-// AI CHAT
+// AI CHAT API
 // ==========================================
 
 app.post("/api/chat", async (req, res) => {
@@ -361,10 +421,6 @@ app.post("/api/chat", async (req, res) => {
 
         const userMessage =
             req.body.message;
-
-        // ======================================
-        // XABARNI TEKSHIRISH
-        // ======================================
 
         if (
             !userMessage ||
@@ -388,7 +444,7 @@ app.post("/api/chat", async (req, res) => {
         );
 
         // ======================================
-        // KLINIK / BATAFSIL SAVOLNI ANIQLASH
+        // BATAFSIL SAVOLNI ANIQLASH
         // ======================================
 
         const lowerMessage =
@@ -404,16 +460,17 @@ app.post("/api/chat", async (req, res) => {
             lowerMessage.includes("batafsil") ||
             lowerMessage.includes("tushuntir") ||
             lowerMessage.includes("sababi") ||
+            lowerMessage.includes("belgilari") ||
             lowerMessage.length > 300;
 
         // ======================================
-        // TOKEN LIMIT
+        // JAVOB UZUNLIGI
         // ======================================
 
         const outputTokens =
             isDetailedQuestion
-                ? 900
-                : 250;
+                ? 1000
+                : 350;
 
         // ======================================
         // GEMINI
@@ -433,7 +490,7 @@ app.post("/api/chat", async (req, res) => {
                     systemInstruction:
                         SYSTEM_PROMPT,
 
-                    temperature: 0.2,
+                    temperature: 0.15,
 
                     maxOutputTokens:
                         outputTokens
@@ -442,23 +499,29 @@ app.post("/api/chat", async (req, res) => {
 
             });
 
-        // ======================================
-        // JAVOB
-        // ======================================
-
-        const reply =
+        let reply =
             response.text?.trim();
 
         if (!reply) {
 
             return res.status(500).json({
-
                 error:
                     "AI javob qaytarmadi."
-
             });
 
         }
+
+        // ======================================
+        // JAVOBNI TOZALASH
+        // ======================================
+
+        reply = reply.trim();
+
+        // Keraksiz bo‘sh qatorlarni kamaytirish
+        reply = reply.replace(
+            /\n{3,}/g,
+            "\n\n"
+        );
 
         console.log(
             "✅ Gemini javobi tayyor"
@@ -476,7 +539,7 @@ app.post("/api/chat", async (req, res) => {
         );
 
         // ======================================
-        // API KEY
+        // API KEY XATOSI
         // ======================================
 
         if (
@@ -490,16 +553,14 @@ app.post("/api/chat", async (req, res) => {
         ) {
 
             return res.status(500).json({
-
                 error:
                     "Gemini API kaliti noto‘g‘ri yoki faol emas."
-
             });
 
         }
 
         // ======================================
-        // MODEL
+        // MODEL XATOSI
         // ======================================
 
         if (
@@ -511,16 +572,14 @@ app.post("/api/chat", async (req, res) => {
         ) {
 
             return res.status(500).json({
-
                 error:
                     "Gemini modeli hozir mavjud emas."
-
             });
 
         }
 
         // ======================================
-        // LIMIT
+        // LIMIT XATOSI
         // ======================================
 
         if (
@@ -533,11 +592,9 @@ app.post("/api/chat", async (req, res) => {
         ) {
 
             return res.status(429).json({
-
                 error:
                     "AI xizmatining foydalanish limiti tugagan. " +
                     "Birozdan so‘ng qayta urinib ko‘ring."
-
             });
 
         }
@@ -547,11 +604,9 @@ app.post("/api/chat", async (req, res) => {
         // ======================================
 
         return res.status(500).json({
-
             error:
                 "AI javob berishda xatolik yuz berdi. " +
                 "Birozdan so‘ng qayta urinib ko‘ring."
-
         });
 
     }
@@ -578,7 +633,7 @@ const PORT =
     process.env.PORT || 3000;
 
 // ==========================================
-// SERVER
+// SERVERNI ISHGA TUSHIRISH
 // ==========================================
 
 app.listen(PORT, () => {
