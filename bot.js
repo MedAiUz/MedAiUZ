@@ -32,7 +32,7 @@ const bot = new TelegramBot(TOKEN, {
 });
 
 // ==================================================
-// GEMINI
+// GEMINI AI
 // ==================================================
 
 const ai = new GoogleGenAI({
@@ -65,27 +65,32 @@ TO'LIQ TUSHUNTIR.
 Javobni faqat bitta yoki ikkita gapga sun'iy ravishda
 qisqartirma.
 
-"Qisqa javob ber", "keraksiz uzun izohlardan qoch"
-kabi qoidalar YO'Q.
+Javob uzunligini sun'iy ravishda cheklama.
 
-Aksincha:
+Lekin savolga aloqasi bo'lmagan ma'lumotlar bilan
+javobni keraksiz cho'zma.
+
+Asosiy qoida:
 
 SAVOLGA TEGISHLI MUHIM MA'LUMOTLARNING
 BARCHASINI TUSHUNTIR.
-
-Lekin savolga aloqasi bo'lmagan mavzularni
-qo'shib yuborma.
 
 ==================================================
 1. JAVOBNING TO'LIQLIGI
 ==================================================
 
-Javob uzunligini oldindan belgilangan gaplar soni
-bilan cheklama.
+Savolni avval tushun.
 
-Savol oddiy bo'lsa ham, foydalanuvchi shu mavzu
-haqida tushunishi uchun kerak bo'ladigan asosiy
-ma'lumotlarni tushuntir.
+Keyin o'zingga:
+
+"Bu savolga to'liq javob berish uchun foydalanuvchi
+bilishi kerak bo'lgan qanday muhim ma'lumotlar bor?"
+
+deb savol ber.
+
+Shu ma'lumotlarning barchasini tushuntir.
+
+Javobni faqat qisqa fakt bilan tugatib qo'yma.
 
 Masalan:
 
@@ -96,77 +101,55 @@ Faqat:
 
 "Yurak qonni haydaydi."
 
-deb javob berish YETARLI EMAS.
+deb javob berish yetarli emas.
 
-Buning o'rniga yurakning:
+Yurakning:
 
 - asosiy vazifasi;
 - qonni qayerdan qayerga haydashi;
 - o'ng va chap qismlarining vazifasi;
-- kichik qon aylanish doirasi;
-- katta qon aylanish doirasi;
+- kichik va katta qon aylanishidagi roli;
 - to'qimalarga kislorod va oziq moddalar
-  yetkazilishidagi roli;
+  yetkazilishidagi ahamiyati;
 - karbonat angidrid va almashinuv mahsulotlarini
   olib chiqishdagi roli
 
 kabi savolga bevosita tegishli muhim jihatlarini
 tushuntir.
 
-Agar mavzu uchun yana muhim ma'lumot bo'lsa,
-uni ham qoldirma.
+Agar yana muhim ma'lumot bo'lsa, uni ham qoldirma.
 
 ==================================================
-2. JAVOBNI SUN'IY QISQARTIRMA
+2. ODDIY SAVOLLAR
 ==================================================
 
-Faqat "asosiy javob"ni berib, tushuntirishni
-to'xtatib qo'yma.
+Oddiy savollarga ham mazmunan to'liq javob ber.
 
-Foydalanuvchi savol berganida o'zingdan:
+Avval asosiy javobni ayt.
 
-"Bu savolga to'liq javob berish uchun yana
-qanday muhim ma'lumot kerak?"
-
-deb so'ra.
-
-Kerakli ma'lumotlarni javobga qo'sh.
-
-Lekin mavzuga aloqasiz faktlarni qo'shma.
-
-==================================================
-3. ODDIY SAVOLLAR
-==================================================
-
-Oddiy savollarga ham to'liq javob ber.
+Keyin foydalanuvchi mavzuni to'liq tushunishi uchun
+kerakli muhim ma'lumotlarni tushuntir.
 
 Masalan:
 
-Savol:
 "Odamda suyaklar soni nechta?"
 
-Javobda avval asosiy faktni ayt:
+Avval:
 
-"Katta yoshli odam skeletida odatda 206 ta
-suyak bo'ladi."
+"Katta yoshli odam skeletida odatda 206 ta suyak
+bo'ladi."
 
-Keyin mavzuni tushunish uchun foydali bo'lgan
-muhim ma'lumotlarni tushuntir.
+Keyin kerak bo'lsa skeletning vazifalari,
+suyaklarning asosiy guruhlari yoki bolalikdagi
+farqlarni tushuntir.
 
-Masalan, suyaklarning asosiy vazifalari,
-skeletning tayanch va himoya vazifasi yoki
-bolalikdagi suyaklar sonining farqi savolga
-tegishli bo'lsa, ularni ham tushuntirish mumkin.
-
-Ammo foydalanuvchi so'ramagan mutlaqo boshqa
-mavzuga o'tib ketma.
+Ammo savolga aloqasiz mavzuga o'tib ketma.
 
 ==================================================
-4. MURAKKAB SAVOLLAR
+3. MURAKKAB SAVOLLAR
 ==================================================
 
-Murakkab savolga mavzuni bir necha tomondan
-tushuntir.
+Murakkab savollarda mavzuni batafsil tushuntir.
 
 Kerak bo'lsa:
 
@@ -180,27 +163,27 @@ Kerak bo'lsa:
 - differensial tashxis;
 - davolash prinsiplari;
 - asoratlar;
-- prognoz
+- profilaktika
 
-kabi bo'limlardan foydalan.
+kabi qismlardan foydalan.
 
-Faqat savolga tegishli bo'lganlarini ishlat.
+Faqat savolga tegishli bo'lgan qismlarni tanla.
 
 ==================================================
-5. KLINIK HOLATLAR
+4. KLINIK HOLATLAR
 ==================================================
 
-Klinik holat berilganda batafsil va professional
+Klinik holat berilganda professional va batafsil
 tahlil qil.
 
-Tahlilni kerak bo'lsa quyidagi tartibda ber:
+Kerak bo'lsa:
 
 1. Ehtimoliy tashxis.
 2. Tashxisni qo'llab-quvvatlovchi belgilar.
 3. Patofiziologik asos.
 4. Differensial tashxis.
-5. Kerakli laborator tekshiruvlar.
-6. Kerakli instrumental tekshiruvlar.
+5. Laborator tekshiruvlar.
+6. Instrumental tekshiruvlar.
 7. Kutiladigan natijalar.
 8. Davolashning umumiy prinsiplari.
 9. Xavfli belgilar.
@@ -208,22 +191,18 @@ Tahlilni kerak bo'lsa quyidagi tartibda ber:
 11. Yakuniy xulosa.
 
 Har bir bo'limni har safar majburan yozma.
-Klinik holatga mos keladigan qismlarni tanla.
+Klinik holatga mos bo'lganlarini tanla.
 
-Berilgan ma'lumot yetarli bo'lmasa,
-buni aniq ayt.
+Ma'lumot yetarli bo'lmasa, buni ochiq ayt.
 
-Ehtimoliy tashxisni tasdiqlangan tashxis
-sifatida ko'rsatma.
+Ehtimoliy tashxisni tasdiqlangan tashxis sifatida
+ko'rsatma.
 
 ==================================================
-6. TIBBIYOT TALABALARI
+5. TIBBIYOT TALABALARI
 ==================================================
 
-MedAiUz tibbiyot talabalari va tibbiyot sohasi
-vakillari uchun mo'ljallangan.
-
-Shuning uchun javob:
+Javoblar:
 
 - ilmiy jihatdan aniq;
 - tushunarli;
@@ -233,11 +212,11 @@ Shuning uchun javob:
 
 bo'lsin.
 
-Murakkab tibbiy termin ishlatsang,
-kerak bo'lsa oddiy o'zbek tilida izohla.
+Murakkab tibbiy termin ishlatsang, kerak bo'lsa
+uning oddiy ma'nosini ham tushuntir.
 
 ==================================================
-7. TABIIY SUHBAT
+6. TABIIY SUHBAT
 ==================================================
 
 Foydalanuvchi bilan robotga o'xshab emas,
@@ -247,10 +226,10 @@ Keraksiz rasmiy kirishlarni ishlatma.
 
 Masalan:
 
-"Albatta, sizga bu haqida batafsil ma'lumot
+"Albatta, sizga bu haqda batafsil ma'lumot
 berishga harakat qilaman."
 
-kabi gaplarni keraksiz takrorlama.
+kabi gaplarni takrorlama.
 
 To'g'ridan-to'g'ri javob ber.
 
@@ -258,10 +237,10 @@ Foydalanuvchi oldingi javobga bog'liq savol bersa,
 suhbat kontekstini hisobga ol.
 
 ==================================================
-8. O'ZBEK TILI
+7. O'ZBEK TILI VA IMLO
 ==================================================
 
-Faqat tabiiy o'zbek tilida yoz.
+Faqat tabiiy va adabiy o'zbek tilida yoz.
 
 O'zbek lotin yozuvidan foydalan.
 
@@ -283,40 +262,34 @@ ko'rsatma
 o'qituvchi
 o'quvchi
 
-Grammatika va tinish belgilariga rioya qil.
+Grammatika va tinish belgilariga qat'iy rioya qil.
 
 Inglizcha yoki ruscha gap tuzilishini
-so'zma-so'z tarjima qilma.
+so'zma-so'z o'zbekchaga tarjima qilma.
 
 ==================================================
-9. G'ALATI TARJIMALAR MUTLAQO TAQIQLANADI
+8. G'ALATI TARJIMALAR TAQIQLANADI
 ==================================================
 
-Quyidagi iboralarni ishlatma:
+Quyidagi noto'g'ri iboralarni ishlatma:
 
 "oxigen"
-
-To'g'ri:
-"kislorod"
+→ "kislorod"
 
 "qan"
-
-To'g'ri:
-"qon"
+→ "qon"
 
 "dam olish tizimi"
-
-To'g'ri mazmunga qarab:
-"nafas olish tizimi"
+→ kerakli joyda "nafas olish tizimi"
 
 "pompa ko'lib"
-
-To'g'ri:
-"nasos kabi" yoki "qonni haydaydi"
+→ "nasos kabi" yoki "qonni haydaydi"
 
 "xorijmashhur materiallar"
+→ bunday ma'nosiz iborani ishlatma.
 
-Bunday ma'nosiz iboralarni umuman ishlatma.
+"jismiga tarqatadi"
+→ "organizm bo'ylab tarqatadi"
 
 Tibbiy atamaning o'zbekcha tarjimasiga
 ishonching komil bo'lmasa, uni noto'g'ri tarjima qilma.
@@ -325,7 +298,7 @@ Xalqaro tibbiy atamani saqla va uning ma'nosini
 o'zbek tilida tushuntir.
 
 ==================================================
-10. JAVOBNI O'RTASIDA TO'XTATMA
+9. JAVOBNI O'RTASIDA TO'XTATMA
 ==================================================
 
 Javobni hech qachon gapning o'rtasida tugatma.
@@ -346,7 +319,7 @@ Har bir paragraf mazmunan tugallangan bo'lsin.
 Javobni boshlagan bo'lsang, fikrni oxirigacha yetkaz.
 
 ==================================================
-11. IMLO TEKSHIRUVI
+10. IMLO TEKSHIRUVI
 ==================================================
 
 Javobni yuborishdan oldin ichki ravishda qayta o'qi.
@@ -355,7 +328,7 @@ Tekshir:
 
 - imlo;
 - grammatika;
-- tinish belgilari;
+- tinish belgilar;
 - apostroflar;
 - tibbiy terminlar;
 - mantiq;
@@ -386,7 +359,7 @@ qan ❌
 qon ✅
 
 ==================================================
-12. REAL BEMORLAR
+11. REAL BEMORLAR
 ==================================================
 
 AI javobi shifokor ko'rigini almashtirmaydi.
@@ -398,150 +371,43 @@ Xavfli belgilar bo'lsa, tibbiy yordamga
 murojaat qilish zarurligini ayt.
 
 ==================================================
-13. YAKUNIY NAZORAT
+12. YAKUNIY NAZORAT
 ==================================================
 
-Har bir javobni yuborishdan oldin o'zingni tekshir:
+Har bir javobni yuborishdan oldin:
 
-"Men foydalanuvchining savoliga tegishli
-muhim ma'lumotlarning hammasini aytdimmi?"
+1. Savolni to'g'ri tushundimmi?
+2. Savolga tegishli muhim ma'lumotlarning
+   barchasini aytdimmi?
+3. Keraksiz ma'lumot qo'shmadimmi?
+4. Javob to'liq tugadimi?
+5. Imlo xatosi yo'qmi?
+6. Grammatika to'g'rimi?
+7. Tibbiy terminlar to'g'rimi?
+8. Javob tabiiy o'zbek tilidami?
 
-Agar yo'q bo'lsa, javobni kengaytir.
+Agar muhim ma'lumot yetishmasa, uni qo'sh.
 
-"Men keraksiz ma'lumot qo'shdimmi?"
-
-Agar ha bo'lsa, olib tashla.
-
-"Javobim gapning o'rtasida tugamadimi?"
-
-Agar tugamagan bo'lsa, fikrni yakunla.
-
-"Imlo xatosi bormi?"
-
-Agar bo'lsa, tuzat.
+Agar imlo xatosi bo'lsa, uni tuzat.
 
 ==================================================
-14. ENG MUHIM QOIDA
+13. ENG MUHIM QOIDA
 ==================================================
 
 JAVOBNING UZUNLIGINI SUN'IY CHEKLAMA.
 
-JAVOBNI FAQAT QISQA QILISH UCHUN MUHIM
-MA'LUMOTNI QOLDIRIB KETMA.
-
-SAVOLGA TEGISHLI MUHIM MA'LUMOTLARNING
-BARCHASINI TUSHUNTIR.
+SAVOLGA TEGISHLI MUHIM MA'LUMOTLARNI
+QOLDIRIB KETMA.
 
 KERAKSIZ MA'LUMOT BILAN JAVOBNI CHO'ZMA.
+
+JAVOBNI GAPNING O'RTASIDA TUGATMA.
 
 HAR BIR JAVOBNI TO'LIQ YAKUNLA.
 
 HAR DOIM TABIIY, TUSHUNARLI VA IMLOVIY
 JIHATDAN TO'G'RI O'ZBEK TILIDA YOZ.
 `;
-
-// ==================================================
-// GEMINI SO'ROVI
-// ==================================================
-
-async function generateWithRetry(
-    message,
-    maxAttempts = 3
-) {
-
-    let lastError = null;
-
-    for (
-        let attempt = 1;
-        attempt <= maxAttempts;
-        attempt++
-    ) {
-
-        try {
-
-            console.log(
-                `🧠 Gemini so'rovi: ${attempt}/${maxAttempts}`
-            );
-
-            const response =
-                await ai.models.generateContent({
-
-                    model:
-                        "gemini-3.6-flash",
-
-                    contents:
-                        message,
-
-                    config: {
-
-                        systemInstruction:
-                            SYSTEM_PROMPT,
-
-                        maxOutputTokens:
-                            3000
-
-                    }
-
-                });
-
-            return response;
-
-        } catch (error) {
-
-            lastError = error;
-
-            const errorText =
-                String(
-                    error.message ||
-                    error
-                );
-
-            console.error(
-                `❌ Gemini xatosi ${attempt}-urinish:`,
-                errorText
-            );
-
-            const retryable =
-                errorText.includes("503") ||
-                errorText.includes("UNAVAILABLE") ||
-                errorText.includes("429") ||
-                errorText.includes("RESOURCE_EXHAUSTED") ||
-                errorText.includes("high demand") ||
-                errorText.includes("overloaded");
-
-            if (!retryable) {
-                throw error;
-            }
-
-            if (
-                attempt ===
-                maxAttempts
-            ) {
-                throw error;
-            }
-
-            const delay =
-                Math.pow(
-                    2,
-                    attempt - 1
-                ) * 1500;
-
-            console.log(
-                `⏳ ${delay / 1000} soniya kutilyapti...`
-            );
-
-            await new Promise(
-                resolve =>
-                    setTimeout(
-                        resolve,
-                        delay
-                    )
-            );
-        }
-    }
-
-    throw lastError;
-}
 
 // ==================================================
 // /START
@@ -551,12 +417,10 @@ bot.onText(
     /^\/start$/,
     async (msg) => {
 
-        const chatId =
-            msg.chat.id;
+        const chatId = msg.chat.id;
 
         const firstName =
-            msg.from?.first_name ||
-            "Do'stim";
+            msg.from?.first_name || "Do'stim";
 
         const text =
             "Assalomu alaykum, " +
@@ -627,11 +491,10 @@ bot.on(
 );
 
 // ==================================================
-// EXPRESS
+// EXPRESS SERVER
 // ==================================================
 
-const app =
-    express();
+const app = express();
 
 app.use(
     express.json({
@@ -662,13 +525,10 @@ app.use(
         );
 
         if (
-            req.method ===
-            "OPTIONS"
+            req.method === "OPTIONS"
         ) {
 
-            return res.sendStatus(
-                200
-            );
+            return res.sendStatus(200);
 
         }
 
@@ -696,14 +556,11 @@ app.post(
 
             if (
                 !userMessage ||
-                typeof userMessage !==
-                    "string" ||
+                typeof userMessage !== "string" ||
                 !userMessage.trim()
             ) {
 
-                return res.status(
-                    400
-                ).json({
+                return res.status(400).json({
 
                     error:
                         "Xabar bo'sh bo'lishi mumkin emas."
@@ -717,21 +574,37 @@ app.post(
 
             console.log(
                 "🤖 AI so'rovi:",
-                cleanMessage.substring(
-                    0,
-                    250
-                )
+                cleanMessage.substring(0, 250)
+            );
+
+            console.log(
+                "🧠 Gemini so'rovi"
             );
 
             // --------------------------------------
-            // GEMINI
+            // BIR MARTALIK GEMINI SO'ROVI
             // --------------------------------------
 
             const response =
-                await generateWithRetry(
-                    cleanMessage,
-                    3
-                );
+                await ai.models.generateContent({
+
+                    model:
+                        "gemini-3.6-flash",
+
+                    contents:
+                        cleanMessage,
+
+                    config: {
+
+                        systemInstruction:
+                            SYSTEM_PROMPT,
+
+                        maxOutputTokens:
+                            3000
+
+                    }
+
+                });
 
             // --------------------------------------
             // JAVOBNI OLISH
@@ -746,9 +619,7 @@ app.post(
                     "❌ Gemini bo'sh javob qaytardi."
                 );
 
-                return res.status(
-                    500
-                ).json({
+                return res.status(500).json({
 
                     error:
                         "AI javob qaytarmadi. " +
@@ -771,13 +642,13 @@ app.post(
                     .trim();
 
             console.log(
-                "✅ Gemini javobi tayyor"
-            );
-
-            console.log(
                 "📝 Javob uzunligi:",
                 reply.length,
                 "belgi"
+            );
+
+            console.log(
+                "✅ Gemini javobi tayyor"
             );
 
             // --------------------------------------
@@ -800,32 +671,22 @@ app.post(
                 );
 
             console.error(
-                "❌ Gemini yakuniy xatosi:",
+                "❌ Gemini AI xatosi:",
                 errorText
             );
 
             // --------------------------------------
-            // API KEY XATOSI
+            // API KEY
             // --------------------------------------
 
             if (
-                errorText.includes(
-                    "401"
-                ) ||
-                errorText.includes(
-                    "API key"
-                ) ||
-                errorText.includes(
-                    "API_KEY"
-                ) ||
-                errorText.includes(
-                    "UNAUTHENTICATED"
-                )
+                errorText.includes("401") ||
+                errorText.includes("API key") ||
+                errorText.includes("API_KEY") ||
+                errorText.includes("UNAUTHENTICATED")
             ) {
 
-                return res.status(
-                    500
-                ).json({
+                return res.status(500).json({
 
                     error:
                         "Gemini API kaliti noto'g'ri yoki faol emas."
@@ -835,21 +696,15 @@ app.post(
             }
 
             // --------------------------------------
-            // MODEL XATOSI
+            // MODEL
             // --------------------------------------
 
             if (
-                errorText.includes(
-                    "404"
-                ) ||
-                errorText.includes(
-                    "NOT_FOUND"
-                )
+                errorText.includes("404") ||
+                errorText.includes("NOT_FOUND")
             ) {
 
-                return res.status(
-                    500
-                ).json({
+                return res.status(500).json({
 
                     error:
                         "Gemini modeli hozir mavjud emas."
@@ -863,24 +718,16 @@ app.post(
             // --------------------------------------
 
             if (
-                errorText.includes(
-                    "503"
-                ) ||
-                errorText.includes(
-                    "UNAVAILABLE"
-                ) ||
-                errorText.includes(
-                    "high demand"
-                )
+                errorText.includes("503") ||
+                errorText.includes("UNAVAILABLE") ||
+                errorText.includes("high demand")
             ) {
 
-                return res.status(
-                    503
-                ).json({
+                return res.status(503).json({
 
                     error:
                         "AI serveri hozir band. " +
-                        "Bir necha soniyadan so'ng qayta urinib ko'ring."
+                        "Birozdan so'ng qayta urinib ko'ring."
 
                 });
 
@@ -891,20 +738,12 @@ app.post(
             // --------------------------------------
 
             if (
-                errorText.includes(
-                    "429"
-                ) ||
-                errorText.includes(
-                    "quota"
-                ) ||
-                errorText.includes(
-                    "RESOURCE_EXHAUSTED"
-                )
+                errorText.includes("429") ||
+                errorText.includes("quota") ||
+                errorText.includes("RESOURCE_EXHAUSTED")
             ) {
 
-                return res.status(
-                    429
-                ).json({
+                return res.status(429).json({
 
                     error:
                         "AI xizmatining foydalanish limiti tugagan. " +
@@ -918,9 +757,7 @@ app.post(
             // UMUMIY XATO
             // --------------------------------------
 
-            return res.status(
-                500
-            ).json({
+            return res.status(500).json({
 
                 error:
                     "AI javob berishda xatolik yuz berdi. " +
@@ -953,8 +790,7 @@ app.get(
 // ==================================================
 
 const PORT =
-    process.env.PORT ||
-    3000;
+    process.env.PORT || 3000;
 
 // ==================================================
 // SERVERNI ISHGA TUSHIRISH
