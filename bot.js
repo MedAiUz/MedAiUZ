@@ -32,6 +32,119 @@ const bot = new TelegramBot(TOKEN, {
 });
 
 // ==================================================
+// 📰 MEDAIUZ YANGILIKLAR KANALI
+// ==================================================
+
+const NEWS_CHANNEL_USERNAME = "MedAiUz_NEWS";
+
+const newsItems = [];
+
+const MAX_NEWS_ITEMS = 50;
+
+bot.on("channel_post", (msg) => {
+
+    try {
+
+        const channelUsername =
+            msg.chat?.username || "";
+
+        if (
+            channelUsername.toLowerCase() !==
+            NEWS_CHANNEL_USERNAME.toLowerCase()
+        ) {
+            return;
+        }
+
+        const text =
+            (msg.text || msg.caption || "").trim();
+
+        const photo =
+            Array.isArray(msg.photo) &&
+            msg.photo.length
+                ? msg.photo[msg.photo.length - 1]
+                : null;
+
+        const news = {
+
+            id:
+                msg.message_id,
+
+            title:
+                text
+                    ? text
+                        .split("\n")[0]
+                        .slice(0, 120)
+                    : "MedAiUz yangiliklari",
+
+            text:
+                text,
+
+            date:
+                msg.date
+                    ? new Date(
+                        msg.date * 1000
+                    ).toISOString()
+                    : new Date().toISOString(),
+
+            imageFileId:
+                photo?.file_id || null,
+
+            telegramUrl:
+                `https://t.me/${NEWS_CHANNEL_USERNAME}/${msg.message_id}`
+
+        };
+
+        const existingIndex =
+            newsItems.findIndex(
+                item =>
+                    item.id === news.id
+            );
+
+        if (existingIndex !== -1) {
+
+            newsItems.splice(
+                existingIndex,
+                1
+            );
+
+        }
+
+        newsItems.unshift(news);
+
+        if (
+            newsItems.length >
+            MAX_NEWS_ITEMS
+        ) {
+
+            newsItems.pop();
+
+        }
+
+        console.log(
+            "📰 Yangi yangilik olindi:",
+            news.title
+        );
+
+        if (news.imageFileId) {
+
+            console.log(
+                "🖼️ Rasmli yangilik olindi"
+            );
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "❌ Yangilikni olishda xato:",
+            error.message
+        );
+
+    }
+
+});
+
+// ==================================================
 // GEMINI AI
 // ==================================================
 
@@ -221,10 +334,6 @@ Kerak bo'lsa quyidagi tartibdan foydalan:
 10. Ehtimoliy asoratlar.
 11. Yakuniy xulosa.
 
-Har bir bo'limni har safar majburan yozma.
-
-Klinik holatga mos bo'lganlarini tanla.
-
 Agar ma'lumot yetarli bo'lmasa:
 
 "Berilgan ma'lumotlar asosida aniq tashxis qo'yib
@@ -261,13 +370,6 @@ Robotga o'xshab yozma.
 
 Keraksiz rasmiy kirishlarni takrorlama.
 
-Masalan:
-
-"Albatta, men sizga bu haqida batafsil
-ma'lumot berishga harakat qilaman."
-
-kabi gaplarni ishlatish shart emas.
-
 To'g'ridan-to'g'ri javob ber.
 
 Foydalanuvchi oldingi savolga bog'liq savol bersa,
@@ -281,10 +383,7 @@ Faqat tabiiy va adabiy o'zbek tilida yoz.
 
 O'zbek lotin yozuvidan foydalan.
 
-Apostroflarni to'g'ri ishlat:
-
-o'
-g'
+Apostroflarni to'g'ri ishlat.
 
 Masalan:
 
@@ -340,17 +439,7 @@ Javobni hech qachon gapning o'rtasida tugatma.
 
 Har bir fikrni oxirigacha yetkaz.
 
-Noto'g'ri:
-
-"Yurakning asosiy vazifasi — qonni butun organizm..."
-
-To'g'ri:
-
-"Yurakning asosiy vazifasi — qonni butun organizm
-bo'ylab haydash."
-
-Agar javob bir nechta bo'limdan iborat bo'lsa,
-har bir bo'limni yakunla.
+Har bir bo'limni yakunla.
 
 Xulosani boshlagan bo'lsang, xulosani ham tugat.
 
@@ -370,29 +459,6 @@ Tekshir:
 - mantiq;
 - tabiiylik;
 - javobning to'liqligi.
-
-Quyidagilarni noto'g'ri yozma:
-
-boladi ❌
-bo'ladi ✅
-
-opka ❌
-o'pka ✅
-
-tog'ri ❌
-to'g'ri ✅
-
-malumot ❌
-ma'lumot ✅
-
-qollash ❌
-qo'llash ✅
-
-oxigen ❌
-kislorod ✅
-
-qan ❌
-qon ✅
 
 ==================================================
 12. REAL BEMORLAR
@@ -454,10 +520,12 @@ bot.onText(
     /^\/start$/,
     async (msg) => {
 
-        const chatId = msg.chat.id;
+        const chatId =
+            msg.chat.id;
 
         const firstName =
-            msg.from?.first_name || "Do'stim";
+            msg.from?.first_name ||
+            "Do'stim";
 
         const text =
             "Assalomu alaykum, " +
@@ -508,6 +576,7 @@ bot.onText(
             );
 
         }
+
     }
 );
 
@@ -575,6 +644,102 @@ app.use(
 );
 
 // ==================================================
+// 📰 NEWS API
+// ==================================================
+
+app.get(
+    "/api/news",
+    (req, res) => {
+
+        res.json({
+
+            success:
+                true,
+
+            channel:
+                NEWS_CHANNEL_USERNAME,
+
+            count:
+                newsItems.length,
+
+            news:
+                newsItems
+
+        });
+
+    }
+);
+
+// ==================================================
+// 🖼️ NEWS IMAGE API
+// ==================================================
+
+app.get(
+    "/api/news/image/:fileId",
+    async (req, res) => {
+
+        try {
+
+            const fileId =
+                req.params.fileId;
+
+            const fileUrl =
+                await bot.getFileLink(
+                    fileId
+                );
+
+            const response =
+                await fetch(
+                    fileUrl
+                );
+
+            if (!response.ok) {
+
+                return res
+                    .status(404)
+                    .send(
+                        "Rasm topilmadi."
+                    );
+
+            }
+
+            const contentType =
+                response.headers.get(
+                    "content-type"
+                ) ||
+                "image/jpeg";
+
+            const buffer =
+                Buffer.from(
+                    await response.arrayBuffer()
+                );
+
+            res.set(
+                "Content-Type",
+                contentType
+            );
+
+            res.send(buffer);
+
+        } catch (error) {
+
+            console.error(
+                "❌ Yangilik rasmi xatosi:",
+                error.message
+            );
+
+            res
+                .status(500)
+                .send(
+                    "Rasmni yuklab bo'lmadi."
+                );
+
+        }
+
+    }
+);
+
+// ==================================================
 // AI CHAT API
 // ==================================================
 
@@ -586,10 +751,6 @@ app.post(
 
             const userMessage =
                 req.body.message;
-
-            // --------------------------------------
-            // XABARNI TEKSHIRISH
-            // --------------------------------------
 
             if (
                 !userMessage ||
@@ -611,16 +772,15 @@ app.post(
 
             console.log(
                 "🤖 AI so'rovi:",
-                cleanMessage.substring(0, 300)
+                cleanMessage.substring(
+                    0,
+                    300
+                )
             );
 
             console.log(
                 "🧠 Gemini so'rovi"
             );
-
-            // --------------------------------------
-            // BIR MARTALIK GEMINI SO'ROVI
-            // --------------------------------------
 
             const response =
                 await ai.models.generateContent({
@@ -636,18 +796,12 @@ app.post(
                         systemInstruction:
                             SYSTEM_PROMPT,
 
-                        // Uzun javob va klinik
-                        // tahlillar uchun katta limit.
                         maxOutputTokens:
                             12000
 
                     }
 
                 });
-
-            // --------------------------------------
-            // FINISH REASON
-            // --------------------------------------
 
             const candidate =
                 response.candidates?.[0];
@@ -657,7 +811,8 @@ app.post(
 
             console.log(
                 "🏁 Gemini tugash sababi:",
-                finishReason || "Noma'lum"
+                finishReason ||
+                "Noma'lum"
             );
 
             if (
@@ -671,46 +826,38 @@ app.post(
 
             }
 
-            // --------------------------------------
-            // TOKEN STATISTIKASI
-            // --------------------------------------
-
             if (
                 response.usageMetadata
             ) {
 
                 console.log(
                     "📊 Prompt token:",
-                    response.usageMetadata.promptTokenCount
+                    response.usageMetadata
+                        .promptTokenCount
                 );
 
                 console.log(
                     "📊 Javob token:",
-                    response.usageMetadata.candidatesTokenCount
+                    response.usageMetadata
+                        .candidatesTokenCount
                 );
 
                 console.log(
                     "📊 Fikr token:",
-                    response.usageMetadata.thoughtsTokenCount
+                    response.usageMetadata
+                        .thoughtsTokenCount
                 );
 
                 console.log(
                     "📊 Umumiy token:",
-                    response.usageMetadata.totalTokenCount
+                    response.usageMetadata
+                        .totalTokenCount
                 );
 
             }
 
-            // --------------------------------------
-            // JAVOBNI OLISH
-            // --------------------------------------
-
             let reply =
                 response.text?.trim();
-
-            // --------------------------------------
-            // BO'SH JAVOB
-            // --------------------------------------
 
             if (!reply) {
 
@@ -728,10 +875,6 @@ app.post(
 
             }
 
-            // --------------------------------------
-            // JAVOBNI TOZALASH
-            // --------------------------------------
-
             reply =
                 reply
                     .replace(
@@ -740,19 +883,11 @@ app.post(
                     )
                     .trim();
 
-            // --------------------------------------
-            // JAVOB UZUNLIGI
-            // --------------------------------------
-
             console.log(
                 "📝 Javob uzunligi:",
                 reply.length,
                 "belgi"
             );
-
-            // --------------------------------------
-            // MAX TOKENS ANIQLANDI
-            // --------------------------------------
 
             if (
                 finishReason ===
@@ -769,10 +904,6 @@ app.post(
 
             }
 
-            // --------------------------------------
-            // SAFETY
-            // --------------------------------------
-
             if (
                 finishReason ===
                 "SAFETY"
@@ -783,10 +914,6 @@ app.post(
                 );
 
             }
-
-            // --------------------------------------
-            // RECITATION
-            // --------------------------------------
 
             if (
                 finishReason ===
@@ -799,17 +926,9 @@ app.post(
 
             }
 
-            // --------------------------------------
-            // JAVOB TAYYOR
-            // --------------------------------------
-
             console.log(
                 "✅ Gemini javobi tayyor"
             );
-
-            // --------------------------------------
-            // JAVOBNI QAYTARISH
-            // --------------------------------------
 
             return res.json({
 
@@ -817,7 +936,8 @@ app.post(
                     reply,
 
                 finishReason:
-                    finishReason || null
+                    finishReason ||
+                    null
 
             });
 
@@ -833,10 +953,6 @@ app.post(
                 "❌ Gemini AI xatosi:",
                 errorText
             );
-
-            // --------------------------------------
-            // API KEY
-            // --------------------------------------
 
             if (
                 errorText.includes("401") ||
@@ -854,10 +970,6 @@ app.post(
 
             }
 
-            // --------------------------------------
-            // MODEL
-            // --------------------------------------
-
             if (
                 errorText.includes("404") ||
                 errorText.includes("NOT_FOUND")
@@ -871,10 +983,6 @@ app.post(
                 });
 
             }
-
-            // --------------------------------------
-            // 503
-            // --------------------------------------
 
             if (
                 errorText.includes("503") ||
@@ -892,10 +1000,6 @@ app.post(
 
             }
 
-            // --------------------------------------
-            // 429
-            // --------------------------------------
-
             if (
                 errorText.includes("429") ||
                 errorText.includes("quota") ||
@@ -911,10 +1015,6 @@ app.post(
                 });
 
             }
-
-            // --------------------------------------
-            // UMUMIY XATO
-            // --------------------------------------
 
             return res.status(500).json({
 
@@ -949,7 +1049,8 @@ app.get(
 // ==================================================
 
 const PORT =
-    process.env.PORT || 3000;
+    process.env.PORT ||
+    3000;
 
 // ==================================================
 // SERVERNI ISHGA TUSHIRISH
@@ -966,6 +1067,11 @@ app.listen(
 
         console.log(
             "🤖 MedAiUz Telegram bot ishga tushdi!"
+        );
+
+        console.log(
+            "📰 Yangiliklar kanali: @" +
+            NEWS_CHANNEL_USERNAME
         );
 
     }
