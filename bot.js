@@ -2,16 +2,8 @@ const TelegramBot = require("node-telegram-bot-api");
 const express = require("express");
 const Anthropic = require("@anthropic-ai/sdk");
 
-// ==========================================
-// ENVIRONMENT VARIABLES
-// ==========================================
-
 const TOKEN = process.env.BOT_TOKEN;
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
-
-// ==========================================
-// TEKSHIRISH
-// ==========================================
 
 if (!TOKEN) {
     console.error("BOT_TOKEN topilmadi!");
@@ -23,37 +15,36 @@ if (!ANTHROPIC_API_KEY) {
     process.exit(1);
 }
 
-// ==========================================
+// ===============================
 // TELEGRAM BOT
-// ==========================================
+// ===============================
 
 const bot = new TelegramBot(TOKEN, {
     polling: true
 });
 
-// ==========================================
-// ANTHROPIC AI
-// ==========================================
+// ===============================
+// ANTHROPIC
+// ===============================
 
 const anthropic = new Anthropic({
     apiKey: ANTHROPIC_API_KEY
 });
 
-// ==========================================
+// ===============================
 // MINI APP
-// ==========================================
+// ===============================
 
 const MINI_APP_URL =
     "https://medaiuz.github.io/MedAiUZ/";
 
-// ==========================================
-// /START
-// ==========================================
+// ===============================
+// START
+// ===============================
 
 bot.onText(/^\/start$/, async (msg) => {
 
     const chatId = msg.chat.id;
-
     const firstName =
         msg.from?.first_name || "Do'stim";
 
@@ -101,12 +92,11 @@ bot.onText(/^\/start$/, async (msg) => {
         );
 
     }
-
 });
 
-// ==========================================
-// TELEGRAM POLLING ERROR
-// ==========================================
+// ===============================
+// TELEGRAM ERROR
+// ===============================
 
 bot.on("polling_error", (error) => {
 
@@ -117,17 +107,17 @@ bot.on("polling_error", (error) => {
 
 });
 
-// ==========================================
-// EXPRESS SERVER
-// ==========================================
+// ===============================
+// EXPRESS
+// ===============================
 
 const app = express();
 
 app.use(express.json());
 
-// ==========================================
+// ===============================
 // CORS
-// ==========================================
+// ===============================
 
 app.use((req, res, next) => {
 
@@ -138,7 +128,7 @@ app.use((req, res, next) => {
 
     res.header(
         "Access-Control-Allow-Methods",
-        "POST, OPTIONS, GET"
+        "GET, POST, OPTIONS"
     );
 
     res.header(
@@ -151,12 +141,11 @@ app.use((req, res, next) => {
     }
 
     next();
-
 });
 
-// ==========================================
-// AI CHAT API
-// ==========================================
+// ===============================
+// AI CHAT
+// ===============================
 
 app.post("/api/chat", async (req, res) => {
 
@@ -164,10 +153,6 @@ app.post("/api/chat", async (req, res) => {
 
         const userMessage =
             req.body.message;
-
-        // ------------------------------
-        // XABARNI TEKSHIRISH
-        // ------------------------------
 
         if (
             !userMessage ||
@@ -184,68 +169,42 @@ app.post("/api/chat", async (req, res) => {
 
         console.log(
             "🤖 AI so'rovi:",
-            userMessage.substring(0, 150)
+            userMessage.substring(0, 100)
         );
-
-        // ------------------------------
-        // ANTHROPIC SO'ROVI
-        // ------------------------------
 
         const response =
             await anthropic.messages.create({
 
                 model: "claude-sonnet-4-6",
 
-                // Javobni qisqartirdik:
-                // 1000 -> 500
+                // Tezroq va ixcham javob
                 max_tokens: 500,
 
                 system:
-                    "Sen MedAiUz platformasining " +
-                    "tibbiy AI yordamchisisan. " +
-
+                    "Sen MedAiUz tibbiy AI yordamchisisan. " +
                     "Har doim o'zbek tilida javob ber. " +
-
-                    "Tibbiyot talabalari va tibbiyot " +
-                    "sohasi vakillariga tushunarli, " +
-                    "aniq va foydali ma'lumot ber. " +
-
-                    "Javoblarni qisqa, tartibli va " +
-                    "amaliy qil. " +
-
+                    "Javobni qisqa, aniq va tartibli qil. " +
                     "Keraksiz uzun izohlardan qoch. " +
-
-                    "Klinik holatlarda ehtimoliy " +
-                    "tashxislarni aniq fakt sifatida " +
-                    "ko'rsatma. " +
-
-                    "Zarur bo'lsa differensial tashxis " +
-                    "va kerakli tekshiruvlarni ayt. " +
-
-                    "Xavfli belgilar bo'lsa ularni " +
-                    "alohida ko'rsat. " +
-
-                    "Real bemor uchun AI javobi " +
-                    "shifokor ko'rigini almashtirmasligini " +
-                    "eslat. " +
-
-                    "Agar savol tibbiyotga aloqador " +
-                    "bo'lmasa, muloyimlik bilan " +
-                    "MedAiUz tibbiy yordamchi ekanini " +
-                    "eslat.",
+                    "Tibbiy savollarda foydali va tushunarli " +
+                    "ma'lumot ber. " +
+                    "Klinik holatda ehtimoliy tashxisni " +
+                    "tasdiqlangan tashxis sifatida ko'rsatma. " +
+                    "Zarur bo'lsa differensial tashxis, " +
+                    "tekshiruvlar va xavfli belgilarni ayt. " +
+                    "Real bemor uchun shifokor ko'rigini " +
+                    "almashtirmasligini eslat. " +
+                    "Tibbiyotga aloqador bo'lmagan savollarga " +
+                    "muloyim javob ber va MedAiUz tibbiy " +
+                    "yordamchi ekanini eslat.",
 
                 messages: [
                     {
                         role: "user",
-                        content: userMessage.trim()
+                        content:
+                            userMessage.trim()
                     }
                 ]
-
             });
-
-        // ------------------------------
-        // AI JAVOBINI OLISH
-        // ------------------------------
 
         const reply =
             response.content
@@ -257,13 +216,7 @@ app.post("/api/chat", async (req, res) => {
                 })
                 .join("\n");
 
-        console.log(
-            "✅ AI javobi tayyor"
-        );
-
-        // ------------------------------
-        // JAVOB
-        // ------------------------------
+        console.log("✅ AI javobi tayyor");
 
         return res.json({
             reply:
@@ -278,10 +231,6 @@ app.post("/api/chat", async (req, res) => {
             error.message
         );
 
-        // ------------------------------
-        // ANTHROPIC CREDIT ERROR
-        // ------------------------------
-
         if (
             error.message &&
             error.message.includes(
@@ -290,34 +239,25 @@ app.post("/api/chat", async (req, res) => {
         ) {
 
             return res.status(500).json({
-
                 error:
-                    "AI xizmatining kredit limiti tugagan. " +
+                    "AI API kredit limiti tugagan. " +
                     "API hisobini tekshirish kerak."
-
             });
 
         }
 
-        // ------------------------------
-        // UMUMIY XATO
-        // ------------------------------
-
         return res.status(500).json({
-
             error:
                 "AI javob berishda xatolik yuz berdi. " +
                 "Birozdan so'ng qayta urinib ko'ring."
-
         });
 
     }
-
 });
 
-// ==========================================
+// ===============================
 // SERVER TEST
-// ==========================================
+// ===============================
 
 app.get("/", (req, res) => {
 
@@ -327,16 +267,12 @@ app.get("/", (req, res) => {
 
 });
 
-// ==========================================
+// ===============================
 // PORT
-// ==========================================
+// ===============================
 
 const PORT =
     process.env.PORT || 3000;
-
-// ==========================================
-// SERVERNI ISHGA TUSHIRISH
-// ==========================================
 
 app.listen(PORT, () => {
 
