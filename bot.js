@@ -37,9 +37,110 @@ const bot = new TelegramBot(TOKEN, {
 
 const NEWS_CHANNEL_USERNAME = "MedAiUz_NEWS";
 
-const newsItems = [];
+// ==================================================
+// 📰 YANGILIKLARNI DOIMIY SAQLASH
+// ==================================================
+
+const fs = require("fs");
+const path = require("path");
+
+// Render Persistent Disk ishlatilsa NEWS_DATA_DIR ni /data qilib qo'yish mumkin.
+// Lokal kompyuterda esa loyiha ichidagi data papkasidan foydalanadi.
+const NEWS_DATA_DIR =
+    process.env.NEWS_DATA_DIR ||
+    path.join(process.cwd(), "data");
+
+const NEWS_DATA_FILE =
+    path.join(NEWS_DATA_DIR, "news.json");
 
 const MAX_NEWS_ITEMS = 50;
+
+function ensureNewsStorage() {
+    try {
+        fs.mkdirSync(NEWS_DATA_DIR, {
+            recursive: true
+        });
+    } catch (error) {
+        console.error(
+            "❌ Yangiliklar papkasini yaratishda xato:",
+            error.message
+        );
+    }
+}
+
+function loadNewsItems() {
+    ensureNewsStorage();
+
+    try {
+        if (!fs.existsSync(NEWS_DATA_FILE)) {
+            return [];
+        }
+
+        const raw =
+            fs.readFileSync(
+                NEWS_DATA_FILE,
+                "utf8"
+            );
+
+        const data =
+            JSON.parse(raw);
+
+        if (!Array.isArray(data)) {
+            return [];
+        }
+
+        return data
+            .slice(0, MAX_NEWS_ITEMS);
+
+    } catch (error) {
+        console.error(
+            "❌ Yangiliklarni o'qishda xato:",
+            error.message
+        );
+
+        return [];
+    }
+}
+
+function saveNewsItems() {
+    ensureNewsStorage();
+
+    try {
+        const tempFile =
+            NEWS_DATA_FILE + ".tmp";
+
+        fs.writeFileSync(
+            tempFile,
+            JSON.stringify(
+                newsItems,
+                null,
+                2
+            ),
+            "utf8"
+        );
+
+        fs.renameSync(
+            tempFile,
+            NEWS_DATA_FILE
+        );
+
+    } catch (error) {
+        console.error(
+            "❌ Yangiliklarni saqlashda xato:",
+            error.message
+        );
+    }
+}
+
+ensureNewsStorage();
+
+const newsItems =
+    loadNewsItems();
+
+console.log(
+    "💾 Saqlangan yangiliklar:",
+    newsItems.length
+);
 
 bot.on("channel_post", (msg) => {
 
@@ -119,6 +220,11 @@ bot.on("channel_post", (msg) => {
             newsItems.pop();
 
         }
+
+        // Yangilikni diskka saqlaymiz.
+        // Shu sababli bot oddiy restart bo'lsa,
+        // yangiliklar qayta yuklanadi.
+        saveNewsItems();
 
         console.log(
             "📰 Yangi yangilik olindi:",
