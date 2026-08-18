@@ -21,343 +21,209 @@
         }
 
         body {
-
             font-family: Arial, sans-serif;
-
             background: #f5f7fb;
-
             color: #111827;
-
             padding-bottom: 90px;
-
         }
-
 
         button {
-
             font-family: inherit;
-
             cursor: pointer;
-
         }
-
 
         .header {
-
             padding: 20px 18px 15px;
-
             background: white;
-
-            border-bottom:
-                1px solid #e5e7eb;
-
+            border-bottom: 1px solid #e5e7eb;
         }
-
 
         .logo {
-
             max-width: 900px;
-
             margin: auto;
-
             display: flex;
-
             align-items: center;
-
             gap: 12px;
-
         }
 
-
         .logo-icon {
-
             width: 48px;
-
             height: 48px;
-
             border-radius: 15px;
-
             background: #2563eb;
-
             color: white;
 
             display: flex;
-
             align-items: center;
-
             justify-content: center;
 
             font-size: 25px;
-
         }
-
 
         .logo h1 {
-
             font-size: 21px;
-
         }
-
 
         .logo p {
-
             font-size: 11px;
-
             color: #6b7280;
-
             margin-top: 3px;
-
         }
-
 
         .offline {
-
             display: inline-block;
-
             margin-top: 6px;
-
             padding: 4px 8px;
-
             border-radius: 8px;
-
             background: #dcfce7;
-
             color: #166534;
-
             font-size: 9px;
-
             font-weight: bold;
-
         }
-
 
         .container {
-
             max-width: 900px;
-
             margin: auto;
-
             padding: 18px;
-
         }
-
 
         .welcome {
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #2563eb,
-                    #1d4ed8
-                );
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #1d4ed8
+            );
 
             color: white;
-
             border-radius: 24px;
-
             padding: 25px;
-
             margin-bottom: 20px;
-
         }
-
 
         .welcome h2 {
-
             font-size: 24px;
-
             margin-bottom: 8px;
-
         }
-
 
         .welcome p {
-
             font-size: 13px;
-
             line-height: 1.6;
-
             opacity: .92;
-
         }
 
-
         .ai-button {
-
             margin-top: 18px;
-
             width: 100%;
-
             border: none;
-
             border-radius: 14px;
-
             padding: 14px;
 
             background: white;
-
             color: #2563eb;
 
             font-weight: bold;
-
             font-size: 14px;
-
         }
 
-
         .section-title {
-
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
 
             margin: 22px 0 12px;
-
         }
-
 
         .section-title h2 {
-
             font-size: 18px;
-
         }
-
 
         .section-title span {
-
             font-size: 11px;
-
             color: #6b7280;
-
         }
-
 
         .menu {
-
             display: grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
+            grid-template-columns: repeat(2, 1fr);
             gap: 12px;
-
         }
 
-
         .card {
-
             background: white;
 
-            border:
-                1px solid #e5e7eb;
-
+            border: 1px solid #e5e7eb;
             border-radius: 19px;
 
             padding: 18px;
-
             text-align: left;
 
             transition: .2s;
-
             width: 100%;
-
         }
 
-
         .card:hover {
-
-            transform:
-                translateY(-2px);
+            transform: translateY(-2px);
 
             box-shadow:
                 0 8px 20px
                 rgba(0, 0, 0, .07);
-
         }
 
-
         .card-icon {
-
             width: 48px;
-
             height: 48px;
 
             border-radius: 14px;
-
             background: #eff6ff;
 
             display: flex;
-
             align-items: center;
-
             justify-content: center;
 
             font-size: 25px;
-
             margin-bottom: 12px;
-
         }
-
 
         .card h3 {
-
             font-size: 14px;
-
             margin-bottom: 5px;
-
         }
-
 
         .card p {
-
             font-size: 10px;
-
             color: #6b7280;
-
             line-height: 1.4;
-
         }
 
-
         .info {
-
             margin-top: 20px;
 
             background: white;
 
-            border:
-                1px solid #e5e7eb;
-
+            border: 1px solid #e5e7eb;
             border-radius: 18px;
 
             padding: 16px;
 
             font-size: 11px;
-
             line-height: 1.6;
-
             color: #6b7280;
-
         }
-
 
         .info strong {
-
             color: #111827;
-
         }
 
 
-        .bottom-nav {
+        /* ==================================================
+           PASTKI MENYU
+        ================================================== */
 
+        .bottom-nav {
             position: fixed;
 
             bottom: 0;
-
             left: 0;
-
             right: 0;
 
             height: 70px;
@@ -365,28 +231,21 @@
             background:
                 rgba(255, 255, 255, .97);
 
-            backdrop-filter:
-                blur(12px);
+            backdrop-filter: blur(12px);
 
             border-top:
                 1px solid #e5e7eb;
 
             display: flex;
 
-            justify-content:
-                space-around;
-
+            justify-content: space-around;
             align-items: center;
 
             z-index: 100;
-
         }
 
-
         .nav-btn {
-
             border: none;
-
             background: transparent;
 
             color: #6b7280;
@@ -394,48 +253,313 @@
             font-size: 10px;
 
             display: flex;
-
             flex-direction: column;
 
             align-items: center;
 
             gap: 4px;
 
-            padding: 6px 15px;
+            padding: 6px 8px;
 
+            min-width: 65px;
+        }
+
+        .nav-btn span {
+            font-size: 22px;
+        }
+
+        .nav-btn.active {
+            color: #2563eb;
+            font-weight: bold;
         }
 
 
-        .nav-btn span {
+        /* ==================================================
+           KO'PROQ MODAL
+        ================================================== */
+
+        .more-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(0, 0, 0, .45);
+
+            display: none;
+
+            align-items: flex-end;
+
+            justify-content: center;
+
+            z-index: 1000;
+        }
+
+        .more-overlay.show {
+            display: flex;
+        }
+
+        .more-menu {
+            width: 100%;
+            max-width: 600px;
+
+            background: white;
+
+            border-radius:
+                24px 24px 0 0;
+
+            padding: 20px;
+
+            animation:
+                slideUp .2s ease;
+        }
+
+        @keyframes slideUp {
+
+            from {
+                transform:
+                    translateY(100%);
+            }
+
+            to {
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+        .more-header {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 16px;
+        }
+
+        .more-header h2 {
+            font-size: 18px;
+        }
+
+        .close-more {
+            width: 36px;
+            height: 36px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #f3f4f6;
+
+            font-size: 20px;
+
+            color: #374151;
+        }
+
+        .more-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .more-item {
+            width: 100%;
+
+            border: 1px solid #e5e7eb;
+
+            background: white;
+
+            border-radius: 16px;
+
+            padding: 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            text-align: left;
+        }
+
+        .more-item:hover {
+            background: #f9fafb;
+        }
+
+        .more-icon {
+            width: 44px;
+            height: 44px;
+
+            border-radius: 13px;
+
+            background: #eff6ff;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
 
             font-size: 22px;
 
+            flex-shrink: 0;
+        }
+
+        .more-item-content {
+            flex: 1;
+        }
+
+        .more-item-content strong {
+            display: block;
+
+            font-size: 13px;
+
+            color: #111827;
+
+            margin-bottom: 3px;
+        }
+
+        .more-item-content span {
+            display: block;
+
+            font-size: 10px;
+
+            color: #6b7280;
+        }
+
+        .arrow {
+            color: #9ca3af;
+            font-size: 18px;
         }
 
 
-        .nav-btn.active {
+        /* ==================================================
+           OPERATOR MODAL
+        ================================================== */
 
-            color: #2563eb;
+        .operator-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(0, 0, 0, .45);
+
+            display: none;
+
+            align-items: flex-end;
+
+            justify-content: center;
+
+            z-index: 1100;
+        }
+
+        .operator-overlay.show {
+            display: flex;
+        }
+
+        .operator-menu {
+            width: 100%;
+            max-width: 600px;
+
+            background: white;
+
+            border-radius:
+                24px 24px 0 0;
+
+            padding: 22px;
+
+            animation:
+                slideUp .2s ease;
+        }
+
+        .operator-top {
+            text-align: center;
+
+            margin-bottom: 18px;
+        }
+
+        .operator-icon {
+            width: 62px;
+            height: 62px;
+
+            margin: 0 auto 10px;
+
+            border-radius: 20px;
+
+            background: #eff6ff;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 32px;
+        }
+
+        .operator-top h2 {
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .operator-top p {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .operator-button {
+            width: 100%;
+
+            border: none;
+
+            border-radius: 15px;
+
+            padding: 15px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 13px;
 
             font-weight: bold;
 
+            margin-bottom: 10px;
+        }
+
+        .operator-close {
+            width: 100%;
+
+            border: none;
+
+            border-radius: 15px;
+
+            padding: 14px;
+
+            background: #f3f4f6;
+
+            color: #374151;
+
+            font-size: 13px;
+
+            font-weight: bold;
         }
 
 
         @media (max-width: 500px) {
 
             .menu {
-
                 grid-template-columns:
                     1fr 1fr;
-
             }
 
-
             .welcome h2 {
-
                 font-size: 21px;
+            }
 
+            .nav-btn {
+                min-width: 58px;
+                padding-left: 4px;
+                padding-right: 4px;
             }
 
         }
@@ -459,7 +583,6 @@
         <div class="logo-icon">
             🩺
         </div>
-
 
         <div>
 
@@ -490,14 +613,11 @@
 <main class="container">
 
 
-    <!-- XUSH KELIBSIZ -->
-
     <section class="welcome">
 
         <h2>
             Assalomu alaykum! 👋
         </h2>
-
 
         <p>
 
@@ -508,7 +628,6 @@
             foydali bo‘limlarni bir joyga jamlaydi.
 
         </p>
-
 
         <button
             class="ai-button"
@@ -522,8 +641,6 @@
     </section>
 
 
-
-    <!-- BO'LIMLAR -->
 
     <div class="section-title">
 
@@ -542,9 +659,7 @@
     <section class="menu">
 
 
-        <!-- ==================================================
-             DARSLIKLAR
-        ================================================== -->
+        <!-- DARSLIKLAR -->
 
         <button
             class="card"
@@ -567,9 +682,7 @@
 
 
 
-        <!-- ==================================================
-             TESTLAR
-        ================================================== -->
+        <!-- TESTLAR -->
 
         <button
             class="card"
@@ -592,9 +705,7 @@
 
 
 
-        <!-- ==================================================
-             KLINIK HOLATLAR
-        ================================================== -->
+        <!-- KLINIK HOLATLAR -->
 
         <button
             class="card"
@@ -617,9 +728,7 @@
 
 
 
-        <!-- ==================================================
-             DORILAR
-        ================================================== -->
+        <!-- DORILAR -->
 
         <button
             class="card"
@@ -642,9 +751,7 @@
 
 
 
-        <!-- ==================================================
-             TIBBIY TERMINLAR
-        ================================================== -->
+        <!-- TERMINLAR -->
 
         <button
             class="card"
@@ -667,9 +774,7 @@
 
 
 
-        <!-- ==================================================
-             AI YORDAMCHI
-        ================================================== -->
+        <!-- AI -->
 
         <button
             class="card"
@@ -692,9 +797,7 @@
 
 
 
-        <!-- ==================================================
-             NATIJALAR
-        ================================================== -->
+        <!-- NATIJALAR -->
 
         <button
             class="card"
@@ -717,9 +820,7 @@
 
 
 
-        <!-- ==================================================
-             PROFIL
-        ================================================== -->
+        <!-- PROFIL -->
 
         <button
             class="card"
@@ -745,9 +846,7 @@
 
 
 
-    <!-- ==================================================
-         INFO
-    ================================================== -->
+    <!-- INFO -->
 
     <div class="info">
 
@@ -836,7 +935,247 @@
     </button>
 
 
+
+    <!-- YANGI KO'PROQ -->
+
+    <button
+        class="nav-btn"
+        onclick="openMore()"
+    >
+
+        <span>
+            ☰
+        </span>
+
+        Ko‘proq
+
+    </button>
+
+
 </nav>
+
+
+
+<!-- ==================================================
+     KO'PROQ OYNASI
+================================================== -->
+
+<div
+    class="more-overlay"
+    id="moreOverlay"
+    onclick="closeMoreByBackground(event)"
+>
+
+    <div
+        class="more-menu"
+        onclick="event.stopPropagation()"
+    >
+
+        <div class="more-header">
+
+            <h2>
+                ☰ Ko‘proq
+            </h2>
+
+            <button
+                class="close-more"
+                onclick="closeMore()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="more-list">
+
+
+            <!-- YANGILIKLAR -->
+
+            <button
+                class="more-item"
+                onclick="openNews()"
+            >
+
+                <div class="more-icon">
+                    📰
+                </div>
+
+                <div class="more-item-content">
+
+                    <strong>
+                        Yangiliklar
+                    </strong>
+
+                    <span>
+                        MedAiUz yangiliklari va e'lonlari
+                    </span>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </button>
+
+
+
+            <!-- INSTAGRAM -->
+
+            <button
+                class="more-item"
+                onclick="openInstagram()"
+            >
+
+                <div class="more-icon">
+                    📸
+                </div>
+
+                <div class="more-item-content">
+
+                    <strong>
+                        Instagram
+                    </strong>
+
+                    <span>
+                        MedAiUz Instagram sahifasi
+                    </span>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </button>
+
+
+
+            <!-- TELEGRAM KANAL -->
+
+            <button
+                class="more-item"
+                onclick="openTelegramChannel()"
+            >
+
+                <div class="more-icon">
+                    📢
+                </div>
+
+                <div class="more-item-content">
+
+                    <strong>
+                        Telegram kanal
+                    </strong>
+
+                    <span>
+                        MedAiUz rasmiy Telegram kanali
+                    </span>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </button>
+
+
+
+            <!-- OPERATOR -->
+
+            <button
+                class="more-item"
+                onclick="openOperator()"
+            >
+
+                <div class="more-icon">
+                    👨‍💻
+                </div>
+
+                <div class="more-item-content">
+
+                    <strong>
+                        Operator bilan bog‘lanish
+                    </strong>
+
+                    <span>
+                        Operator bilan Telegram orqali bog‘laning
+                    </span>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     OPERATOR OYNASI
+================================================== -->
+
+<div
+    class="operator-overlay"
+    id="operatorOverlay"
+    onclick="closeOperatorByBackground(event)"
+>
+
+    <div
+        class="operator-menu"
+        onclick="event.stopPropagation()"
+    >
+
+        <div class="operator-top">
+
+            <div class="operator-icon">
+                👨‍💻
+            </div>
+
+            <h2>
+                Operator bilan bog‘lanish
+            </h2>
+
+            <p>
+                Savol yoki muammo bo‘lsa,
+                operatorimiz bilan Telegram orqali bog‘lanishingiz mumkin.
+            </p>
+
+        </div>
+
+
+        <button
+            class="operator-button"
+            onclick="openOperatorTelegram()"
+        >
+
+            💬 Telegram orqali bog‘lanish
+
+        </button>
+
+
+        <button
+            class="operator-close"
+            onclick="closeOperator()"
+        >
+
+            Yopish
+
+        </button>
+
+    </div>
+
+</div>
 
 
 
@@ -849,7 +1188,7 @@
 
 /*
 ==================================================
-DARSLIKLAR
+ASOSIY SAHIFALAR
 ==================================================
 */
 
@@ -861,32 +1200,13 @@ function openBooks() {
 }
 
 
-
-/*
-==================================================
-TESTLAR
-==================================================
-*/
-
 function openTests() {
-
-    /*
-    Senda mavjud fayl:
-    test.html
-    */
 
     window.location.href =
         "test.html";
 
 }
 
-
-
-/*
-==================================================
-KLINIK HOLATLAR
-==================================================
-*/
 
 function openClinical() {
 
@@ -896,13 +1216,6 @@ function openClinical() {
 }
 
 
-
-/*
-==================================================
-DORILAR
-==================================================
-*/
-
 function openDrugs() {
 
     window.location.href =
@@ -910,13 +1223,6 @@ function openDrugs() {
 
 }
 
-
-
-/*
-==================================================
-TIBBIY TERMINLAR
-==================================================
-*/
 
 function openTerms() {
 
@@ -926,13 +1232,6 @@ function openTerms() {
 }
 
 
-
-/*
-==================================================
-AI YORDAMCHI
-==================================================
-*/
-
 function openAI() {
 
     window.location.href =
@@ -940,13 +1239,6 @@ function openAI() {
 
 }
 
-
-
-/*
-==================================================
-NATIJALAR
-==================================================
-*/
 
 function openResults() {
 
@@ -956,13 +1248,6 @@ function openResults() {
 }
 
 
-
-/*
-==================================================
-PROFIL
-==================================================
-*/
-
 function openProfile() {
 
     window.location.href =
@@ -970,13 +1255,6 @@ function openProfile() {
 
 }
 
-
-
-/*
-==================================================
-BOSH SAHIFA
-==================================================
-*/
 
 function goHome() {
 
@@ -987,6 +1265,169 @@ function goHome() {
         behavior: "smooth"
 
     });
+
+}
+
+
+
+/*
+==================================================
+KO'PROQ OCHISH
+==================================================
+*/
+
+function openMore() {
+
+    document
+        .getElementById("moreOverlay")
+        .classList
+        .add("show");
+
+}
+
+
+
+/*
+==================================================
+KO'PROQ YOPISH
+==================================================
+*/
+
+function closeMore() {
+
+    document
+        .getElementById("moreOverlay")
+        .classList
+        .remove("show");
+
+}
+
+
+
+/*
+==================================================
+FON ORQALI YOPISH
+==================================================
+*/
+
+function closeMoreByBackground(event) {
+
+    if (
+        event.target.id ===
+        "moreOverlay"
+    ) {
+
+        closeMore();
+
+    }
+
+}
+
+
+
+/*
+==================================================
+INSTAGRAM
+==================================================
+*/
+
+function openInstagram() {
+
+    window.open(
+        "https://www.instagram.com/medaiuz?igsh=NnF5MG1wcTY0MTN1",
+        "_blank"
+    );
+
+}
+
+
+
+/*
+==================================================
+TELEGRAM KANAL
+==================================================
+*/
+
+function openTelegramChannel() {
+
+    window.open(
+        "https://t.me/MedAi_Uz",
+        "_blank"
+    );
+
+}
+
+
+
+/*
+==================================================
+OPERATOR OCHISH
+==================================================
+*/
+
+function openOperator() {
+
+    closeMore();
+
+    document
+        .getElementById("operatorOverlay")
+        .classList
+        .add("show");
+
+}
+
+
+
+/*
+==================================================
+OPERATOR YOPISH
+==================================================
+*/
+
+function closeOperator() {
+
+    document
+        .getElementById("operatorOverlay")
+        .classList
+        .remove("show");
+
+}
+
+
+
+/*
+==================================================
+OPERATOR FON ORQALI YOPISH
+==================================================
+*/
+
+function closeOperatorByBackground(event) {
+
+    if (
+        event.target.id ===
+        "operatorOverlay"
+    ) {
+
+        closeOperator();
+
+    }
+
+}
+
+
+
+/*
+==================================================
+OPERATOR TELEGRAM
+==================================================
+*/
+
+function openOperatorTelegram() {
+
+    window.open(
+        "https://t.me/Dr_Qaxxorov",
+        "_blank"
+    );
 
 }
 
