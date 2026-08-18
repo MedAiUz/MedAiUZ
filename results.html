@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Natijalar — MedAiUz</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #111827;
+            padding-bottom: 40px;
+        }
+
+        .header {
+            padding: 18px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .back-btn {
+            border: none;
+            background: #eff6ff;
+            color: #2563eb;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .header h1 {
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            padding: 18px;
+        }
+
+        .summary {
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #1d4ed8
+            );
+
+            color: white;
+            border-radius: 22px;
+            padding: 24px;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        .summary h2 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .summary p {
+            font-size: 12px;
+            opacity: .9;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .stat {
+            background: white;
+            color: #111827;
+            border-radius: 15px;
+            padding: 14px 8px;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .stat span {
+            font-size: 10px;
+            color: #6b7280;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 11px 0;
+            border-bottom: 1px solid #f0f1f3;
+            font-size: 12px;
+        }
+
+        .result-row:last-child {
+            border-bottom: none;
+        }
+
+        .result-row span {
+            color: #6b7280;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 30px 15px;
+            color: #6b7280;
+        }
+
+        .empty-icon {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .empty h3 {
+            color: #111827;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .empty p {
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .button {
+            width: 100%;
+            border: none;
+            border-radius: 14px;
+            padding: 13px;
+            background: #2563eb;
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .clear-btn {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        @media (max-width: 500px) {
+
+            .stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .stat strong {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <button
+        class="back-btn"
+        onclick="goBack()"
+    >
+        ←
+    </button>
+
+    <h1>📊 Natijalar</h1>
+
+</header>
+
+
+<main class="container">
+
+    <div id="content"></div>
+
+</main>
+
+
+<script>
+
+function goBack() {
+
+    window.location.href = "./index.html";
+
+}
+
+
+/*
+==================================================
+NATIJA MA'LUMOTLARINI OLISH
+==================================================
+*/
+
+function getResults() {
+
+    try {
+
+        const data =
+            localStorage.getItem(
+                "medaiuz_test_results"
+            );
+
+        if (!data) {
+            return [];
+        }
+
+        const results =
+            JSON.parse(data);
+
+        if (!Array.isArray(results)) {
+            return [];
+        }
+
+        return results;
+
+    } catch (error) {
+
+        console.error(
+            "Natijalarni o'qishda xatolik:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+/*
+==================================================
+NATIJA SAQLASH UCHUN UNIVERSAL FUNKSIYA
+==================================================
+*/
+
+function saveResult(result) {
+
+    const results =
+        getResults();
+
+    results.unshift({
+
+        date:
+            new Date().toISOString(),
+
+        score:
+            Number(result.score) || 0,
+
+        total:
+            Number(result.total) || 0,
+
+        correct:
+            Number(result.correct) || 0,
+
+        wrong:
+            Number(result.wrong) || 0,
+
+        percent:
+            Number(result.percent) || 0
+
+    });
+
+    /*
+    Juda ko'p ma'lumot yig'ilib ketmasligi uchun
+    oxirgi 50 ta natijani saqlaymiz.
+    */
+
+    const limited =
+        results.slice(0, 50);
+
+    localStorage.setItem(
+        "medaiuz_test_results",
+        JSON.stringify(limited)
+    );
+
+}
+
+
+/*
+==================================================
+NATIJA FOIZINI HISOBLASH
+==================================================
+*/
+
+function calculatePercent(
+    correct,
+    total
+) {
+
+    if (!total) {
+        return 0;
+    }
+
+    return Math.round(
+        (correct / total) * 100
+    );
+
+}
+
+
+/*
+==================================================
+STATISTIKA
+==================================================
+*/
+
+function getStatistics(results) {
+
+    if (!results.length) {
+
+        return {
+
+            totalTests: 0,
+            totalQuestions: 0,
+            totalCorrect: 0,
+            totalWrong: 0,
+            bestPercent: 0,
+            averagePercent: 0
+
+        };
+
+    }
+
+
+    let totalQuestions = 0;
+    let totalCorrect = 0;
+    let totalWrong = 0;
+
+    let bestPercent = 0;
+
+
+    results.forEach(
+        result => {
+
+            totalQuestions +=
+                Number(result.total) || 0;
+
+            totalCorrect +=
+                Number(result.correct) || 0;
+
+            totalWrong +=
+                Number(result.wrong) || 0;
+
+            const percent =
+                Number(result.percent) || 0;
+
+            if (
+                percent > bestPercent
+            ) {
+
+                bestPercent =
+                    percent;
+
+            }
+
+        }
+    );
+
+
+    const averagePercent =
+        results.length
+            ? Math.round(
+                results.reduce(
+                    (sum, result) =>
+                        sum +
+                        (Number(result.percent) || 0),
+                    0
+                ) / results.length
+            )
+            : 0;
+
+
+    return {
+
+        totalTests:
+            results.length,
+
+        totalQuestions:
+            totalQuestions,
+
+        totalCorrect:
+            totalCorrect,
+
+        totalWrong:
+            totalWrong,
+
+        bestPercent:
+            bestPercent,
+
+        averagePercent:
+            averagePercent
+
+    };
+
+}
+
+
+/*
+==================================================
+SANANI CHIROYLI KO'RSATISH
+==================================================
+*/
+
+function formatDate(
+    dateString
+) {
+
+    try {
+
+        const date =
+            new Date(dateString);
+
+        return date.toLocaleString(
+            "uz-UZ",
+            {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
+
+    } catch {
+
+        return "Noma'lum";
+
+    }
+
+}
+
+
+/*
+==================================================
+NATIJA RANGI / HOLATI
+==================================================
+*/
+
+function getResultText(
+    percent
+) {
+
+    if (percent >= 90) {
+
+        return "🏆 A'lo";
+
+    }
+
+    if (percent >= 70) {
+
+        return "🟢 Yaxshi";
+
+    }
+
+    if (percent >= 50) {
+
+        return "🟡 Qoniqarli";
+
+    }
+
+    return "🔴 Takrorlash kerak";
+
+}
+
+
+/*
+==================================================
+SAHIFANI CHIZISH
+==================================================
+*/
+
+function renderResults() {
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    const results =
+        getResults();
+
+    /*
+    NATIJA YO'Q
+    */
+
+    if (!results.length) {
+
+        content.innerHTML = `
+
+            <div class="card empty">
+
+                <div class="empty-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Hali natijalar yo'q
+                </h3>
+
+                <p>
+                    Test ishlaganingizdan keyin
+                    natijalaringiz shu yerda
+                    avtomatik saqlanadi.
+                </p>
+
+                <button
+                    class="button"
+                    onclick="openTests()"
+                >
+                    🧠 Test ishlash
+                </button>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const stats =
+        getStatistics(
+            results
+        );
+
+
+    const last =
+        results[0];
+
+
+    /*
+    ASOSIY STATISTIKA
+    */
+
+    content.innerHTML = `
+
+        <section class="summary">
+
+            <h2>
+                📊 Test natijalari
+            </h2>
+
+            <p>
+                Sizning MedAiUz'dagi
+                o'quv ko'rsatkichlaringiz
+            </p>
+
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <strong>
+                        ${stats.totalTests}
+                    </strong>
+
+                    <span>
+                        Testlar
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong>
+                        ${stats.totalCorrect}
+                    </strong>
+
+                    <span>
+                        To'g'ri javob
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong>
+                        ${stats.bestPercent}%
+                    </strong>
+
+                    <span>
+                        Eng yaxshi
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="card">
+
+            <h3>
+                📈 Umumiy statistika
+            </h3>
+
+
+            <div class="result-row">
+
+                <span>
+                    Ishlangan testlar
+                </span>
+
+                <strong>
+                    ${stats.totalTests}
+                </strong>
+
+            </div>
+
+
+            <div class="result-row">
+
+                <span>
+                    Jami savollar
+                </span>
+
+                <strong>
+                    ${stats.totalQuestions}
+                </strong>
+
+            </div>
+
+
+            <div class="result-row">
+
+                <span>
+                    To'g'ri javoblar
+                </span>
+
+                <strong>
+                    ${stats.totalCorrect}
+                </strong>
+
+            </div>
+
+
+            <div class="result-row">
+
+                <span>
+                    Xato javoblar
+                </span>
+
+                <strong>
+                    ${stats.totalWrong}
+                </strong>
+
+            </div>
+
+
+            <div class="result-row">
+
+                <span>
+                    O'rtacha natija
+                </span>
+
+                <strong>
+                    ${stats.averagePercent}%
+                </strong>
+
+            </div>
+
+
+            <div class="result-row">
+
+                <span>
+                    Eng yaxshi natija
+                </span>
+
+                <strong>
+                    ${stats.bestPercent}%
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                🕐 Oxirgi test
+            </h3>
+
+
+            <div class="result-row">
+
+                <span>
+                    Natija
+                </span>
+
+                <strong>
+                    ${last.score} / ${last.total}
+                </strong>
+
+            </div>
+
+
+            <div class="result-row">
+
+                <span>
+                    To'g'ri
+                </span>
+
+                <strong>
+                    ${last.correct}
+                </strong>
+
+            </div>
+
+
+            <div class="result-row">
+
+                <span>
+                    Xato
+                </span>
+
+                <strong>
+                    ${last.wrong}
+                </strong>
+
+            </div>
+
+
+            <div class="result-row">
+
+                <span>
+                    Foiz
+                </span>
+
+                <strong>
+                    ${last.percent}%
+                </strong>
+
+            </div>
+
+
+            <div class="result-row">
+
+                <span>
+                    Holat
+                </span>
+
+                <strong>
+                    ${getResultText(
+                        last.percent
+                    )}
+                </strong>
+
+            </div>
+
+
+            <div class="result-row">
+
+                <span>
+                    Vaqt
+                </span>
+
+                <strong>
+                    ${formatDate(
+                        last.date
+                    )}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                📚 Testlar tarixi
+            </h3>
+
+            ${renderHistory(results)}
+
+        </div>
+
+
+        <button
+            class="button"
+            onclick="openTests()"
+        >
+            🧠 Yangi test ishlash
+        </button>
+
+
+        <button
+            class="button clear-btn"
+            onclick="clearResults()"
+        >
+            🗑 Natijalarni tozalash
+        </button>
+
+    `;
+
+}
+
+
+/*
+==================================================
+TESTLAR TARIXI
+==================================================
+*/
+
+function renderHistory(
+    results
+) {
+
+    return results
+        .map(
+            (result, index) => `
+
+                <div class="result-row">
+
+                    <span>
+                        ${index + 1}.
+                        ${formatDate(
+                            result.date
+                        )}
+                    </span>
+
+                    <strong>
+                        ${result.score}/${result.total}
+                        —
+                        ${result.percent}%
+                    </strong>
+
+                </div>
+
+            `
+        )
+        .join("");
+
+}
+
+
+/*
+==================================================
+TESTLAR SAHIFASI
+==================================================
+*/
+
+function openTests() {
+
+    window.location.href =
+        "./tests.html";
+
+}
+
+
+/*
+==================================================
+NATIJALARNI TOZALASH
+==================================================
+*/
+
+function clearResults() {
+
+    const confirmDelete =
+        confirm(
+            "Barcha test natijalarini o'chirishni xohlaysizmi?"
+        );
+
+    if (!confirmDelete) {
+        return;
+    }
+
+
+    localStorage.removeItem(
+        "medaiuz_test_results"
+    );
+
+
+    renderResults();
+
+}
+
+
+/*
+==================================================
+ISHGA TUSHIRISH
+==================================================
+*/
+
+renderResults();
+
+</script>
+
+</body>
+</html>
