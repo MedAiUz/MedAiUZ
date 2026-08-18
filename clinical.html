@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Klinik holatlar — MedAiUz</title>
+
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background: #f5f7fb;
             color: #111827;
             padding-bottom: 40px;
         }
+
         .header {
             padding: 18px;
             background: white;
@@ -20,6 +27,7 @@
             align-items: center;
             gap: 12px;
         }
+
         .back-btn {
             border: none;
             background: #eff6ff;
@@ -30,9 +38,23 @@
             font-size: 18px;
             cursor: pointer;
         }
-        .header h1 { font-size: 18px; }
-        .container { max-width: 900px; margin: auto; padding: 18px; }
-        .case-list { display: flex; flex-direction: column; gap: 12px; }
+
+        .header h1 {
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 18px;
+        }
+
+        .case-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
         .case-card {
             background: white;
             border: 1px solid #e5e7eb;
@@ -42,8 +64,18 @@
             width: 100%;
             cursor: pointer;
         }
-        .case-card h3 { font-size: 14px; margin-bottom: 6px; }
-        .case-card p { font-size: 11px; color: #6b7280; line-height: 1.5; }
+
+        .case-card h3 {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .case-card p {
+            font-size: 11px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
         .tag {
             display: inline-block;
             margin-top: 8px;
@@ -54,8 +86,89 @@
             font-size: 9px;
             font-weight: bold;
         }
+
+        .case-detail {
+            display: none;
+        }
+
+        .detail-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        .detail-card h2 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .detail-card p {
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .symptoms {
+            background: #f9fafb;
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 15px;
+        }
+
+        .symptoms h3 {
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .symptoms li {
+            margin-left: 18px;
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+
+        .ai-btn {
+            width: 100%;
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .ai-btn:disabled {
+            background: #9ca3af;
+        }
+
+        .back-list-btn {
+            width: 100%;
+            border: none;
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 13px;
+            border-radius: 14px;
+            margin-top: 10px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .ai-result {
+            display: none;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 15px;
+            margin-top: 15px;
+            white-space: pre-wrap;
+            line-height: 1.6;
+            font-size: 13px;
+        }
     </style>
 </head>
+
 <body>
 
 <header class="header">
@@ -64,36 +177,352 @@
 </header>
 
 <main class="container">
-    <div class="case-list">
+
+    <!-- KLINIK HOLATLAR RO'YXATI -->
+
+    <div class="case-list" id="caseList">
 
         <button class="case-card" onclick="openCase(1)">
             <h3>38 yoshli bemor, o'tkir qorin og'rig'i</h3>
-            <p>Bemor o'ng pastki qorin sohasida kuchli og'riq bilan murojaat qildi. Tashxis qo'yish uchun tahlil qiling.</p>
+
+            <p>
+                Bemor o'ng pastki qorin sohasida kuchli og'riq
+                bilan murojaat qildi.
+            </p>
+
             <span class="tag">Jarrohlik</span>
         </button>
 
+
         <button class="case-card" onclick="openCase(2)">
             <h3>55 yoshli bemor, ko'krak qafasida og'riq</h3>
-            <p>Bemorda nafas qisishi va ko'krak og'rig'i kuzatilmoqda. Differensial tashxisni belgilang.</p>
+
+            <p>
+                Bemorda nafas qisishi va ko'krak og'rig'i
+                kuzatilmoqda.
+            </p>
+
             <span class="tag">Kardiologiya</span>
         </button>
 
+
         <button class="case-card" onclick="openCase(3)">
             <h3>6 yoshli bola, yuqori harorat</h3>
-            <p>Bolada 3 kundan beri yuqori harorat va toshmalar mavjud. Mumkin bo'lgan sabablarni aniqlang.</p>
+
+            <p>
+                Bolada 3 kundan beri yuqori harorat va
+                toshmalar mavjud.
+            </p>
+
             <span class="tag">Pediatriya</span>
         </button>
 
     </div>
+
+
+    <!-- KLINIK HOLAT TAFSILOTI -->
+
+    <div class="case-detail" id="caseDetail">
+
+        <div class="detail-card">
+
+            <h2 id="caseTitle"></h2>
+
+            <p id="caseDescription"></p>
+
+            <div class="symptoms">
+
+                <h3>📋 Klinik belgilar</h3>
+
+                <ul id="symptomsList"></ul>
+
+            </div>
+
+            <button
+                class="ai-btn"
+                id="aiBtn"
+                onclick="analyzeWithAI()"
+            >
+                🤖 AI bilan tahlil qilish
+            </button>
+
+            <div
+                class="ai-result"
+                id="aiResult"
+            ></div>
+
+            <button
+                class="back-list-btn"
+                onclick="showList()"
+            >
+                ← Klinik holatlarga qaytish
+            </button>
+
+        </div>
+
+    </div>
+
 </main>
 
+
 <script>
+
+const API_URL =
+    "https://medaiuz-bot.onrender.com/api/chat";
+
+
+const cases = {
+
+    1: {
+        title:
+            "38 yoshli bemor — o'tkir qorin og'rig'i",
+
+        description:
+            "38 yoshli bemor o'ng pastki qorin sohasida kuchli og'riq bilan murojaat qildi. Og'riq bir necha soat davomida kuchaygan.",
+
+        symptoms: [
+            "O'ng pastki qorin sohasida og'riq",
+            "Ko'ngil aynishi",
+            "Ishtaha pasayishi",
+            "Tana haroratining ko'tarilishi"
+        ]
+    },
+
+
+    2: {
+        title:
+            "55 yoshli bemor — ko'krak qafasida og'riq",
+
+        description:
+            "55 yoshli bemorda ko'krak qafasida bosuvchi og'riq va nafas qisishi paydo bo'lgan.",
+
+        symptoms: [
+            "Ko'krak qafasida bosuvchi og'riq",
+            "Nafas qisishi",
+            "Sovuq terlash",
+            "Hol­sizlik"
+        ]
+    },
+
+
+    3: {
+        title:
+            "6 yoshli bola — yuqori harorat va toshma",
+
+        description:
+            "6 yoshli bolada uch kundan beri yuqori tana harorati va terida toshmalar kuzatilmoqda.",
+
+        symptoms: [
+            "Yuqori tana harorati",
+            "Teri toshmalari",
+            "Hol­sizlik",
+            "Ishtaha pasayishi"
+        ]
+    }
+
+};
+
+
+let selectedCase = null;
+
+
 function goBack() {
-    window.location.href = "./index.html";
+
+    window.location.href =
+        "./index.html";
+
 }
+
+
 function openCase(id) {
-    alert("🩻 Klinik holat #" + id + "\n\nTo'liq tahlil va savol-javob rejimi tez orada qo'shiladi.");
+
+    selectedCase = cases[id];
+
+    document.getElementById(
+        "caseList"
+    ).style.display = "none";
+
+    document.getElementById(
+        "caseDetail"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "caseTitle"
+    ).textContent =
+        selectedCase.title;
+
+
+    document.getElementById(
+        "caseDescription"
+    ).textContent =
+        selectedCase.description;
+
+
+    const list =
+        document.getElementById(
+            "symptomsList"
+        );
+
+    list.innerHTML = "";
+
+
+    selectedCase.symptoms.forEach(
+        function(symptom) {
+
+            const li =
+                document.createElement("li");
+
+            li.textContent = symptom;
+
+            list.appendChild(li);
+
+        }
+    );
+
+
+    document.getElementById(
+        "aiResult"
+    ).style.display = "none";
+
 }
+
+
+function showList() {
+
+    document.getElementById(
+        "caseDetail"
+    ).style.display = "none";
+
+    document.getElementById(
+        "caseList"
+    ).style.display = "flex";
+
+}
+
+
+async function analyzeWithAI() {
+
+    if (!selectedCase) {
+        return;
+    }
+
+
+    const button =
+        document.getElementById(
+            "aiBtn"
+        );
+
+    const result =
+        document.getElementById(
+            "aiResult"
+        );
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "⏳ AI tahlil qilmoqda...";
+
+
+    result.style.display =
+        "block";
+
+    result.textContent =
+        "AI javobi tayyorlanmoqda...";
+
+
+    const prompt =
+
+        "Quyidagi klinik holatni tibbiyot talabasi uchun tahlil qil.\n\n" +
+
+        "Klinik holat: " +
+        selectedCase.title +
+        "\n\n" +
+
+        selectedCase.description +
+        "\n\n" +
+
+        "Belgilar:\n" +
+
+        selectedCase.symptoms
+            .map(function(item) {
+                return "- " + item;
+            })
+            .join("\n") +
+
+        "\n\n" +
+
+        "Quyidagi tartibda javob ber:\n" +
+
+        "1. Eng ehtimoliy tashxislar\n" +
+
+        "2. Differensial tashxis\n" +
+
+        "3. Qaysi tekshiruvlar kerak bo'lishi mumkin\n" +
+
+        "4. Qaysi belgilar xavfli\n" +
+
+        "5. Qisqa xulosa\n\n" +
+
+        "Bu o'quv maqsadidagi klinik tahlil ekanini eslat.";
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        message: prompt
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                "Server xatosi"
+            );
+
+        }
+
+
+        result.textContent =
+            data.reply ||
+            "AI javob qaytarmadi.";
+
+
+    } catch (error) {
+
+        result.textContent =
+            "⚠️ AI bilan bog'lanishda xatolik yuz berdi.\n\n" +
+            error.message;
+
+    }
+
+
+    button.disabled = false;
+
+    button.textContent =
+        "🤖 AI bilan qayta tahlil qilish";
+
+}
+
 </script>
 
 </body>
