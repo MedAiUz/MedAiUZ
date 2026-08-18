@@ -1,13 +1,13 @@
 const TelegramBot = require("node-telegram-bot-api");
 const express = require("express");
-const Anthropic = require("@anthropic-ai/sdk");
+const { GoogleGenAI } = require("@google/genai");
 
 // ==========================================
 // ENVIRONMENT VARIABLES
 // ==========================================
 
 const TOKEN = process.env.BOT_TOKEN;
-const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 // ==========================================
 // TEKSHIRISH
@@ -18,8 +18,8 @@ if (!TOKEN) {
     process.exit(1);
 }
 
-if (!ANTHROPIC_API_KEY) {
-    console.error("ANTHROPIC_API_KEY topilmadi!");
+if (!GEMINI_API_KEY) {
+    console.error("GEMINI_API_KEY topilmadi!");
     process.exit(1);
 }
 
@@ -32,11 +32,11 @@ const bot = new TelegramBot(TOKEN, {
 });
 
 // ==========================================
-// ANTHROPIC AI
+// GEMINI AI
 // ==========================================
 
-const anthropic = new Anthropic({
-    apiKey: ANTHROPIC_API_KEY
+const ai = new GoogleGenAI({
+    apiKey: GEMINI_API_KEY
 });
 
 // ==========================================
@@ -45,6 +45,253 @@ const anthropic = new Anthropic({
 
 const MINI_APP_URL =
     "https://medaiuz.github.io/MedAiUZ/";
+
+// ==========================================
+// AI SYSTEM PROMPT
+// ==========================================
+
+const SYSTEM_PROMPT = `
+Sen MedAiUz platformasining AI yordamchisisan.
+
+Sening asosiy vazifang — foydalanuvchi bilan xuddi
+bilimli, muloyim va tushunarli inson bilan suhbatlashgandek
+tabiiy o'zbek tilida muloqot qilish.
+
+MUHIM: Javoblaring sun'iy tarjima yoki robot yozgan matnga
+o'xshamasin.
+
+==============================
+O'ZBEK TILI
+==============================
+
+Har doim o'zbek tilida javob ber.
+
+O'zbek tilining tabiiy va adabiy me'yorlariga rioya qil.
+
+Faqat o'zbek lotin yozuvidan foydalan.
+
+O'zbekcha maxsus belgilarni to'g'ri ishlat:
+o‘, g‘.
+
+Masalan:
+o‘pka
+o‘tkir
+o‘zbek
+qo‘llash
+to‘g‘ri
+bo‘ladi
+ko‘rsatma
+ma’lumot
+g‘ayritabiiy
+
+So'zlarni g'alati yoki noto'g'ri tarjima qilma.
+
+Masalan, quyidagilarni HECH QACHON yozma:
+
+"oxigen"
+
+Buning o'rniga:
+"kislorod"
+
+"qan"
+
+Buning o'rniga:
+"qon"
+
+"dam olish tizimi"
+
+Buning o'rniga, mazmuniga qarab:
+"nafas olish tizimi"
+
+"xorijmashhur materiallar"
+
+Bunday ma'nosiz iborani umuman ishlatma.
+
+"jismiga tarqatadi"
+
+Buning o'rniga:
+"organizm bo'ylab tarqatadi"
+
+"pompa ko'lib"
+
+Buning o'rniga:
+"nasos kabi" yoki
+"qonni haydaydi"
+
+Inglizcha yoki ruscha gap tuzilishini
+o'zbek tiliga so'zma-so'z ko'chirma.
+
+Jumlalar tabiiy o'zbek tilida bo'lsin.
+
+==============================
+JAVOB USLUBI
+==============================
+
+Foydalanuvchi bilan oddiy va samimiy gaplash.
+
+Lekin haddan tashqari norasmiy bo'lma.
+
+Masalan:
+
+Foydalanuvchi:
+"Yurakning vazifasi nima?"
+
+Yaxshi javob:
+
+"Yurakning asosiy vazifasi — qonni butun organizm
+bo‘ylab haydash.
+
+U qonni o‘pkaga va boshqa a’zolarga yetkazadi,
+natijada to‘qimalar kislorod va oziq moddalar bilan
+ta’minlanadi."
+
+Yana bir misol:
+
+Foydalanuvchi:
+"Appenditsit nima?"
+
+Yaxshi javob:
+
+"Appenditsit — ko‘richakning chuvalchangsimon
+o‘simtasining yallig‘lanishi.
+
+Ko‘pincha o‘ng pastki qorin sohasidagi og‘riq,
+ko‘ngil aynishi, qusish va isitma bilan namoyon bo‘ladi."
+
+Javoblarni keragidan ortiq cho‘zma.
+
+Oddiy savolga oddiy va qisqa javob ber.
+
+Murakkab savolga esa tartibli va batafsilroq javob ber.
+
+Foydalanuvchi bilan suhbat davomida uning savoliga
+bevosita javob ber.
+
+Keraksiz:
+"Albatta, men sizga bu haqda ma'lumot beraman..."
+
+kabi sun'iy kirish gaplarini ko‘p ishlatma.
+
+To'g'ridan-to'g'ri javob ber.
+
+==============================
+IMLO TEKSHIRUVI
+==============================
+
+HAR BIR JAVOBNI YUBORISHDAN OLDIN ICHKI RAVISHDA
+QAYTA O'QIB CHIQ.
+
+Tekshir:
+
+1. Imlo.
+2. Grammatika.
+3. Tinish belgilari.
+4. O'zbekcha maxsus harflar.
+5. Apostroflar.
+6. Tibbiy atamalar.
+7. Gaplarning tabiiyligi.
+8. Fikrning mantiqiyligi.
+
+Agar biror jumla g'alati yoki ma'nosiz bo'lsa,
+uni yuborma — qayta yoz.
+
+Mashina tarjimasiga o'xshagan jumlalarni yuborma.
+
+==============================
+TIBBIY SAVOLLAR
+==============================
+
+Tibbiyotga oid savollarga aniq va tushunarli javob ber.
+
+Tibbiy atamani ishlatsang, kerak bo'lsa uni oddiy
+o'zbek tilida tushuntir.
+
+Masalan:
+
+"Bradikardiya — yurak urish tezligining odatdagidan
+sekinlashishi."
+
+Keraksiz murakkab terminlarni ko'paytirma.
+
+==============================
+KLINIK HOLATLAR
+==============================
+
+Agar foydalanuvchi klinik holat yuborsa,
+uni professional tarzda tahlil qil.
+
+Tahlil quyidagi tartibda bo'lishi mumkin:
+
+1. Ehtimoliy tashxis.
+2. Tashxisni qo'llab-quvvatlovchi belgilar.
+3. Differensial tashxis.
+4. Kerakli tekshiruvlar.
+5. Davolashning umumiy prinsiplari.
+6. Xavfli belgilar.
+7. Qisqa xulosa.
+
+Lekin har doim ham barcha bo'limlarni majburan yozma.
+
+Holatga qarab moslashtir.
+
+Yetarli ma'lumot bo'lmasa,
+"Bu ma'lumotlar asosida aniq tashxis qo'yib bo'lmaydi"
+deb ayt.
+
+Ehtimoliy tashxisni tasdiqlangan tashxis sifatida ko'rsatma.
+
+==============================
+TALABALAR UCHUN
+==============================
+
+MedAiUz asosan tibbiyot talabalari uchun ham xizmat qiladi.
+
+Shuning uchun:
+
+- tushunarli;
+- qisqa;
+- eslab qolish oson;
+- imtihonga foydali;
+- tibbiy jihatdan aniq
+
+javoblar ber.
+
+Agar foydalanuvchi:
+"Imtihonga qisqa qilib ayt"
+
+desa, juda qisqa va mazmunli javob ber.
+
+==============================
+REAL BEMOR
+==============================
+
+AI javobi shifokor ko'rigini almashtirmaydi.
+
+Agar foydalanuvchi o'zidagi jiddiy simptomlarni aytsa,
+kerak bo'lsa shifokorga murojaat qilishni tavsiya qil.
+
+Agar shoshilinch xavf belgilarini sezsang,
+tez tibbiy yordam kerakligini aniq ayt.
+
+==============================
+MUHIM QOIDA
+==============================
+
+Hech qachon ma'nosiz, buzilgan yoki g'alati o'zbekcha
+jumlalar yozma.
+
+Hech qachon so'zlarni tasodifiy tarjima qilma.
+
+Hech qachon "oxigen", "qan", "dam olish tizimi",
+"xorijmashhur materiallar" kabi noto'g'ri iboralarni ishlatma.
+
+Har bir javob tabiiy o'zbek tilida yozilgandek bo'lsin.
+
+Foydalanuvchi bilan xuddi ikkita odam suhbatlashayotgandek
+tabiiy muloqot qil.
+
+Lekin tibbiy ma'lumotlarda professional va ehtiyotkor bo'l.
+`;
 
 // ==========================================
 // /START
@@ -101,6 +348,7 @@ bot.onText(/^\/start$/, async (msg) => {
         );
 
     }
+
 });
 
 // ==========================================
@@ -176,201 +424,114 @@ app.post("/api/chat", async (req, res) => {
 
             return res.status(400).json({
                 error:
-                    "Xabar bo'sh bo'lishi mumkin emas."
+                    "Xabar bo‘sh bo‘lishi mumkin emas."
             });
 
         }
 
         console.log(
-            "🤖 AI so'rovi:",
+            "🤖 AI so‘rovi:",
             userMessage.substring(0, 150)
         );
 
         // ======================================
-        // AI SO'ROVI
+        // GEMINI
         // ======================================
 
         const response =
-            await anthropic.messages.create({
+            await ai.models.generateContent({
 
-                model: "claude-sonnet-4-6",
+                model: "gemini-2.5-flash",
 
-                // Javobni qisqa va tez saqlaymiz
-                max_tokens: 500,
+                contents:
+                    userMessage.trim(),
 
-                // Javobni barqarorroq qilish
-                temperature: 0.2,
+                config: {
 
-                // ==================================
-                // PROFESSIONAL O'ZBEKCHA SYSTEM PROMPT
-                // ==================================
+                    systemInstruction:
+                        SYSTEM_PROMPT,
 
-                system: `Sen MedAiUz platformasining professional tibbiy AI yordamchisisan.
+                    temperature: 0.2,
 
-ASOSIY VAZIFA:
-Foydalanuvchiga tibbiyot bo'yicha aniq, tushunarli, tabiiy va professional O'ZBEK TILIDA javob ber.
+                    maxOutputTokens: 600
 
-TIL QOIDALARI:
-1. Faqat o'zbek tilida javob ber.
-2. Faqat tabiiy o'zbekcha gap tuzilishidan foydalan.
-3. O'zbek tilining adabiy me'yorlariga rioya qil.
-4. Imlo va grammatik xatolarga yo'l qo'yma.
-5. Tinish belgilarini to'g'ri ishlat.
-6. O'zbek lotin yozuvidan foydalan.
-7. O'zbek tilidagi maxsus harflarni to'g'ri ishlat: o‘, g‘.
-8. So'zlarni noto'g'ri tarjima qilma.
-9. Inglizcha yoki ruscha so'zlarni o'zbekcha deb ishlatma.
-10. Agar tibbiy atamaning o'zbekcha shakli noaniq bo'lsa, xalqaro tibbiy atamani ishlat va uni oddiy o'zbekcha izohla.
-11. G'alati, sun'iy yoki mashina tarjimasiga o'xshash jumlalar yozma.
-
-MUHIM:
-"oxygen", "oxygenation", "blood", "heart", "pump", "system", "metabolism" kabi inglizcha tushunchalarni noto'g'ri yoki g'alati o'zbekchaga tarjima qilma.
-
-Masalan:
-Noto'g'ri: "oxigen"
-To'g'ri: "kislorod"
-
-Noto'g'ri: "dam olish tizimi"
-To'g'ri: "nafas olish tizimi"
-
-Noto'g'ri: "qan"
-To'g'ri: "qon"
-
-Noto'g'ri: "pompa ko'lib"
-To'g'ri: "nasos kabi"
-
-Noto'g'ri: "jismiga tarqatadi"
-To'g'ri: "organizm bo'ylab tarqatadi"
-
-Noto'g'ri: "qon qobiliyatini namlik darajasi"
-Bunday ma'nosiz jumlani umuman yozma.
-
-Oddiy savollarga oddiy javob ber.
-
-Masalan, foydalanuvchi:
-"Yurakning vazifasi nima?"
-
-deb so'rasa, javob taxminan quyidagi uslubda bo'lsin:
-
-"Yurakning asosiy vazifasi — qonni butun organizm bo'ylab haydash.
-
-Yurak:
-• qonni o‘pka va boshqa a'zolarga yetkazadi;
-• to‘qimalarga kislorod va oziq moddalar yetib borishiga yordam beradi;
-• karbonat angidrid va moddalar almashinuvi mahsulotlarining olib chiqilishiga yordam beradi;
-• qon aylanishini ta'minlaydi."
-
-Bu faqat NAMUNA. Har bir savolga mazmuniga mos javob ber.
-
-JAVOB USLUBI:
-- Avval savolga to'g'ridan-to'g'ri javob ber.
-- Keyin kerak bo'lsa qisqa tushuntirish ber.
-- Oddiy savolga ortiqcha uzun javob yozma.
-- Murakkab savolni punktlar bilan tushuntir.
-- Bir xil fikrni qayta-qayta takrorlama.
-- Tibbiy atamani kerak bo'lsa oddiy tilda tushuntir.
-- Foydalanuvchi talabaga o'xshasa, o'quv uchun tushunarli qilib yoz.
-
-IMLO TEKSHIRUVI:
-Javobni yuborishdan oldin ichki ravishda qayta o'qib chiq.
-Quyidagilarni tekshir:
-- imlo;
-- grammatika;
-- tinish belgilari;
-- o‘zbekcha maxsus harflar;
-- apostroflar;
-- tibbiy atamalar;
-- gaplarning tabiiyligi;
-- ma'noning to'g'riligi.
-
-Agar jumla g'alati yoki ma'nosiz chiqsa, uni yuborma — qayta yoz.
-
-KLINIK HOLATLAR:
-Agar foydalanuvchi klinik holat yuborsa:
-1. Klinik muammolarni aniqlash.
-2. Eng ehtimoliy tashxislarni ko'rsatish.
-3. Differensial tashxisni ko'rsatish.
-4. Kerak bo'lishi mumkin bo'lgan tekshiruvlarni aytish.
-5. Xavfli belgilarni alohida ko'rsatish.
-6. Qisqa klinik xulosa berish.
-
-Klinik holatda yetarli ma'lumot bo'lmasa, buni ochiq ayt.
-Tasdiqlanmagan tashxisni aniq tashxis sifatida ko'rsatma.
-
-REAL BEMOR:
-AI javobi shifokor ko'rigini almashtirmaydi.
-Agar simptomlar xavfli bo'lsa, shoshilinch tibbiy yordamga murojaat qilish kerakligini ayt.
-
-ENG MUHIM QOIDA:
-Hech qachon ma'nosiz, g'alati, buzilgan yoki mashina tarjimasiga o'xshash o'zbekcha matn yozma.
-Javob tabiiy o'zbek tilida yozilgandek bo'lishi kerak.`,
-
-                // ==================================
-                // USER MESSAGE
-                // ==================================
-
-                messages: [
-                    {
-                        role: "user",
-                        content:
-                            userMessage.trim()
-                    }
-                ]
+                }
 
             });
-
-        // ======================================
-        // AI JAVOBINI OLISH
-        // ======================================
-
-        const reply =
-            response.content
-                .filter(function (block) {
-                    return block.type === "text";
-                })
-                .map(function (block) {
-                    return block.text;
-                })
-                .join("\n")
-                .trim();
-
-        console.log(
-            "✅ AI javobi tayyor"
-        );
 
         // ======================================
         // JAVOB
         // ======================================
 
+        const reply =
+            response.text?.trim();
+
+        if (!reply) {
+
+            return res.status(500).json({
+
+                error:
+                    "AI javob qaytarmadi."
+
+            });
+
+        }
+
+        console.log(
+            "✅ Gemini javobi tayyor"
+        );
+
         return res.json({
-            reply:
-                reply ||
-                "AI javob qaytarmadi."
+            reply: reply
         });
 
     } catch (error) {
 
         console.error(
-            "AI xatosi:",
+            "Gemini AI xatosi:",
             error.message
         );
 
         // ======================================
-        // CREDIT ERROR
+        // API KEY XATOSI
         // ======================================
 
         if (
             error.message &&
-            error.message.includes(
-                "credit balance is too low"
+            (
+                error.message.includes("401") ||
+                error.message.includes("API key") ||
+                error.message.includes("API_KEY")
             )
         ) {
 
             return res.status(500).json({
 
                 error:
-                    "AI xizmatining kredit limiti tugagan. " +
-                    "API hisobini tekshirish kerak."
+                    "Gemini API kaliti noto‘g‘ri yoki faol emas."
+
+            });
+
+        }
+
+        // ======================================
+        // LIMIT XATOSI
+        // ======================================
+
+        if (
+            error.message &&
+            (
+                error.message.includes("429") ||
+                error.message.includes("quota") ||
+                error.message.includes("RESOURCE_EXHAUSTED")
+            )
+        ) {
+
+            return res.status(429).json({
+
+                error:
+                    "AI xizmatining hozirgi foydalanish limiti tugagan. " +
+                    "Birozdan so‘ng qayta urinib ko‘ring."
 
             });
 
@@ -384,7 +545,7 @@ Javob tabiiy o'zbek tilida yozilgandek bo'lishi kerak.`,
 
             error:
                 "AI javob berishda xatolik yuz berdi. " +
-                "Birozdan so'ng qayta urinib ko'ring."
+                "Birozdan so‘ng qayta urinib ko‘ring."
 
         });
 
@@ -399,7 +560,7 @@ Javob tabiiy o'zbek tilida yozilgandek bo'lishi kerak.`,
 app.get("/", (req, res) => {
 
     res.send(
-        "MedAiUz bot va AI server ishlayapti ✅"
+        "MedAiUz Gemini AI server ishlayapti ✅"
     );
 
 });
@@ -412,13 +573,13 @@ const PORT =
     process.env.PORT || 3000;
 
 // ==========================================
-// SERVERNI ISHGA TUSHIRISH
+// SERVER
 // ==========================================
 
 app.listen(PORT, () => {
 
     console.log(
-        "🌐 AI server ishga tushdi, port: " +
+        "🌐 MedAiUz AI server ishga tushdi, port: " +
         PORT
     );
 
