@@ -332,6 +332,41 @@
 
 </main>
 
+<!-- Profilni tahrirlash oynasi -->
+<div id="editOverlay" style="display:none; position:fixed; inset:0; background:rgba(17,24,39,.5); align-items:flex-end; justify-content:center; z-index:200;">
+    <div style="width:100%; max-width:900px; background:white; border-top-left-radius:24px; border-top-right-radius:24px; padding:22px 20px 26px;">
+        <h3 style="font-size:17px; margin-bottom:16px;">Profilni tahrirlash</h3>
+
+        <div style="margin-bottom:14px;">
+            <label style="display:block; font-size:12px; color:#6b7280; margin-bottom:6px;">Ism va familiya</label>
+            <input type="text" id="inputName" style="width:100%; padding:11px 12px; border:1px solid #e5e7eb; border-radius:12px; font-size:14px; font-family:inherit;">
+        </div>
+
+        <div style="margin-bottom:14px;">
+            <label style="display:block; font-size:12px; color:#6b7280; margin-bottom:6px;">Email</label>
+            <input type="email" id="inputEmail" placeholder="misol@email.com" style="width:100%; padding:11px 12px; border:1px solid #e5e7eb; border-radius:12px; font-size:14px; font-family:inherit;">
+        </div>
+
+        <div style="margin-bottom:18px;">
+            <label style="display:block; font-size:12px; color:#6b7280; margin-bottom:6px;">Maqom</label>
+            <select id="inputRole" style="width:100%; padding:11px 12px; border:1px solid #e5e7eb; border-radius:12px; font-size:14px; font-family:inherit;">
+                <option>1-kurs talabasi</option>
+                <option>2-kurs talabasi</option>
+                <option>3-kurs talabasi</option>
+                <option>4-kurs talabasi</option>
+                <option>5-kurs talabasi</option>
+                <option>6-kurs talabasi</option>
+                <option>Shifokor</option>
+            </select>
+        </div>
+
+        <div style="display:flex; gap:10px;">
+            <button onclick="closeEdit()" style="flex:1; padding:12px; border-radius:12px; font-weight:bold; font-size:14px; border:1px solid #e5e7eb; background:white; color:#111827;">Bekor qilish</button>
+            <button onclick="saveEdit()" style="flex:1; padding:12px; border-radius:12px; font-weight:bold; font-size:14px; border:none; background:#2563eb; color:white;">Saqlash</button>
+        </div>
+    </div>
+</div>
+
 <nav class="bottom-nav">
     <button class="nav-btn" onclick="goHome()">
         <span>🏠</span>
@@ -352,7 +387,10 @@
 </nav>
 
 <script>
-    const state = {
+    const tg = window.Telegram && window.Telegram.WebApp;
+    if (tg) tg.ready();
+
+    let state = {
         name: "Foydalanuvchi",
         email: "",
         role: "Talaba"
@@ -369,12 +407,71 @@
         document.getElementById('avatarInitials').textContent = initials(state.name);
     }
 
-    function openEdit() {
-        const newName = prompt("Ismingizni kiriting:", state.name);
-        if (newName) {
-            state.name = newName;
-            renderProfile();
+    // ---- Saqlash: Telegram ichida bo'lsa CloudStorage (Telegram serverida,
+    // qurilma/qayta kirish bilan yo'qolmaydi), aks holda oddiy localStorage ----
+    function saveProfile() {
+        const json = JSON.stringify(state);
+        if (tg && tg.CloudStorage) {
+            tg.CloudStorage.setItem("medaiuz_profile", json, function () {});
+        } else {
+            localStorage.setItem("medaiuz_profile", json);
         }
+    }
+
+    function loadProfile(callback) {
+        function fillFromTelegramIfNeeded() {
+            if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
+                const user = tg.initDataUnsafe.user;
+                const tgName = [user.first_name, user.last_name].filter(Boolean).join(" ");
+                if (tgName) state.name = tgName;
+                if (user.username) state.email = "@" + user.username;
+                saveProfile();
+            }
+        }
+
+        if (tg && tg.CloudStorage) {
+            tg.CloudStorage.getItem("medaiuz_profile", function (err, value) {
+                if (!err && value) {
+                    try { state = JSON.parse(value); } catch (e) { fillFromTelegramIfNeeded(); }
+                } else {
+                    fillFromTelegramIfNeeded();
+                }
+                callback();
+            });
+        } else {
+            const saved = JSON.parse(localStorage.getItem("medaiuz_profile") || "null");
+            if (saved) {
+                state = saved;
+            } else {
+                fillFromTelegramIfNeeded();
+            }
+            callback();
+        }
+    }
+
+    function openEdit() {
+        document.getElementById('inputName').value = state.name;
+        document.getElementById('inputEmail').value = state.email;
+        document.getElementById('inputRole').value = state.role;
+        document.getElementById('editOverlay').style.display = "flex";
+    }
+
+    function closeEdit() {
+        document.getElementById('editOverlay').style.display = "none";
+    }
+
+    function saveEdit() {
+        const newName = document.getElementById('inputName').value.trim();
+        const newEmail = document.getElementById('inputEmail').value.trim();
+        const newRole = document.getElementById('inputRole').value;
+
+        if (newName) state.name = newName;
+        state.email = newEmail;
+        state.role = newRole;
+
+        saveProfile();
+        renderProfile();
+        closeEdit();
     }
 
     function openBooks() {
@@ -386,28 +483,55 @@
     }
 
     function openResults() {
-        alert(
-            "📊 Natijalar\n\n" +
-            "Natijalar bo'limi keyingi bosqichda " +
-            "offline ishlaydigan qilinadi."
+        window.location.href = "results.html";
+    }
+
+    // ---- Haqiqiy statistikani localStorage'dan hisoblash ----
+    function loadStats() {
+        const results = JSON.parse(localStorage.getItem("medaiuz_results") || "[]");
+
+        const testsCount = results.length;
+        document.getElementById('statTests').textContent = testsCount;
+
+        if (testsCount > 0) {
+            const avgPct = Math.round(
+                results.reduce((sum, r) => sum + r.pct, 0) / testsCount
+            );
+            document.getElementById('statAvg').textContent = avgPct + "%";
+        } else {
+            document.getElementById('statAvg').textContent = "—";
+        }
+
+        document.getElementById('statStreak').textContent = calcStreak(results);
+    }
+
+    // Ketma-ket necha kun test yechilganini hisoblaydi (bugundan orqaga)
+    function calcStreak(results) {
+        if (results.length === 0) return 0;
+
+        const days = new Set(
+            results.map(r => new Date(r.date).toDateString())
         );
+
+        let streak = 0;
+        let cursor = new Date();
+
+        while (days.has(cursor.toDateString())) {
+            streak++;
+            cursor.setDate(cursor.getDate() - 1);
+        }
+
+        return streak;
     }
 
     function goHome() {
         window.location.href = "index.html";
     }
 
-    if (window.Telegram && window.Telegram.WebApp) {
-        const tg = window.Telegram.WebApp;
-        tg.ready();
-        const user = tg.initDataUnsafe && tg.initDataUnsafe.user;
-        if (user) {
-            state.name = [user.first_name, user.last_name].filter(Boolean).join(" ") || state.name;
-            state.email = user.username ? "@" + user.username : "";
-        }
-    }
-
-    renderProfile();
+    loadProfile(function () {
+        renderProfile();
+        loadStats();
+    });
 </script>
 
 </body>
