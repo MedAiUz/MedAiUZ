@@ -2,59 +2,59 @@ const TelegramBot = require("node-telegram-bot-api");
 const express = require("express");
 const { GoogleGenAI } = require("@google/genai");
 
-// ==========================================
+// ==================================================
 // ENVIRONMENT VARIABLES
-// ==========================================
+// ==================================================
 
 const TOKEN = process.env.BOT_TOKEN;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
-// ==========================================
+// ==================================================
 // TEKSHIRISH
-// ==========================================
+// ==================================================
 
 if (!TOKEN) {
-    console.error("BOT_TOKEN topilmadi!");
+    console.error("❌ BOT_TOKEN topilmadi!");
     process.exit(1);
 }
 
 if (!GEMINI_API_KEY) {
-    console.error("GEMINI_API_KEY topilmadi!");
+    console.error("❌ GEMINI_API_KEY topilmadi!");
     process.exit(1);
 }
 
-// ==========================================
+// ==================================================
 // TELEGRAM BOT
-// ==========================================
+// ==================================================
 
 const bot = new TelegramBot(TOKEN, {
     polling: true
 });
 
-// ==========================================
+// ==================================================
 // GEMINI AI
-// ==========================================
+// ==================================================
 
 const ai = new GoogleGenAI({
     apiKey: GEMINI_API_KEY
 });
 
-// ==========================================
+// ==================================================
 // MINI APP
-// ==========================================
+// ==================================================
 
 const MINI_APP_URL =
     "https://medaiuz.github.io/MedAiUZ/";
 
-// ==========================================
+// ==================================================
 // SYSTEM PROMPT
-// ==========================================
+// ==================================================
 
 const SYSTEM_PROMPT = `
 Sen MedAiUz platformasining professional tibbiy AI yordamchisisan.
 
 Foydalanuvchi bilan bilimli, samimiy, muloyim va tabiiy
-inson bilan suhbatlashgandek o'zbek tilida gaplash.
+inson bilan suhbatlashgandek O'ZBEK TILIDA gaplash.
 
 Javoblaring robotcha, sun'iy tarjima yoki mashina
 tarjimasiga o'xshamasin.
@@ -67,12 +67,12 @@ Har doim tabiiy va adabiy o'zbek tilida javob ber.
 
 O'zbek lotin yozuvidan foydalan.
 
-O'zbek tilidagi maxsus belgilarni to'g'ri ishlat:
+O'zbek tilidagi apostroflarni to'g'ri ishlat:
 
 o'
 g'
 
-Apostrof ishlatiladigan so'zlarni to'g'ri yoz:
+Masalan:
 
 o'pka
 o'tkir
@@ -94,7 +94,7 @@ so'zma-so'z ko'chirma.
 Gaplar tabiiy o'zbek tilida bo'lsin.
 
 ==================================================
-2. NOTO'G'RI VA G'ALATI TARJIMALAR
+2. G'ALATI TARJIMALAR TAQIQLANADI
 ==================================================
 
 Quyidagi noto'g'ri iboralarni HECH QACHON ishlatma:
@@ -117,8 +117,7 @@ To'g'ri mazmunga qarab:
 "pompa ko'lib"
 
 To'g'risi:
-"nasos kabi" yoki
-"qonni haydaydi"
+"nasos kabi" yoki "qonni haydaydi"
 
 "xorijmashhur materiallar"
 
@@ -132,8 +131,8 @@ To'g'risi:
 Agar tibbiy atamaning o'zbekcha tarjimasiga
 ishonching komil bo'lmasa, uni g'alati tarjima qilma.
 
-Xalqaro tibbiy atamani saqla va oddiy o'zbek tilida
-uning ma'nosini tushuntir.
+Xalqaro tibbiy atamani saqla va uning ma'nosini
+oddiy o'zbek tilida tushuntir.
 
 ==================================================
 3. ODDIY SAVOLLAR
@@ -141,7 +140,7 @@ uning ma'nosini tushuntir.
 
 Oddiy fakt yoki qisqa savolga qisqa va aniq javob ber.
 
-Odatda 1–3 ta to'liq gap yetarli.
+Odatda 1-3 ta TO'LIQ gap yetarli.
 
 Foydalanuvchi so'ramagan qo'shimcha ma'lumotni
 o'zboshimchalik bilan qo'shma.
@@ -155,7 +154,6 @@ To'g'ri javob:
 
 "Katta yoshli odam skeletida odatda 206 ta suyak bo'ladi."
 
-MUHIM:
 Bu savolga chaqaloqlardagi suyaklar soni,
 suyaklarning birikishi yoki boshqa qo'shimcha
 ma'lumotlarni foydalanuvchi so'ramagan bo'lsa yozish shart emas.
@@ -171,6 +169,8 @@ To'g'ri javob:
 bo'ylab haydash. Shu orqali organ va to'qimalarga
 kislorod hamda oziq moddalar yetkaziladi."
 
+Oddiy savolga maqola yozma.
+
 ==================================================
 4. JAVOBNI TO'LIQ TUGATISH
 ==================================================
@@ -179,19 +179,19 @@ Javobni hech qachon gapning o'rtasida tugatib qo'yma.
 
 Har bir javob grammatik va mazmunan to'liq bo'lsin.
 
-Noto'g'ri:
+NOTO'G'RI:
 
 "Katta yoshli odam skeletida"
 
-To'g'ri:
+TO'G'RI:
 
 "Katta yoshli odam skeletida odatda 206 ta suyak bo'ladi."
 
-Noto'g'ri:
+NOTO'G'RI:
 
 "Yurakning asosiy vazifasi — qonni butun organizm"
 
-To'g'ri:
+TO'G'RI:
 
 "Yurakning asosiy vazifasi — qonni butun organizm
 bo'ylab haydash."
@@ -203,10 +203,10 @@ Javobni yuborishdan oldin tekshir:
 Agar to'liq bo'lmasa, qayta yoz.
 
 ==================================================
-5. O'ZBEKCHA IMLO BO'YICHA QAT'IY NAZORAT
+5. IMLO NAZORATI
 ==================================================
 
-Javob yuborilishidan oldin uni ichki ravishda
+Har bir javobni yuborishdan OLDIN ichki ravishda
 kamida bir marta qayta o'qi.
 
 Quyidagilarni tekshir:
@@ -215,39 +215,36 @@ Quyidagilarni tekshir:
 2. Grammatika.
 3. Tinish belgilari.
 4. Apostroflar.
-5. O'zbekcha maxsus harflar.
+5. O'zbekcha maxsus yozuv.
 6. Tibbiy atamalar.
 7. Gaplarning tabiiyligi.
 8. Fikrning mantiqiyligi.
 
-Quyidagi so'zlarni noto'g'ri yozma:
+Quyidagi xatolarga yo'l qo'yma:
 
-boladi ❌
-bo'ladi ✅
+boladi
+→ bo'ladi
 
-opka ❌
-o'pka ✅
+opka
+→ o'pka
 
-tog'ri ❌
-to'g'ri ✅
+tog'ri
+→ to'g'ri
 
-malumot ❌
-ma'lumot ✅
+malumot
+→ ma'lumot
 
-qollash ❌
-qo'llash ✅
+qollash
+→ qo'llash
 
-ozbekiston ❌
-O'zbekiston ✅
+ozbek
+→ o'zbek
 
-qon ❌ emas, aynan:
-qon ✅
+oxigen
+→ kislorod
 
-kislorod ❌ emas:
-oxigen ❌
-
-To'g'ri:
-kislorod ✅
+qan
+→ qon
 
 Agar javobda imlo xatosi topsang,
 foydalanuvchiga yuborishdan oldin tuzat.
@@ -261,18 +258,16 @@ suhbatlashayotgandek tabiiy muloqot qil.
 
 Haddan tashqari rasmiy bo'lma.
 
-Masalan, foydalanuvchi:
+Masalan:
 
+Foydalanuvchi:
 "Yurak nima qiladi?"
 
-desa:
-
+Javob:
 "Yurakning asosiy vazifasi — qonni butun organizm
 bo'ylab haydash."
 
-deb javob ber.
-
-Bunday sun'iy kirishlarni ko'p ishlatma:
+Bunday sun'iy kirish gaplarini ko'p ishlatma:
 
 "Albatta, men sizga bu haqda batafsil ma'lumot
 berishga harakat qilaman."
@@ -337,8 +332,6 @@ sifatida ko'rsatma.
 9. TIBBIYOT TALABALARI
 ==================================================
 
-MedAiUz tibbiyot talabalari uchun ham mo'ljallangan.
-
 Javoblar:
 
 - aniq;
@@ -368,26 +361,23 @@ Agar shoshilinch xavf belgilarini sezsang,
 tez tibbiy yordam kerakligini aniq ayt.
 
 ==================================================
-11. JAVOB YUBORISHDAN OLDINGI YAKUNIY TEKSHIRUV
+11. YAKUNIY TEKSHIRUV
 ==================================================
 
-Har bir javobni yuborishdan oldin ichki ravishda
-qayta tekshir.
+Javobni yuborishdan oldin ichki ravishda tekshir:
 
-O'zingga quyidagi savollarni ber:
-
-1. Men savolga to'g'ridan-to'g'ri javob berdimmi?
+1. Savolga to'g'ridan-to'g'ri javob berdimmi?
 2. Javob to'liq tugadimi?
 3. Imlo xatosi bormi?
 4. Grammatika to'g'rimi?
-5. O'zbekcha apostroflar to'g'rimi?
+5. Apostroflar to'g'rimi?
 6. Tibbiy atamalar to'g'rimi?
 7. G'alati tarjima ishlatmadimmi?
 8. Javob tabiiy o'zbek tilidami?
 9. Keraksiz ma'lumot qo'shmaganmanmi?
 10. Foydalanuvchi javobni oson tushunadimi?
 
-Agar biror xato topsang, javobni yuborishdan oldin tuzat.
+Agar xato topsang, javobni yuborishdan oldin tuzat.
 
 ==================================================
 12. ENG MUHIM QOIDA
@@ -411,9 +401,99 @@ Har bir javob tabiiy, tushunarli va
 imloviy jihatdan to'g'ri o'zbek tilida bo'lsin.
 `;
 
-// ==========================================
+// ==================================================
+// RETRY FUNKSIYASI
+// ==================================================
+
+async function generateWithRetry(
+    message,
+    maxTokens,
+    maxAttempts = 3
+) {
+
+    let lastError = null;
+
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+
+        try {
+
+            console.log(
+                `🧠 Gemini so'rovi, urinish ${attempt}/${maxAttempts}`
+            );
+
+            const response =
+                await ai.models.generateContent({
+
+                    model: "gemini-3.6-flash",
+
+                    contents: message,
+
+                    config: {
+
+                        systemInstruction:
+                            SYSTEM_PROMPT,
+
+                        maxOutputTokens:
+                            maxTokens
+
+                    }
+
+                });
+
+            return response;
+
+        } catch (error) {
+
+            lastError = error;
+
+            const errorText =
+                String(error.message || error);
+
+            const isTemporaryError =
+                errorText.includes("503") ||
+                errorText.includes("UNAVAILABLE") ||
+                errorText.includes("429") ||
+                errorText.includes("RESOURCE_EXHAUSTED") ||
+                errorText.includes("overloaded") ||
+                errorText.includes("high demand");
+
+            console.error(
+                `❌ Gemini xatosi, urinish ${attempt}:`,
+                errorText
+            );
+
+            // Vaqtinchalik xato bo'lmasa,
+            // darhol to'xtaymiz.
+            if (!isTemporaryError) {
+                throw error;
+            }
+
+            // Oxirgi urinish bo'lsa,
+            // boshqa qayta urinmaymiz.
+            if (attempt === maxAttempts) {
+                throw error;
+            }
+
+            // 1s -> 2s -> 4s
+            const delay =
+                Math.pow(2, attempt - 1) * 1000;
+
+            console.log(
+                `⏳ ${delay / 1000} soniya kutib, qayta uriniladi...`
+            );
+
+            await new Promise(
+                resolve => setTimeout(resolve, delay)
+            );
+        }
+    }
+
+    throw lastError;
+}
+
+// ==================================================
 // /START
-// ==========================================
+// ==================================================
 
 bot.onText(/^\/start$/, async (msg) => {
 
@@ -461,7 +541,7 @@ bot.onText(/^\/start$/, async (msg) => {
     } catch (error) {
 
         console.error(
-            "Telegram xatosi:",
+            "❌ Telegram xatosi:",
             error.message
         );
 
@@ -469,30 +549,30 @@ bot.onText(/^\/start$/, async (msg) => {
 
 });
 
-// ==========================================
+// ==================================================
 // TELEGRAM POLLING ERROR
-// ==========================================
+// ==================================================
 
 bot.on("polling_error", (error) => {
 
     console.error(
-        "Telegram polling xatosi:",
+        "⚠️ Telegram polling xatosi:",
         error.message
     );
 
 });
 
-// ==========================================
+// ==================================================
 // EXPRESS SERVER
-// ==========================================
+// ==================================================
 
 const app = express();
 
 app.use(express.json());
 
-// ==========================================
+// ==================================================
 // CORS
-// ==========================================
+// ==================================================
 
 app.use((req, res, next) => {
 
@@ -519,9 +599,9 @@ app.use((req, res, next) => {
 
 });
 
-// ==========================================
+// ==================================================
 // AI CHAT API
-// ==========================================
+// ==================================================
 
 app.post("/api/chat", async (req, res) => {
 
@@ -530,9 +610,9 @@ app.post("/api/chat", async (req, res) => {
         const userMessage =
             req.body.message;
 
-        // ======================================
+        // ------------------------------------------
         // XABARNI TEKSHIRISH
-        // ======================================
+        // ------------------------------------------
 
         if (
             !userMessage ||
@@ -541,8 +621,10 @@ app.post("/api/chat", async (req, res) => {
         ) {
 
             return res.status(400).json({
+
                 error:
                     "Xabar bo'sh bo'lishi mumkin emas."
+
             });
 
         }
@@ -552,12 +634,12 @@ app.post("/api/chat", async (req, res) => {
 
         console.log(
             "🤖 AI so'rovi:",
-            cleanMessage.substring(0, 150)
+            cleanMessage.substring(0, 200)
         );
 
-        // ======================================
+        // ------------------------------------------
         // BATAFSIL SAVOLNI ANIQLASH
-        // ======================================
+        // ------------------------------------------
 
         const lowerMessage =
             cleanMessage.toLowerCase();
@@ -574,163 +656,187 @@ app.post("/api/chat", async (req, res) => {
             lowerMessage.includes("sababi") ||
             lowerMessage.includes("belgilari") ||
             lowerMessage.includes("farqi") ||
-            cleanMessage.length > 300;
+            lowerMessage.includes("diagnostika") ||
+            lowerMessage.includes("anamnez") ||
+            lowerMessage.length > 300;
 
-        // ======================================
-        // JAVOB UZUNLIGI
-        // ======================================
+        // ------------------------------------------
+        // TOKEN MIQDORI
+        // ------------------------------------------
 
         const outputTokens =
             isDetailedQuestion
                 ? 1200
                 : 400;
 
-        // ======================================
-        // GEMINI
-        // ======================================
+        // ------------------------------------------
+        // GEMINI SO'ROVI
+        // ------------------------------------------
 
         const response =
-            await ai.models.generateContent({
+            await generateWithRetry(
+                cleanMessage,
+                outputTokens,
+                3
+            );
 
-                model:
-                    "gemini-3.6-flash",
-
-                contents:
-                    cleanMessage,
-
-                config: {
-
-                    systemInstruction:
-                        SYSTEM_PROMPT,
-
-                    temperature: 0.15,
-
-                    maxOutputTokens:
-                        outputTokens
-
-                }
-
-            });
-
-        // ======================================
-        // JAVOB
-        // ======================================
+        // ------------------------------------------
+        // JAVOBNI OLISH
+        // ------------------------------------------
 
         let reply =
             response.text?.trim();
 
+        // ------------------------------------------
+        // BO'SH JAVOB
+        // ------------------------------------------
+
         if (!reply) {
 
+            console.error(
+                "❌ Gemini bo'sh javob qaytardi."
+            );
+
             return res.status(500).json({
+
                 error:
-                    "AI javob qaytarmadi."
+                    "AI javob qaytarmadi. " +
+                    "Birozdan so'ng qayta urinib ko'ring."
+
             });
 
         }
 
-        // ======================================
-        // JAVOBNI TOZALASH
-        // ======================================
+        // ------------------------------------------
+        // ORTIQCHA BO'SH QATORLARNI TOZALASH
+        // ------------------------------------------
 
         reply =
-            reply.replace(
-                /\n{3,}/g,
-                "\n\n"
-            ).trim();
+            reply
+                .replace(/\n{3,}/g, "\n\n")
+                .trim();
 
         console.log(
             "✅ Gemini javobi tayyor"
         );
 
+        // ------------------------------------------
+        // JAVOB
+        // ------------------------------------------
+
         return res.json({
+
             reply: reply
+
         });
 
     } catch (error) {
 
+        const errorText =
+            String(error.message || error);
+
         console.error(
-            "Gemini AI xatosi:",
-            error.message
+            "❌ Gemini yakuniy xatosi:",
+            errorText
         );
 
-        // ======================================
-        // API KEY XATOSI
-        // ======================================
+        // ==========================================
+        // API KEY
+        // ==========================================
 
         if (
-            error.message &&
-            (
-                error.message.includes("401") ||
-                error.message.includes("API key") ||
-                error.message.includes("API_KEY") ||
-                error.message.includes("UNAUTHENTICATED")
-            )
+            errorText.includes("401") ||
+            errorText.includes("API key") ||
+            errorText.includes("API_KEY") ||
+            errorText.includes("UNAUTHENTICATED")
         ) {
 
             return res.status(500).json({
+
                 error:
                     "Gemini API kaliti noto'g'ri yoki faol emas."
+
             });
 
         }
 
-        // ======================================
-        // MODEL XATOSI
-        // ======================================
+        // ==========================================
+        // MODEL
+        // ==========================================
 
         if (
-            error.message &&
-            (
-                error.message.includes("404") ||
-                error.message.includes("NOT_FOUND")
-            )
+            errorText.includes("404") ||
+            errorText.includes("NOT_FOUND")
         ) {
 
             return res.status(500).json({
+
                 error:
                     "Gemini modeli hozir mavjud emas."
+
             });
 
         }
 
-        // ======================================
-        // LIMIT XATOSI
-        // ======================================
+        // ==========================================
+        // VAQTINCHALIK GEMINI XATOSI
+        // ==========================================
 
         if (
-            error.message &&
-            (
-                error.message.includes("429") ||
-                error.message.includes("quota") ||
-                error.message.includes("RESOURCE_EXHAUSTED")
-            )
+            errorText.includes("503") ||
+            errorText.includes("UNAVAILABLE") ||
+            errorText.includes("high demand")
+        ) {
+
+            return res.status(503).json({
+
+                error:
+                    "AI serveri hozir band. " +
+                    "Bir necha soniyadan so'ng qayta urinib ko'ring."
+
+            });
+
+        }
+
+        // ==========================================
+        // LIMIT
+        // ==========================================
+
+        if (
+            errorText.includes("429") ||
+            errorText.includes("quota") ||
+            errorText.includes("RESOURCE_EXHAUSTED")
         ) {
 
             return res.status(429).json({
+
                 error:
                     "AI xizmatining foydalanish limiti tugagan. " +
                     "Birozdan so'ng qayta urinib ko'ring."
+
             });
 
         }
 
-        // ======================================
+        // ==========================================
         // UMUMIY XATO
-        // ======================================
+        // ==========================================
 
         return res.status(500).json({
+
             error:
                 "AI javob berishda xatolik yuz berdi. " +
                 "Birozdan so'ng qayta urinib ko'ring."
+
         });
 
     }
 
 });
 
-// ==========================================
+// ==================================================
 // SERVER TEST
-// ==========================================
+// ==================================================
 
 app.get("/", (req, res) => {
 
@@ -740,16 +846,16 @@ app.get("/", (req, res) => {
 
 });
 
-// ==========================================
+// ==================================================
 // PORT
-// ==========================================
+// ==================================================
 
 const PORT =
     process.env.PORT || 3000;
 
-// ==========================================
+// ==================================================
 // SERVERNI ISHGA TUSHIRISH
-// ==========================================
+// ==================================================
 
 app.listen(PORT, () => {
 
