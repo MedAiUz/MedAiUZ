@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="uz">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MedAiUz — Offline</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>MedAiUz — Tibbiyot uchun aqlli yordamchi</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -14,223 +21,436 @@
         }
 
         body {
+
             font-family: Arial, sans-serif;
+
             background: #f5f7fb;
+
             color: #111827;
+
             padding-bottom: 90px;
+
         }
+
 
         button {
+
             font-family: inherit;
+
             cursor: pointer;
+
         }
+
 
         .header {
+
             padding: 20px 18px 15px;
+
             background: white;
-            border-bottom: 1px solid #e5e7eb;
+
+            border-bottom:
+                1px solid #e5e7eb;
+
         }
+
 
         .logo {
+
             max-width: 900px;
+
             margin: auto;
+
             display: flex;
+
             align-items: center;
+
             gap: 12px;
+
         }
+
 
         .logo-icon {
+
             width: 48px;
+
             height: 48px;
+
             border-radius: 15px;
+
             background: #2563eb;
+
             color: white;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             font-size: 25px;
+
         }
+
 
         .logo h1 {
+
             font-size: 21px;
+
         }
+
 
         .logo p {
+
             font-size: 11px;
+
             color: #6b7280;
+
             margin-top: 3px;
+
         }
+
 
         .offline {
+
             display: inline-block;
+
             margin-top: 6px;
+
             padding: 4px 8px;
+
             border-radius: 8px;
+
             background: #dcfce7;
+
             color: #166534;
+
             font-size: 9px;
+
             font-weight: bold;
+
         }
+
 
         .container {
+
             max-width: 900px;
+
             margin: auto;
+
             padding: 18px;
+
         }
+
 
         .welcome {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1d4ed8
+                );
+
             color: white;
+
             border-radius: 24px;
+
             padding: 25px;
+
             margin-bottom: 20px;
+
         }
+
 
         .welcome h2 {
+
             font-size: 24px;
+
             margin-bottom: 8px;
+
         }
+
 
         .welcome p {
+
             font-size: 13px;
+
             line-height: 1.6;
+
             opacity: .92;
+
         }
+
 
         .ai-button {
+
             margin-top: 18px;
+
             width: 100%;
+
             border: none;
+
             border-radius: 14px;
+
             padding: 14px;
+
             background: white;
+
             color: #2563eb;
+
             font-weight: bold;
+
             font-size: 14px;
+
         }
+
 
         .section-title {
+
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             margin: 22px 0 12px;
+
         }
+
 
         .section-title h2 {
+
             font-size: 18px;
+
         }
+
 
         .section-title span {
+
             font-size: 11px;
+
             color: #6b7280;
+
         }
+
 
         .menu {
+
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
             gap: 12px;
+
         }
+
 
         .card {
+
             background: white;
-            border: 1px solid #e5e7eb;
+
+            border:
+                1px solid #e5e7eb;
+
             border-radius: 19px;
+
             padding: 18px;
+
             text-align: left;
+
             transition: .2s;
+
+            width: 100%;
+
         }
+
 
         .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .07);
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(0, 0, 0, .07);
+
         }
+
 
         .card-icon {
+
             width: 48px;
+
             height: 48px;
+
             border-radius: 14px;
+
             background: #eff6ff;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             font-size: 25px;
+
             margin-bottom: 12px;
+
         }
+
 
         .card h3 {
+
             font-size: 14px;
+
             margin-bottom: 5px;
+
         }
+
 
         .card p {
+
             font-size: 10px;
+
             color: #6b7280;
+
             line-height: 1.4;
+
         }
+
 
         .info {
+
             margin-top: 20px;
+
             background: white;
-            border: 1px solid #e5e7eb;
+
+            border:
+                1px solid #e5e7eb;
+
             border-radius: 18px;
+
             padding: 16px;
+
             font-size: 11px;
+
             line-height: 1.6;
+
             color: #6b7280;
+
         }
+
 
         .info strong {
+
             color: #111827;
+
         }
+
 
         .bottom-nav {
+
             position: fixed;
+
             bottom: 0;
+
             left: 0;
+
             right: 0;
+
             height: 70px;
-            background: rgba(255, 255, 255, .97);
-            backdrop-filter: blur(12px);
-            border-top: 1px solid #e5e7eb;
+
+            background:
+                rgba(255, 255, 255, .97);
+
+            backdrop-filter:
+                blur(12px);
+
+            border-top:
+                1px solid #e5e7eb;
+
             display: flex;
-            justify-content: space-around;
+
+            justify-content:
+                space-around;
+
             align-items: center;
+
             z-index: 100;
+
         }
+
 
         .nav-btn {
+
             border: none;
+
             background: transparent;
+
             color: #6b7280;
+
             font-size: 10px;
+
             display: flex;
+
             flex-direction: column;
+
             align-items: center;
+
             gap: 4px;
+
+            padding: 6px 15px;
+
         }
+
 
         .nav-btn span {
+
             font-size: 22px;
+
         }
+
 
         .nav-btn.active {
+
             color: #2563eb;
+
             font-weight: bold;
+
         }
+
 
         @media (max-width: 500px) {
+
             .menu {
-                grid-template-columns: 1fr 1fr;
+
+                grid-template-columns:
+                    1fr 1fr;
+
             }
+
 
             .welcome h2 {
+
                 font-size: 21px;
+
             }
+
         }
+
     </style>
+
 </head>
 
+
 <body>
+
+
+<!-- ==================================================
+     HEADER
+================================================== -->
 
 <header class="header">
 
@@ -240,13 +460,21 @@
             🩺
         </div>
 
+
         <div>
-            <h1>MedAiUz</h1>
-            <p>Tibbiyot uchun aqlli yordamchi</p>
+
+            <h1>
+                MedAiUz
+            </h1>
+
+            <p>
+                Tibbiyot uchun aqlli yordamchi
+            </p>
 
             <span class="offline">
                 🟢 OFFLINE REJIM
             </span>
+
         </div>
 
     </div>
@@ -254,7 +482,15 @@
 </header>
 
 
+
+<!-- ==================================================
+     ASOSIY QISM
+================================================== -->
+
 <main class="container">
+
+
+    <!-- XUSH KELIBSIZ -->
 
     <section class="welcome">
 
@@ -262,23 +498,32 @@
             Assalomu alaykum! 👋
         </h2>
 
+
         <p>
+
             MedAiUz — tibbiyot talabalari va
             tibbiyot sohasi vakillari uchun
             darslik, test, klinik holatlar,
-            terminlar va boshqa foydali
-            bo‘limlarni bir joyga jamlaydi.
+            dorilar, terminlar va boshqa
+            foydali bo‘limlarni bir joyga jamlaydi.
+
         </p>
+
 
         <button
             class="ai-button"
             onclick="openAI()"
         >
+
             🤖 AI yordamchi
+
         </button>
 
     </section>
 
+
+
+    <!-- BO'LIMLAR -->
 
     <div class="section-title">
 
@@ -287,14 +532,19 @@
         </h2>
 
         <span>
-            Offline
+            MedAiUz
         </span>
 
     </div>
 
 
+
     <section class="menu">
 
+
+        <!-- ==================================================
+             DARSLIKLAR
+        ================================================== -->
 
         <button
             class="card"
@@ -316,6 +566,11 @@
         </button>
 
 
+
+        <!-- ==================================================
+             TESTLAR
+        ================================================== -->
+
         <button
             class="card"
             onclick="openTests()"
@@ -335,6 +590,11 @@
 
         </button>
 
+
+
+        <!-- ==================================================
+             KLINIK HOLATLAR
+        ================================================== -->
 
         <button
             class="card"
@@ -356,6 +616,11 @@
         </button>
 
 
+
+        <!-- ==================================================
+             DORILAR
+        ================================================== -->
+
         <button
             class="card"
             onclick="openDrugs()"
@@ -375,6 +640,11 @@
 
         </button>
 
+
+
+        <!-- ==================================================
+             TIBBIY TERMINLAR
+        ================================================== -->
 
         <button
             class="card"
@@ -396,6 +666,11 @@
         </button>
 
 
+
+        <!-- ==================================================
+             AI YORDAMCHI
+        ================================================== -->
+
         <button
             class="card"
             onclick="openAI()"
@@ -415,6 +690,11 @@
 
         </button>
 
+
+
+        <!-- ==================================================
+             NATIJALAR
+        ================================================== -->
 
         <button
             class="card"
@@ -436,6 +716,11 @@
         </button>
 
 
+
+        <!-- ==================================================
+             PROFIL
+        ================================================== -->
+
         <button
             class="card"
             onclick="openProfile()"
@@ -455,138 +740,260 @@
 
         </button>
 
+
     </section>
 
 
+
+    <!-- ==================================================
+         INFO
+    ================================================== -->
+
     <div class="info">
 
-        <strong>📡 Offline rejim haqida</strong>
+        <strong>
+            📡 MedAiUz haqida
+        </strong>
 
-        <br>
+        <br><br>
 
-        Bu sahifaning asosiy qismi internet
-        talab qilmaydi. Darsliklar, testlar,
-        terminlar va boshqa ma’lumotlarni
-        qurilmaning o‘zida saqlab, internet
-        bo‘lmagan holatda ham ishlatish mumkin.
+        MedAiUz tibbiyot talabalari va
+        tibbiyot sohasi vakillari uchun
+        darsliklar, testlar, klinik holatlar,
+        dorilar, tibbiy terminlar va AI
+        yordamchisini bir joyda taqdim etadi.
 
     </div>
+
 
 </main>
 
 
+
+<!-- ==================================================
+     PASTKI MENYU
+================================================== -->
+
 <nav class="bottom-nav">
+
 
     <button
         class="nav-btn active"
         onclick="goHome()"
     >
-        <span>🏠</span>
+
+        <span>
+            🏠
+        </span>
+
         Bosh sahifa
+
     </button>
+
 
 
     <button
         class="nav-btn"
         onclick="openBooks()"
     >
-        <span>📚</span>
+
+        <span>
+            📚
+        </span>
+
         Darsliklar
+
     </button>
+
 
 
     <button
         class="nav-btn"
         onclick="openAI()"
     >
-        <span>🤖</span>
+
+        <span>
+            🤖
+        </span>
+
         AI
+
     </button>
+
 
 
     <button
         class="nav-btn"
         onclick="openProfile()"
     >
-        <span>👤</span>
+
+        <span>
+            👤
+        </span>
+
         Profil
+
     </button>
+
 
 </nav>
 
 
+
+<!-- ==================================================
+     JAVASCRIPT
+================================================== -->
+
 <script>
 
-    function openBooks() {
 
-        window.location.href = "books.html";
+/*
+==================================================
+DARSLIKLAR
+==================================================
+*/
 
-    }
+function openBooks() {
 
+    window.location.href =
+        "books.html";
 
-    function openTests() {
-
-        window.location.href = "tests.html";
-
-    }
-
-
-    function openClinical() {
-
-        window.location.href = "clinical.html";
-
-    }
+}
 
 
-    function openDrugs() {
 
-        window.location.href = "drugs.html";
+/*
+==================================================
+TESTLAR
+==================================================
+*/
 
-    }
+function openTests() {
 
+    /*
+    Senda mavjud fayl:
+    test.html
+    */
 
-    function openTerms() {
+    window.location.href =
+        "test.html";
 
-        window.location.href = "terms.html";
-
-    }
-
-
-    function openAI() {
-
-        window.location.href = "ai.html";
-
-    }
-
-
-    function openResults() {
-
-        alert(
-            "📊 Natijalar\n\n" +
-            "Natijalar bo‘limi keyingi bosqichda " +
-            "offline ishlaydigan qilinadi."
-        );
-
-    }
+}
 
 
-    function openProfile() {
 
-        window.location.href = "profile.html";
+/*
+==================================================
+KLINIK HOLATLAR
+==================================================
+*/
 
-    }
+function openClinical() {
+
+    window.location.href =
+        "clinical.html";
+
+}
 
 
-    function goHome() {
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+/*
+==================================================
+DORILAR
+==================================================
+*/
 
-    }
+function openDrugs() {
+
+    window.location.href =
+        "drugs.html";
+
+}
+
+
+
+/*
+==================================================
+TIBBIY TERMINLAR
+==================================================
+*/
+
+function openTerms() {
+
+    window.location.href =
+        "terms.html";
+
+}
+
+
+
+/*
+==================================================
+AI YORDAMCHI
+==================================================
+*/
+
+function openAI() {
+
+    window.location.href =
+        "ai.html";
+
+}
+
+
+
+/*
+==================================================
+NATIJALAR
+==================================================
+*/
+
+function openResults() {
+
+    window.location.href =
+        "results.html";
+
+}
+
+
+
+/*
+==================================================
+PROFIL
+==================================================
+*/
+
+function openProfile() {
+
+    window.location.href =
+        "profile.html";
+
+}
+
+
+
+/*
+==================================================
+BOSH SAHIFA
+==================================================
+*/
+
+function goHome() {
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
 
 </script>
 
+
 </body>
+
 </html>

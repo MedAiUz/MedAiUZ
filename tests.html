@@ -1,37 +1,65 @@
 <!DOCTYPE html>
 <html lang="uz">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Testlar — MedAiUz</title>
+
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background: #f5f7fb;
             color: #111827;
             padding-bottom: 40px;
         }
+
         .header {
             padding: 18px;
             background: white;
             border-bottom: 1px solid #e5e7eb;
+
             display: flex;
             align-items: center;
             gap: 12px;
         }
+
         .back-btn {
             border: none;
             background: #eff6ff;
             color: #2563eb;
+
             width: 38px;
             height: 38px;
+
             border-radius: 12px;
+
             font-size: 18px;
+
             cursor: pointer;
         }
-        .header h1 { font-size: 18px; }
-        .container { max-width: 700px; margin: auto; padding: 18px; }
+
+        .header h1 {
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            padding: 18px;
+        }
 
         .progress {
             font-size: 12px;
@@ -43,6 +71,7 @@
             background: white;
             border-radius: 20px;
             padding: 22px;
+
             border: 1px solid #e5e7eb;
         }
 
@@ -54,155 +83,878 @@
 
         .option {
             display: block;
+
             width: 100%;
+
             text-align: left;
+
             padding: 14px;
+
             border-radius: 14px;
+
             border: 1px solid #e5e7eb;
+
             background: white;
+
             margin-bottom: 10px;
+
             font-size: 13px;
+
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: #f9fafb;
         }
 
         .option.correct {
             background: #dcfce7;
             border-color: #22c55e;
+            color: #166534;
         }
 
         .option.wrong {
             background: #fee2e2;
             border-color: #ef4444;
+            color: #991b1b;
+        }
+
+        .option:disabled {
+            cursor: default;
         }
 
         .next-btn {
             margin-top: 10px;
+
             width: 100%;
+
             padding: 14px;
+
             border: none;
+
             border-radius: 14px;
+
             background: #2563eb;
+
             color: white;
+
             font-weight: bold;
+
             font-size: 14px;
+
             display: none;
+
+            cursor: pointer;
+        }
+
+        .next-btn:hover {
+            background: #1d4ed8;
         }
 
         .result-card {
             background: white;
+
             border-radius: 20px;
+
             padding: 30px;
+
             text-align: center;
+
             border: 1px solid #e5e7eb;
         }
 
-        .result-card h2 { font-size: 22px; margin-bottom: 10px; }
-        .result-card p { font-size: 13px; color: #6b7280; margin-bottom: 20px; }
+        .result-card h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .result-card p {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .score {
+            font-size: 34px;
+            font-weight: bold;
+            color: #2563eb;
+            margin: 15px 0;
+        }
+
+        .status {
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .restart-btn {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 14px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            font-size: 14px;
+        }
+
+        .results-btn {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 14px;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            margin-top: 10px;
+        }
+
+        .info {
+            margin-top: 15px;
+
+            padding: 14px;
+
+            background: #f9fafb;
+
+            border-radius: 14px;
+
+            font-size: 11px;
+
+            color: #6b7280;
+
+            line-height: 1.5;
+        }
+
     </style>
+
 </head>
+
+
 <body>
 
+
 <header class="header">
-    <button class="back-btn" onclick="goBack()">←</button>
-    <h1>🧠 Testlar</h1>
+
+    <button
+        class="back-btn"
+        onclick="goBack()"
+    >
+        ←
+    </button>
+
+    <h1>
+        🧠 Testlar
+    </h1>
+
 </header>
 
-<main class="container" id="container">
-    <div class="progress" id="progress"></div>
-    <div id="quizArea"></div>
+
+<main
+    class="container"
+    id="container"
+>
+
+    <div
+        class="progress"
+        id="progress"
+    ></div>
+
+    <div
+        id="quizArea"
+    ></div>
+
 </main>
 
+
 <script>
+
+/*
+==================================================
+TEST SAVOLLARI
+==================================================
+*/
+
 const questions = [
+
     {
-        q: "Insonda nechta suyak bor?",
-        options: ["206", "180", "220", "150"],
+        q:
+            "Insonda nechta suyak bor?",
+
+        options: [
+            "206",
+            "180",
+            "220",
+            "150"
+        ],
+
         correct: 0
     },
+
+
     {
-        q: "Yurak nechta kamerali?",
-        options: ["2", "3", "4", "5"],
+        q:
+            "Yurak nechta kamerali?",
+
+        options: [
+            "2",
+            "3",
+            "4",
+            "5"
+        ],
+
         correct: 2
     },
+
+
     {
-        q: "Qaysi organ qonni tozalaydi?",
-        options: ["Jigar", "Buyrak", "Taloq", "O'pka"],
+        q:
+            "Qaysi organ qonni tozalaydi?",
+
+        options: [
+            "Jigar",
+            "Buyrak",
+            "Taloq",
+            "O'pka"
+        ],
+
         correct: 1
     }
+
 ];
 
+
+/*
+==================================================
+TEST HOLATI
+==================================================
+*/
+
 let current = 0;
+
 let score = 0;
+
 let answered = false;
 
+
+/*
+==================================================
+SAVOLNI CHIQARISH
+==================================================
+*/
+
 function renderQuestion() {
+
     answered = false;
-    const container = document.getElementById("quizArea");
-    const q = questions[current];
 
-    document.getElementById("progress").textContent =
-        "Savol " + (current + 1) + " / " + questions.length;
 
-    let html = '<div class="question-card"><h2>' + q.q + '</h2>';
+    const container =
+        document.getElementById(
+            "quizArea"
+        );
 
-    q.options.forEach((opt, i) => {
-        html += '<button class="option" onclick="checkAnswer(' + i + ')">' + opt + '</button>';
-    });
 
-    html += '<button class="next-btn" id="nextBtn" onclick="nextQuestion()">Keyingi savol →</button></div>';
+    const q =
+        questions[current];
 
-    container.innerHTML = html;
+
+    document.getElementById(
+        "progress"
+    ).textContent =
+        "Savol " +
+        (current + 1) +
+        " / " +
+        questions.length;
+
+
+    let html =
+        '<div class="question-card">';
+
+
+    html +=
+        "<h2>" +
+        escapeHtml(q.q) +
+        "</h2>";
+
+
+    q.options.forEach(
+        (opt, i) => {
+
+            html +=
+
+                '<button ' +
+
+                'class="option" ' +
+
+                'onclick="checkAnswer(' +
+                i +
+                ')">' +
+
+                escapeHtml(opt) +
+
+                "</button>";
+
+        }
+    );
+
+
+    html +=
+
+        '<button ' +
+
+        'class="next-btn" ' +
+
+        'id="nextBtn" ' +
+
+        'onclick="nextQuestion()">' +
+
+        "Keyingi savol →" +
+
+        "</button>";
+
+
+    html +=
+        "</div>";
+
+
+    container.innerHTML =
+        html;
+
 }
+
+
+/*
+==================================================
+JAVOBNI TEKSHIRISH
+==================================================
+*/
 
 function checkAnswer(index) {
-    if (answered) return;
+
+    if (answered) {
+        return;
+    }
+
+
     answered = true;
 
-    const q = questions[current];
-    const buttons = document.querySelectorAll(".option");
 
-    buttons.forEach((btn, i) => {
-        if (i === q.correct) btn.classList.add("correct");
-        else if (i === index) btn.classList.add("wrong");
-        btn.disabled = true;
-    });
+    const q =
+        questions[current];
 
-    if (index === q.correct) score++;
 
-    document.getElementById("nextBtn").style.display = "block";
+    const buttons =
+        document.querySelectorAll(
+            ".option"
+        );
+
+
+    buttons.forEach(
+        (btn, i) => {
+
+            if (
+                i === q.correct
+            ) {
+
+                btn.classList.add(
+                    "correct"
+                );
+
+            }
+            else if (
+                i === index
+            ) {
+
+                btn.classList.add(
+                    "wrong"
+                );
+
+            }
+
+
+            btn.disabled = true;
+
+        }
+    );
+
+
+    if (
+        index === q.correct
+    ) {
+
+        score++;
+
+    }
+
+
+    document.getElementById(
+        "nextBtn"
+    ).style.display =
+        "block";
+
 }
+
+
+/*
+==================================================
+KEYINGI SAVOL
+==================================================
+*/
 
 function nextQuestion() {
+
     current++;
-    if (current < questions.length) {
+
+
+    if (
+        current <
+        questions.length
+    ) {
+
         renderQuestion();
-    } else {
-        showResult();
+
     }
+    else {
+
+        finishTest();
+
+    }
+
 }
 
-function showResult() {
-    document.getElementById("progress").textContent = "";
-    const container = document.getElementById("quizArea");
-    container.innerHTML =
-        '<div class="result-card">' +
-        '<h2>🎉 Test tugadi!</h2>' +
-        '<p>Natija: ' + score + ' / ' + questions.length + ' to\'g\'ri javob</p>' +
-        '<button class="next-btn" style="display:block" onclick="restart()">Qayta boshlash</button>' +
-        '</div>';
+
+/*
+==================================================
+TESTNI YAKUNLASH
+==================================================
+*/
+
+function finishTest() {
+
+    const total =
+        questions.length;
+
+
+    const correct =
+        score;
+
+
+    const wrong =
+        total - correct;
+
+
+    const percent =
+        total > 0
+            ? Math.round(
+                (correct / total) * 100
+            )
+            : 0;
+
+
+    /*
+    NATIJANI LOCALSTORAGE'GA SAQLAYMIZ
+    */
+
+    saveResult({
+
+        score:
+            correct,
+
+        total:
+            total,
+
+        correct:
+            correct,
+
+        wrong:
+            wrong,
+
+        percent:
+            percent
+
+    });
+
+
+    showResult({
+
+        score:
+            correct,
+
+        total:
+            total,
+
+        correct:
+            correct,
+
+        wrong:
+            wrong,
+
+        percent:
+            percent
+
+    });
+
 }
+
+
+/*
+==================================================
+NATIJANI SAQLASH
+==================================================
+*/
+
+function saveResult(result) {
+
+    let results = [];
+
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                "medaiuz_test_results"
+            );
+
+
+        if (saved) {
+
+            const parsed =
+                JSON.parse(saved);
+
+
+            if (
+                Array.isArray(parsed)
+            ) {
+
+                results =
+                    parsed;
+
+            }
+
+        }
+
+    }
+    catch (error) {
+
+        console.error(
+            "Saqlangan natijalarni o'qishda xato:",
+            error
+        );
+
+    }
+
+
+    results.unshift({
+
+        date:
+            new Date().toISOString(),
+
+        score:
+            Number(result.score) || 0,
+
+        total:
+            Number(result.total) || 0,
+
+        correct:
+            Number(result.correct) || 0,
+
+        wrong:
+            Number(result.wrong) || 0,
+
+        percent:
+            Number(result.percent) || 0
+
+    });
+
+
+    /*
+    Oxirgi 50 ta natijani saqlaymiz.
+    */
+
+    results =
+        results.slice(
+            0,
+            50
+        );
+
+
+    try {
+
+        localStorage.setItem(
+
+            "medaiuz_test_results",
+
+            JSON.stringify(
+                results
+            )
+
+        );
+
+    }
+    catch (error) {
+
+        console.error(
+            "Natijani saqlashda xato:",
+            error
+        );
+
+    }
+
+}
+
+
+/*
+==================================================
+NATIJANI KO'RSATISH
+==================================================
+*/
+
+function showResult(result) {
+
+    document.getElementById(
+        "progress"
+    ).textContent =
+        "";
+
+
+    const container =
+        document.getElementById(
+            "quizArea"
+        );
+
+
+    let status;
+
+
+    if (
+        result.percent >= 90
+    ) {
+
+        status =
+            "🏆 A'lo natija!";
+
+    }
+    else if (
+        result.percent >= 70
+    ) {
+
+        status =
+            "🟢 Juda yaxshi!";
+
+    }
+    else if (
+        result.percent >= 50
+    ) {
+
+        status =
+            "🟡 Qoniqarli natija.";
+
+    }
+    else {
+
+        status =
+            "🔴 Mavzuni yana bir bor takrorlash foydali.";
+
+    }
+
+
+    container.innerHTML =
+
+        '<div class="result-card">' +
+
+            "<h2>" +
+
+                "🎉 Test tugadi!" +
+
+            "</h2>" +
+
+
+            '<div class="score">' +
+
+                result.percent +
+
+                "%" +
+
+            "</div>" +
+
+
+            "<p>" +
+
+                result.score +
+
+                " / " +
+
+                result.total +
+
+                " ta savolga to'g'ri javob berdingiz." +
+
+            "</p>" +
+
+
+            '<div class="status">' +
+
+                status +
+
+            "</div>" +
+
+
+            '<div class="info">' +
+
+                "✅ To'g'ri: " +
+
+                result.correct +
+
+                "<br>" +
+
+                "❌ Xato: " +
+
+                result.wrong +
+
+            "</div>" +
+
+
+            '<button ' +
+
+                'class="restart-btn" ' +
+
+                'onclick="restart()">' +
+
+                "🔄 Qayta boshlash" +
+
+            "</button>" +
+
+
+            '<button ' +
+
+                'class="results-btn" ' +
+
+                'onclick="openResults()">' +
+
+                "📊 Natijalarni ko'rish" +
+
+            "</button>" +
+
+        "</div>";
+
+}
+
+
+/*
+==================================================
+TESTNI QAYTA BOSHLASH
+==================================================
+*/
 
 function restart() {
+
     current = 0;
+
     score = 0;
+
+    answered = false;
+
+
     renderQuestion();
+
 }
+
+
+/*
+==================================================
+NATIJALAR SAHIFASI
+==================================================
+*/
+
+function openResults() {
+
+    window.location.href =
+        "./results.html";
+
+}
+
+
+/*
+==================================================
+BOSH SAHIFAGA QAYTISH
+==================================================
+*/
 
 function goBack() {
-    window.location.href = "./index.html";
+
+    window.location.href =
+        "./index.html";
+
 }
 
+
+/*
+==================================================
+XAVFSIZ MATN
+==================================================
+*/
+
+function escapeHtml(text) {
+
+    return String(text)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/*
+==================================================
+ISHGA TUSHIRISH
+==================================================
+*/
+
 renderQuestion();
+
 </script>
 
+
 </body>
+
 </html>
