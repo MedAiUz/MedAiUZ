@@ -2,8 +2,16 @@ const TelegramBot = require("node-telegram-bot-api");
 const express = require("express");
 const Anthropic = require("@anthropic-ai/sdk");
 
+// ==========================================
+// ENVIRONMENT VARIABLES
+// ==========================================
+
 const TOKEN = process.env.BOT_TOKEN;
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+
+// ==========================================
+// TEKSHIRISH
+// ==========================================
 
 if (!TOKEN) {
     console.error("BOT_TOKEN topilmadi!");
@@ -32,7 +40,7 @@ const anthropic = new Anthropic({
 });
 
 // ==========================================
-// MEDAIUZ MINI APP
+// MINI APP
 // ==========================================
 
 const MINI_APP_URL =
@@ -93,6 +101,7 @@ bot.onText(/^\/start$/, async (msg) => {
         );
 
     }
+
 });
 
 // ==========================================
@@ -129,7 +138,7 @@ app.use((req, res, next) => {
 
     res.header(
         "Access-Control-Allow-Methods",
-        "GET, POST, OPTIONS"
+        "POST, OPTIONS, GET"
     );
 
     res.header(
@@ -142,6 +151,7 @@ app.use((req, res, next) => {
     }
 
     next();
+
 });
 
 // ==========================================
@@ -155,6 +165,10 @@ app.post("/api/chat", async (req, res) => {
         const userMessage =
             req.body.message;
 
+        // ------------------------------
+        // XABARNI TEKSHIRISH
+        // ------------------------------
+
         if (
             !userMessage ||
             typeof userMessage !== "string" ||
@@ -163,88 +177,75 @@ app.post("/api/chat", async (req, res) => {
 
             return res.status(400).json({
                 error:
-                    "Xabar bo'sh bo'lishi mumkin emas."
+                    "Xabar bo'sh bo'lishi mumkin emas"
             });
 
         }
 
         console.log(
             "🤖 AI so'rovi:",
-            userMessage.substring(0, 100)
+            userMessage.substring(0, 150)
         );
 
-        // ======================================
-        // AI SO'ROVI
-        // ======================================
+        // ------------------------------
+        // ANTHROPIC SO'ROVI
+        // ------------------------------
 
         const response =
             await anthropic.messages.create({
 
                 model: "claude-sonnet-4-6",
 
-                // Qisqaroq javob = tezroq javob
+                // Javobni qisqartirdik:
+                // 1000 -> 500
                 max_tokens: 500,
 
                 system:
-
                     "Sen MedAiUz platformasining " +
                     "tibbiy AI yordamchisisan. " +
 
-                    "Har doim adabiy va tushunarli " +
-                    "o'zbek tilida javob ber. " +
+                    "Har doim o'zbek tilida javob ber. " +
 
-                    "Faqat lotin yozuvidan foydalan. " +
+                    "Tibbiyot talabalari va tibbiyot " +
+                    "sohasi vakillariga tushunarli, " +
+                    "aniq va foydali ma'lumot ber. " +
 
-                    "Imlo, grammatika va tinish belgilariga " +
-                    "juda katta e'tibor ber. " +
+                    "Javoblarni qisqa, tartibli va " +
+                    "amaliy qil. " +
 
-                    "Javobni yuborishdan oldin uni ichki " +
-                    "ravishda qayta o'qib, imlo va grammatik " +
-                    "xatolarni tuzat. " +
+                    "Keraksiz uzun izohlardan qoch. " +
 
-                    "So'zlarni to'g'ri yoz: " +
-                    "o'zbek, bo'ladi, tibbiyot, tashxis, " +
-                    "qo'llash, ko'rsatma, ma'lumot va hokazo. " +
+                    "Klinik holatlarda ehtimoliy " +
+                    "tashxislarni aniq fakt sifatida " +
+                    "ko'rsatma. " +
 
-                    "Javoblarni qisqa, aniq va tartibli qil. " +
+                    "Zarur bo'lsa differensial tashxis " +
+                    "va kerakli tekshiruvlarni ayt. " +
 
-                    "Keraksiz takrorlash va juda uzun " +
-                    "izohlardan qoch. " +
+                    "Xavfli belgilar bo'lsa ularni " +
+                    "alohida ko'rsat. " +
 
-                    "Tibbiy savollarga sodda va tushunarli " +
-                    "tarzda javob ber. " +
+                    "Real bemor uchun AI javobi " +
+                    "shifokor ko'rigini almashtirmasligini " +
+                    "eslat. " +
 
-                    "Agar kerak bo'lsa, ma'lumotni " +
-                    "raqamlangan punktlar bilan ber. " +
-
-                    "Klinik holatlarda ehtimoliy tashxisni " +
-                    "tasdiqlangan tashxis sifatida ko'rsatma. " +
-
-                    "Kerak bo'lsa differensial tashxis, " +
-                    "tekshiruvlar va xavfli belgilarni ko'rsat. " +
-
-                    "Shoshilinch xavf belgilarini alohida ta'kidla. " +
-
-                    "Real bemor uchun AI javobi shifokor " +
-                    "ko'rigini almashtirmasligini eslat. " +
-
-                    "Agar savol tibbiyotga aloqador bo'lmasa, " +
-                    "muloyimlik bilan MedAiUz tibbiy yordamchi " +
-                    "ekanini eslat.",
+                    "Agar savol tibbiyotga aloqador " +
+                    "bo'lmasa, muloyimlik bilan " +
+                    "MedAiUz tibbiy yordamchi ekanini " +
+                    "eslat.",
 
                 messages: [
                     {
                         role: "user",
-                        content:
-                            userMessage.trim()
+                        content: userMessage.trim()
                     }
                 ]
 
             });
 
-        // ======================================
-        // AI MATNINI OLISH
-        // ======================================
+        // ------------------------------
+        // AI JAVOBINI OLISH
+        // ------------------------------
 
         const reply =
             response.content
@@ -254,23 +255,20 @@ app.post("/api/chat", async (req, res) => {
                 .map(function (block) {
                     return block.text;
                 })
-                .join("\n")
-                .trim();
+                .join("\n");
 
         console.log(
             "✅ AI javobi tayyor"
         );
 
-        // ======================================
-        // JAVOBNI QAYTARISH
-        // ======================================
+        // ------------------------------
+        // JAVOB
+        // ------------------------------
 
         return res.json({
-
             reply:
                 reply ||
                 "AI javob qaytarmadi."
-
         });
 
     } catch (error) {
@@ -280,9 +278,9 @@ app.post("/api/chat", async (req, res) => {
             error.message
         );
 
-        // ======================================
-        // KREDIT XATOSI
-        // ======================================
+        // ------------------------------
+        // ANTHROPIC CREDIT ERROR
+        // ------------------------------
 
         if (
             error.message &&
@@ -294,16 +292,16 @@ app.post("/api/chat", async (req, res) => {
             return res.status(500).json({
 
                 error:
-                    "AI API kredit limiti tugagan. " +
+                    "AI xizmatining kredit limiti tugagan. " +
                     "API hisobini tekshirish kerak."
 
             });
 
         }
 
-        // ======================================
+        // ------------------------------
         // UMUMIY XATO
-        // ======================================
+        // ------------------------------
 
         return res.status(500).json({
 
@@ -318,7 +316,7 @@ app.post("/api/chat", async (req, res) => {
 });
 
 // ==========================================
-// SERVERNI TEKSHIRISH
+// SERVER TEST
 // ==========================================
 
 app.get("/", (req, res) => {
