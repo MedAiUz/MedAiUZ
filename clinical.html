@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Klinik holatlar — MedAiUz</title>
 
     <style>
@@ -26,6 +27,9 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         .back-btn {
@@ -49,6 +53,98 @@
             padding: 18px;
         }
 
+        .intro {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 15px;
+        }
+
+        .intro h2 {
+            font-size: 16px;
+            margin-bottom: 7px;
+        }
+
+        .intro p {
+            font-size: 12px;
+            line-height: 1.6;
+            color: #6b7280;
+        }
+
+        .custom-box {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 16px;
+            margin-bottom: 18px;
+        }
+
+        .custom-box h3 {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .custom-box p {
+            font-size: 11px;
+            color: #6b7280;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .custom-input {
+            width: 100%;
+            min-height: 110px;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 12px;
+            resize: vertical;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+        }
+
+        .custom-input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .ai-btn {
+            width: 100%;
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .ai-btn:disabled {
+            background: #9ca3af;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 13px 15px;
+            border-radius: 14px;
+            border: 1px solid #e5e7eb;
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .count {
+            font-size: 11px;
+            color: #6b7280;
+            margin-bottom: 10px;
+        }
+
         .case-list {
             display: flex;
             flex-direction: column;
@@ -63,11 +159,16 @@
             text-align: left;
             width: 100%;
             cursor: pointer;
+            transition: transform 0.15s;
+        }
+
+        .case-card:active {
+            transform: scale(0.98);
         }
 
         .case-card h3 {
             font-size: 14px;
-            margin-bottom: 6px;
+            margin-bottom: 7px;
         }
 
         .case-card p {
@@ -78,8 +179,8 @@
 
         .tag {
             display: inline-block;
-            margin-top: 8px;
-            padding: 3px 8px;
+            margin-top: 9px;
+            padding: 4px 9px;
             border-radius: 8px;
             background: #eff6ff;
             color: #2563eb;
@@ -103,7 +204,7 @@
             margin-bottom: 12px;
         }
 
-        .detail-card p {
+        .detail-description {
             font-size: 13px;
             line-height: 1.7;
             margin-bottom: 15px;
@@ -123,24 +224,21 @@
 
         .symptoms li {
             margin-left: 18px;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             font-size: 12px;
+            line-height: 1.4;
         }
 
-        .ai-btn {
-            width: 100%;
-            border: none;
-            background: #2563eb;
-            color: white;
-            padding: 14px;
-            border-radius: 14px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .ai-btn:disabled {
-            background: #9ca3af;
+        .ai-result {
+            display: none;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 15px;
+            margin-top: 15px;
+            white-space: pre-wrap;
+            line-height: 1.65;
+            font-size: 13px;
         }
 
         .back-list-btn {
@@ -155,16 +253,8 @@
             cursor: pointer;
         }
 
-        .ai-result {
-            display: none;
-            background: #f8fafc;
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            padding: 15px;
-            margin-top: 15px;
-            white-space: pre-wrap;
-            line-height: 1.6;
-            font-size: 13px;
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
@@ -178,57 +268,86 @@
 
 <main class="container">
 
-    <!-- KLINIK HOLATLAR RO'YXATI -->
+    <div class="intro">
+        <h2>🩺 Klinik holatlar markazi</h2>
+        <p>
+            Tayyor klinik holatlarni o‘rganing yoki o‘zingiz klinik
+            holatni yozib, AI yordamida o‘quv tahlilini oling.
+        </p>
+    </div>
 
-    <div class="case-list" id="caseList">
+    <!-- FOYDALANUVCHI O'Z HOLATINI YOZADI -->
 
-        <button class="case-card" onclick="openCase(1)">
-            <h3>38 yoshli bemor, o'tkir qorin og'rig'i</h3>
+    <div class="custom-box">
 
-            <p>
-                Bemor o'ng pastki qorin sohasida kuchli og'riq
-                bilan murojaat qildi.
-            </p>
+        <h3>🤖 O‘z klinik holatingizni yozing</h3>
 
-            <span class="tag">Jarrohlik</span>
+        <p>
+            Bemor yoshi, shikoyatlari, simptomlari va mavjud
+            ma'lumotlarni yozing. AI o‘quv maqsadida tahlil qiladi.
+        </p>
+
+        <textarea
+            id="customCase"
+            class="custom-input"
+            placeholder="Masalan: 45 yoshli bemorda 2 kundan beri isitma, yo‘tal va nafas qisishi kuzatilmoqda..."
+        ></textarea>
+
+        <button
+            id="customAiBtn"
+            class="ai-btn"
+            onclick="analyzeCustomCase()"
+        >
+            🤖 Klinik holatni AI bilan tahlil qilish
         </button>
 
-
-        <button class="case-card" onclick="openCase(2)">
-            <h3>55 yoshli bemor, ko'krak qafasida og'riq</h3>
-
-            <p>
-                Bemorda nafas qisishi va ko'krak og'rig'i
-                kuzatilmoqda.
-            </p>
-
-            <span class="tag">Kardiologiya</span>
-        </button>
-
-
-        <button class="case-card" onclick="openCase(3)">
-            <h3>6 yoshli bola, yuqori harorat</h3>
-
-            <p>
-                Bolada 3 kundan beri yuqori harorat va
-                toshmalar mavjud.
-            </p>
-
-            <span class="tag">Pediatriya</span>
-        </button>
+        <div
+            id="customResult"
+            class="ai-result"
+        ></div>
 
     </div>
 
 
-    <!-- KLINIK HOLAT TAFSILOTI -->
+    <!-- QIDIRUV -->
 
-    <div class="case-detail" id="caseDetail">
+    <input
+        id="searchInput"
+        class="search-box"
+        type="text"
+        placeholder="🔎 Klinik holatni qidirish..."
+        oninput="filterCases()"
+    >
+
+    <div
+        id="count"
+        class="count"
+    ></div>
+
+
+    <!-- HOLATLAR RO'YXATI -->
+
+    <div
+        id="caseList"
+        class="case-list"
+    ></div>
+
+
+    <!-- TAFSILOT -->
+
+    <div
+        id="caseDetail"
+        class="case-detail"
+    >
 
         <div class="detail-card">
 
             <h2 id="caseTitle"></h2>
 
-            <p id="caseDescription"></p>
+            <p
+                id="caseDescription"
+                class="detail-description"
+            ></p>
 
             <div class="symptoms">
 
@@ -239,16 +358,16 @@
             </div>
 
             <button
+                id="detailAiBtn"
                 class="ai-btn"
-                id="aiBtn"
-                onclick="analyzeWithAI()"
+                onclick="analyzeSelectedCase()"
             >
                 🤖 AI bilan tahlil qilish
             </button>
 
             <div
+                id="detailResult"
                 class="ai-result"
-                id="aiResult"
             ></div>
 
             <button
@@ -271,75 +390,826 @@ const API_URL =
     "https://medaiuz-bot.onrender.com/api/chat";
 
 
-const cases = {
+/* ================================================= */
+/* 50 TA KLINIK HOLAT */
+/* ================================================= */
 
-    1: {
-        title:
-            "38 yoshli bemor — o'tkir qorin og'rig'i",
+const cases = [
 
-        description:
-            "38 yoshli bemor o'ng pastki qorin sohasida kuchli og'riq bilan murojaat qildi. Og'riq bir necha soat davomida kuchaygan.",
-
+    {
+        title: "38 yoshli bemor — o'tkir qorin og'rig'i",
+        category: "Jarrohlik",
+        description: "38 yoshli bemorda o'ng pastki qorin sohasida kuchli og'riq paydo bo'lgan.",
         symptoms: [
-            "O'ng pastki qorin sohasida og'riq",
+            "O'ng pastki qorin og'rig'i",
             "Ko'ngil aynishi",
             "Ishtaha pasayishi",
-            "Tana haroratining ko'tarilishi"
+            "Tana harorati ko'tarilishi"
         ]
     },
 
-
-    2: {
-        title:
-            "55 yoshli bemor — ko'krak qafasida og'riq",
-
-        description:
-            "55 yoshli bemorda ko'krak qafasida bosuvchi og'riq va nafas qisishi paydo bo'lgan.",
-
+    {
+        title: "55 yoshli bemor — ko'krak qafasidagi og'riq",
+        category: "Kardiologiya",
+        description: "55 yoshli bemorda ko'krak qafasida bosuvchi og'riq va nafas qisishi kuzatilmoqda.",
         symptoms: [
-            "Ko'krak qafasida bosuvchi og'riq",
+            "Ko'krak og'rig'i",
             "Nafas qisishi",
             "Sovuq terlash",
             "Hol­sizlik"
         ]
     },
 
-
-    3: {
-        title:
-            "6 yoshli bola — yuqori harorat va toshma",
-
-        description:
-            "6 yoshli bolada uch kundan beri yuqori tana harorati va terida toshmalar kuzatilmoqda.",
-
+    {
+        title: "6 yoshli bola — isitma va toshma",
+        category: "Pediatriya",
+        description: "6 yoshli bolada uch kundan beri yuqori harorat va terida toshmalar mavjud.",
         symptoms: [
-            "Yuqori tana harorati",
+            "Yuqori harorat",
             "Teri toshmalari",
+            "Hol­sizlik",
+            "Ishtaha pasayishi"
+        ]
+    },
+
+    {
+        title: "28 yoshli bemor — bronxospazm",
+        category: "Pulmonologiya",
+        description: "28 yoshli bemorda allergen bilan kontaktdan keyin nafas olish qiyinlashgan.",
+        symptoms: [
+            "Hushtaksimon nafas",
+            "Nafas qisishi",
+            "Ko'krakda siqilish",
+            "Yo'tal"
+        ]
+    },
+
+    {
+        title: "67 yoshli bemor — nafas qisishi",
+        category: "Pulmonologiya",
+        description: "67 yoshli bemorda yo'tal, holsizlik va nafas qisishi paydo bo'lgan.",
+        symptoms: [
+            "Nafas qisishi",
+            "Yo'tal",
+            "Hol­sizlik",
+            "Tana harorati ko'tarilishi"
+        ]
+    },
+
+    {
+        title: "62 yoshli bemor — arterial bosim yuqoriligi",
+        category: "Kardiologiya",
+        description: "62 yoshli bemorda arterial bosim sezilarli darajada ko'tarilgan.",
+        symptoms: [
+            "Bosh og'rig'i",
+            "Bosh aylanishi",
+            "Yurak urishi",
+            "Qon bosimi yuqoriligi"
+        ]
+    },
+
+    {
+        title: "48 yoshli bemor — chanqash va tez-tez siyish",
+        category: "Endokrinologiya",
+        description: "48 yoshli bemorda kuchli chanqash va tez-tez siyish kuzatilmoqda.",
+        symptoms: [
+            "Chanqash",
+            "Tez-tez siyish",
+            "Hol­sizlik",
+            "Og'iz qurishi"
+        ]
+    },
+
+    {
+        title: "21 yoshli bemor — hushdan ketish",
+        category: "Nevrologiya",
+        description: "21 yoshli bemor qisqa muddatga hushini yo'qotgan.",
+        symptoms: [
+            "Hushdan ketish",
+            "Bosh aylanishi",
+            "Hol­sizlik",
+            "Ko'ngil aynishi"
+        ]
+    },
+
+    {
+        title: "70 yoshli bemor — nutq buzilishi",
+        category: "Nevrologiya",
+        description: "70 yoshli bemorda to'satdan nutq buzilishi va qo'l kuchsizligi paydo bo'lgan.",
+        symptoms: [
+            "Nutq buzilishi",
+            "Bir tomonlama kuchsizlik",
+            "Yuz assimetriyasi",
+            "To'satdan boshlanish"
+        ]
+    },
+
+    {
+        title: "34 yoshli bemor — kuchli bosh og'rig'i",
+        category: "Nevrologiya",
+        description: "34 yoshli bemorda odatdagidan farqli kuchli bosh og'rig'i paydo bo'lgan.",
+        symptoms: [
+            "Kuchli bosh og'rig'i",
+            "Ko'ngil aynishi",
+            "Yorug'likka sezuvchanlik",
+            "Hol­sizlik"
+        ]
+    },
+
+    {
+        title: "42 yoshli bemor — bel og'rig'i",
+        category: "Terapiya",
+        description: "42 yoshli bemorda bel sohasida og'riq va harakat paytida noqulaylik bor.",
+        symptoms: [
+            "Bel og'rig'i",
+            "Harakatda og'riq",
+            "Mushak tarangligi",
+            "Harakat cheklanishi"
+        ]
+    },
+
+    {
+        title: "31 yoshli bemor — qorin dam bo'lishi",
+        category: "Gastroenterologiya",
+        description: "31 yoshli bemorda ovqatdan keyin qorin dam bo'lishi va noqulaylik kuzatiladi.",
+        symptoms: [
+            "Qorin dam bo'lishi",
+            "Qorin og'rig'i",
+            "Ichak faoliyati o'zgarishi",
+            "Ovqatdan keyingi noqulaylik"
+        ]
+    },
+
+    {
+        title: "45 yoshli bemor — jig'ildon qaynashi",
+        category: "Gastroenterologiya",
+        description: "45 yoshli bemorda ovqatdan keyin jig'ildon qaynashi kuzatilmoqda.",
+        symptoms: [
+            "Jig'ildon qaynashi",
+            "Nordon kekirish",
+            "Ko'krak ostida noqulaylik",
+            "Ovqatdan keyin kuchayish"
+        ]
+    },
+
+    {
+        title: "52 yoshli bemor — sariqlik",
+        category: "Gastroenterologiya",
+        description: "52 yoshli bemorda teri va ko'z skleralarida sariq rang paydo bo'lgan.",
+        symptoms: [
+            "Sariqlik",
+            "Siydik rangining to'q­lashishi",
+            "Hol­sizlik",
+            "Qorin noqulayligi"
+        ]
+    },
+
+    {
+        title: "39 yoshli bemor — ich ketishi",
+        category: "Infeksion kasalliklar",
+        description: "39 yoshli bemorda bir necha kundan beri ich ketishi kuzatilmoqda.",
+        symptoms: [
+            "Ich ketishi",
+            "Qorin og'rig'i",
+            "Hol­sizlik",
+            "Suyuqlik yo'qotilishi"
+        ]
+    },
+
+    {
+        title: "25 yoshli bemor — tomoq og'rig'i",
+        category: "LOR",
+        description: "25 yoshli bemorda tomoq og'rig'i va tana harorati ko'tarilishi kuzatilmoqda.",
+        symptoms: [
+            "Tomoq og'rig'i",
+            "Isitma",
+            "Yutishda og'riq",
+            "Hol­sizlik"
+        ]
+    },
+
+    {
+        title: "19 yoshli bemor — burun bitishi",
+        category: "LOR",
+        description: "19 yoshli bemorda burun bitishi va aksirish kuzatilmoqda.",
+        symptoms: [
+            "Burun bitishi",
+            "Aksirish",
+            "Burun oqishi",
+            "Ko'z yoshlanishi"
+        ]
+    },
+
+    {
+        title: "57 yoshli bemor — oyoq shishi",
+        category: "Kardiologiya",
+        description: "57 yoshli bemorda kechqurun oyoqlarda shish paydo bo'lmoqda.",
+        symptoms: [
+            "Oyoq shishi",
+            "Nafas qisishi",
+            "Tez charchash",
+            "Yurak urishi"
+        ]
+    },
+
+    {
+        title: "46 yoshli bemor — yurak urishi tezlashishi",
+        category: "Kardiologiya",
+        description: "46 yoshli bemor yurak urishi tezlashib ketishidan shikoyat qilmoqda.",
+        symptoms: [
+            "Yurak urishi tezlashishi",
+            "Bosh aylanishi",
+            "Bezovtalik",
+            "Hol­sizlik"
+        ]
+    },
+
+    {
+        title: "64 yoshli bemor — oyoq og'rig'i",
+        category: "Qon tomirlar",
+        description: "64 yoshli bemorda yurish vaqtida boldir sohasida og'riq paydo bo'ladi.",
+        symptoms: [
+            "Yurishda oyoq og'rig'i",
+            "Dam olganda kamayish",
+            "Oyoq sovuqligi",
+            "Tez charchash"
+        ]
+    },
+
+    {
+        title: "36 yoshli bemor — siydikda achishish",
+        category: "Urologiya",
+        description: "36 yoshli bemorda siyish vaqtida achishish va tez-tez siyish kuzatilmoqda.",
+        symptoms: [
+            "Siyishda achishish",
+            "Tez-tez siyish",
+            "Pastki qorin noqulayligi",
+            "Siydik rangining o'zgarishi"
+        ]
+    },
+
+    {
+        title: "58 yoshli bemor — siyish qiyinlashishi",
+        category: "Urologiya",
+        description: "58 yoshli erkakda siyishni boshlash qiyinlashgan.",
+        symptoms: [
+            "Siyishni boshlash qiyinligi",
+            "Siydik oqimining sustligi",
+            "Tunda tez-tez siyish",
+            "Siydik pufagi to'liq bo'shamagandek his"
+        ]
+    },
+
+    {
+        title: "29 yoshli bemor — bo'g'im og'rig'i",
+        category: "Revmatologiya",
+        description: "29 yoshli bemorda bir nechta bo'g'imlarda og'riq va ertalabki qotish kuzatilmoqda.",
+        symptoms: [
+            "Bo'g'im og'rig'i",
+            "Ertalabki qotish",
+            "Shish",
+            "Harakat cheklanishi"
+        ]
+    },
+
+    {
+        title: "61 yoshli bemor — tizza og'rig'i",
+        category: "Revmatologiya",
+        description: "61 yoshli bemorda uzoq yurishdan keyin tizza og'rig'i kuchayadi.",
+        symptoms: [
+            "Tizza og'rig'i",
+            "Harakatda kuchayish",
+            "Qotish",
+            "Harakat cheklanishi"
+        ]
+    },
+
+    {
+        title: "43 yoshli bemor — terida qichishish",
+        category: "Dermatologiya",
+        description: "43 yoshli bemorda terida qichishuvchi qizil dog'lar paydo bo'lgan.",
+        symptoms: [
+            "Qichishish",
+            "Qizarish",
+            "Teri toshmalari",
+            "Ba'zi joylarda shish"
+        ]
+    },
+
+    {
+        title: "27 yoshli bemor — yuzda toshmalar",
+        category: "Dermatologiya",
+        description: "27 yoshli bemorda yuz sohasida takrorlanuvchi toshmalar kuzatilmoqda.",
+        symptoms: [
+            "Yuzdagi toshmalar",
+            "Teri yog'lanishi",
+            "Qizarish",
+            "Vaqti-vaqti bilan yallig'lanish"
+        ]
+    },
+
+    {
+        title: "8 yoshli bola — yo'tal",
+        category: "Pediatriya",
+        description: "8 yoshli bolada bir necha kundan beri yo'tal kuzatilmoqda.",
+        symptoms: [
+            "Yo'tal",
+            "Burun oqishi",
+            "Tomoq bezovtaligi",
+            "Yengil isitma"
+        ]
+    },
+
+    {
+        title: "3 yoshli bola — qusish",
+        category: "Pediatriya",
+        description: "3 yoshli bolada bir necha marta qusish kuzatilgan.",
+        symptoms: [
+            "Qusish",
+            "Ishtaha pasayishi",
+            "Hol­sizlik",
+            "Suyuqlik yo'qotilishi xavfi"
+        ]
+    },
+
+    {
+        title: "10 yoshli bola — qorin og'rig'i",
+        category: "Pediatriya",
+        description: "10 yoshli bolada qorin sohasida og'riq va ishtaha pasayishi mavjud.",
+        symptoms: [
+            "Qorin og'rig'i",
+            "Ishtaha pasayishi",
+            "Ko'ngil aynishi",
+            "Hol­sizlik"
+        ]
+    },
+
+    {
+        title: "72 yoshli bemor — xotira pasayishi",
+        category: "Nevrologiya",
+        description: "72 yoshli bemorda so'nggi oylar davomida xotira bilan bog'liq muammolar kuchaygan.",
+        symptoms: [
+            "Xotira pasayishi",
+            "Diqqat susayishi",
+            "Kundalik faoliyatda qiyinchilik",
+            "Savollarni takrorlash"
+        ]
+    },
+
+    {
+        title: "49 yoshli bemor — qo'llarda uvishish",
+        category: "Nevrologiya",
+        description: "49 yoshli bemorda qo'llarda takroriy uvishish va karaxtlik kuzatilmoqda.",
+        symptoms: [
+            "Qo'llarda uvishish",
+            "Karaxtlik",
+            "Ba'zida og'riq",
+            "Sezuvchanlik o'zgarishi"
+        ]
+    },
+
+    {
+        title: "53 yoshli bemor — qalqonsimon bez belgilariga shubha",
+        category: "Endokrinologiya",
+        description: "53 yoshli bemorda vazn va yurak urishida o'zgarishlar paydo bo'lgan.",
+        symptoms: [
+            "Vazn o'zgarishi",
+            "Yurak urishi o'zgarishi",
+            "Charchoq",
+            "Issiqlik yoki sovuqqa sezuvchanlik"
+        ]
+    },
+
+    {
+        title: "35 yoshli bemor — kuchli chanqash",
+        category: "Endokrinologiya",
+        description: "35 yoshli bemorda kuchli chanqash va tez-tez siyish paydo bo'lgan.",
+        symptoms: [
+            "Chanqash",
+            "Tez-tez siyish",
+            "Charchoq",
+            "Og'iz qurishi"
+        ]
+    },
+
+    {
+        title: "41 yoshli bemor — kamqonlik belgilari",
+        category: "Gematologiya",
+        description: "41 yoshli bemorda uzoq davom etgan charchoq va rang oqarishi kuzatilmoqda.",
+        symptoms: [
+            "Charchoq",
+            "Rang oqarishi",
+            "Bosh aylanishi",
+            "Jismoniy zo'riqishda holsizlik"
+        ]
+    },
+
+    {
+        title: "24 yoshli bemor — tez ko'karish",
+        category: "Gematologiya",
+        description: "24 yoshli bemorda terida sababsiz ko'karishlar tez-tez paydo bo'lmoqda.",
+        symptoms: [
+            "Ko'karishlar",
+            "Burundan qon ketishi",
+            "Hol­sizlik",
+            "Teri rangining o'zgarishi"
+        ]
+    },
+
+    {
+        title: "47 yoshli bemor — uzoq davom etgan isitma",
+        category: "Infeksion kasalliklar",
+        description: "47 yoshli bemorda bir necha kundan beri tana harorati yuqori.",
+        symptoms: [
+            "Isitma",
+            "Terlash",
+            "Hol­sizlik",
+            "Ishtaha pasayishi"
+        ]
+    },
+
+    {
+        title: "32 yoshli bemor — yo'tal va balg'am",
+        category: "Pulmonologiya",
+        description: "32 yoshli bemorda yo'tal va balg'am ajralishi kuzatilmoqda.",
+        symptoms: [
+            "Yo'tal",
+            "Balg'am",
+            "Ko'krakdagi noqulaylik",
+            "Hol­sizlik"
+        ]
+    },
+
+    {
+        title: "59 yoshli bemor — nafas qisishi va oyoq shishi",
+        category: "Kardiologiya",
+        description: "59 yoshli bemorda nafas qisishi va oyoqlarda shish kuzatilmoqda.",
+        symptoms: [
+            "Nafas qisishi",
+            "Oyoq shishi",
+            "Tez charchash",
+            "Yurak urishi"
+        ]
+    },
+
+    {
+        title: "44 yoshli bemor — o't pufagi sohasida og'riq",
+        category: "Gastroenterologiya",
+        description: "44 yoshli bemorda ovqatdan keyin o'ng qovurg'a ostida og'riq paydo bo'ladi.",
+        symptoms: [
+            "O'ng qovurg'a osti og'rig'i",
+            "Ko'ngil aynishi",
+            "Ovqatdan keyin kuchayish",
+            "Og'izda achchiq ta'm"
+        ]
+    },
+
+    {
+        title: "51 yoshli bemor — oshqozon sohasidagi og'riq",
+        category: "Gastroenterologiya",
+        description: "51 yoshli bemorda yuqori qorin sohasida takrorlanuvchi og'riq bor.",
+        symptoms: [
+            "Epigastral og'riq",
+            "Ko'ngil aynishi",
+            "Ishtaha o'zgarishi",
+            "Ovqat bilan bog'liq noqulaylik"
+        ]
+    },
+
+    {
+        title: "26 yoshli bemor — allergik belgilar",
+        category: "Allergologiya",
+        description: "26 yoshli bemorda ma'lum mahsulotdan keyin allergiyaga o'xshash belgilar paydo bo'lgan.",
+        symptoms: [
+            "Qichishish",
+            "Toshma",
+            "Lab atrofida shish",
+            "Noqulaylik"
+        ]
+    },
+
+    {
+        title: "37 yoshli bemor — burun va ko'z allergiyasi",
+        category: "Allergologiya",
+        description: "37 yoshli bemorda mavsumiy burun va ko'z belgilar kuzatilmoqda.",
+        symptoms: [
+            "Aksirish",
+            "Burun oqishi",
+            "Ko'z qichishishi",
+            "Ko'z yoshlanishi"
+        ]
+    },
+
+    {
+        title: "63 yoshli bemor — bosh aylanishi",
+        category: "Nevrologiya",
+        description: "63 yoshli bemorda bosh aylanishi va muvozanat bilan bog'liq shikoyatlar bor.",
+        symptoms: [
+            "Bosh aylanishi",
+            "Muvozanat buzilishi",
+            "Ko'ngil aynishi",
+            "Yurishda noqulaylik"
+        ]
+    },
+
+    {
+        title: "30 yoshli bemor — uyqusizlik",
+        category: "Nevrologiya",
+        description: "30 yoshli bemorda uzoq vaqt davomida uyquga ketish qiyinlashgan.",
+        symptoms: [
+            "Uyquga ketish qiyinligi",
+            "Kunduzgi charchoq",
+            "Diqqat pasayishi",
+            "Bezovtalik"
+        ]
+    },
+
+    {
+        title: "56 yoshli bemor — surunkali yo'tal",
+        category: "Pulmonologiya",
+        description: "56 yoshli bemorda uzoq vaqt davom etayotgan yo'tal mavjud.",
+        symptoms: [
+            "Uzoq davom etgan yo'tal",
+            "Balg'am",
+            "Nafas qisishi",
+            "Jismoniy zo'riqishda charchash"
+        ]
+    },
+
+    {
+        title: "68 yoshli bemor — yurish qiyinlashishi",
+        category: "Nevrologiya",
+        description: "68 yoshli bemorda yurish paytida muvozanat va harakat muammolari paydo bo'lgan.",
+        symptoms: [
+            "Yurish qiyinlashishi",
+            "Muvozanat buzilishi",
+            "Harakat sekinlashishi",
+            "Qaltirash"
+        ]
+    },
+
+    {
+        title: "40 yoshli bemor — doimiy charchoq",
+        category: "Terapiya",
+        description: "40 yoshli bemorda bir necha haftadan beri sababi noma'lum charchoq mavjud.",
+        symptoms: [
+            "Doimiy charchoq",
+            "Uyquchanlik",
+            "Diqqat pasayishi",
+            "Jismoniy faoliyatga toqat kamayishi"
+        ]
+    },
+
+    {
+        title: "33 yoshli bemor — yurak sohasidagi noqulaylik",
+        category: "Terapiya",
+        description: "33 yoshli bemorda vaqti-vaqti bilan ko'krak sohasida noqulaylik paydo bo'ladi.",
+        symptoms: [
+            "Ko'krakdagi noqulaylik",
+            "Yurak urishini sezish",
+            "Bezovtalik",
+            "Jismoniy zo'riqish bilan bog'liqlik"
+        ]
+    },
+
+    {
+        title: "60 yoshli bemor — qo'l-oyoq kuchsizligi",
+        category: "Nevrologiya",
+        description: "60 yoshli bemorda bir tomonlama qo'l-oyoq kuchsizligi paydo bo'lgan.",
+        symptoms: [
+            "Bir tomonlama kuchsizlik",
+            "Harakat qiyinlashishi",
+            "Nutq o'zgarishi mumkin",
+            "To'satdan boshlanish"
+        ]
+    },
+
+    {
+        title: "23 yoshli bemor — qorin og'rig'i va isitma",
+        category: "Jarrohlik",
+        description: "23 yoshli bemorda qorin og'rig'i va tana harorati ko'tarilgan.",
+        symptoms: [
+            "Qorin og'rig'i",
+            "Isitma",
+            "Ko'ngil aynishi",
+            "Ishtaha pasayishi"
+        ]
+    },
+
+    {
+        title: "50 yoshli bemor — yutish qiyinlashishi",
+        category: "Gastroenterologiya",
+        description: "50 yoshli bemorda ovqat yutish bilan bog'liq qiyinchilik paydo bo'lgan.",
+        symptoms: [
+            "Yutish qiyinligi",
+            "Tomoq yoki ko'krakda noqulaylik",
+            "Ovqatdan keyin noqulaylik",
+            "Vazn o'zgarishi"
+        ]
+    },
+
+    {
+        title: "29 yoshli bemor — tez yurak urishi",
+        category: "Kardiologiya",
+        description: "29 yoshli bemorda stress yoki jismoniy faoliyatdan keyin yurak urishi seziladi.",
+        symptoms: [
+            "Yurak urishi",
+            "Bezovtalik",
+            "Bosh aylanishi",
+            "Ba'zida nafas qisishi"
+        ]
+    },
+
+    {
+        title: "54 yoshli bemor — qonda glyukoza yuqoriligi",
+        category: "Endokrinologiya",
+        description: "54 yoshli bemorda tekshiruv vaqtida qondagi glyukoza ko'rsatkichi yuqori aniqlangan.",
+        symptoms: [
+            "Chanqash",
+            "Tez-tez siyish",
+            "Charchoq",
+            "Ko'rish xiralashishi mumkin"
+        ]
+    },
+
+    {
+        title: "17 yoshli bemor — tez-tez bosh og'rig'i",
+        category: "Nevrologiya",
+        description: "17 yoshli bemorda takrorlanuvchi bosh og'rig'i va o'qish paytida charchash mavjud.",
+        symptoms: [
+            "Bosh og'rig'i",
+            "Ko'z charchashi",
+            "Diqqat pasayishi",
+            "Uyqu buzilishi"
+        ]
+    },
+
+    {
+        title: "69 yoshli bemor — nafas olish qiyinlashishi",
+        category: "Pulmonologiya",
+        description: "69 yoshli bemorda jismoniy zo'riqishda nafas olish qiyinlashmoqda.",
+        symptoms: [
+            "Nafas qisishi",
+            "Jismoniy zo'riqishda charchash",
+            "Yo'tal",
+            "Faoliyat kamayishi"
+        ]
+    },
+
+    {
+        title: "45 yoshli bemor — oyoqdagi yara",
+        category: "Jarrohlik",
+        description: "45 yoshli bemorning oyoq sohasidagi yara uzoq vaqt davomida bitmayapti.",
+        symptoms: [
+            "Bitmayotgan yara",
+            "Mahalliy og'riq",
+            "Qizarish",
+            "Shish"
+        ]
+    },
+
+    {
+        title: "76 yoshli bemor — to'satdan chalkashlik",
+        category: "Geriatriya",
+        description: "76 yoshli bemorda to'satdan ong va xulq-atvor o'zgarishi kuzatilgan.",
+        symptoms: [
+            "Chalkashlik",
+            "Diqqat buzilishi",
+            "Xulq o'zgarishi",
+            "Vaqt va joyni adashtirish"
+        ]
+    },
+
+    {
+        title: "22 yoshli bemor — hushdan ketishdan oldingi holat",
+        category: "Kardiologiya",
+        description: "22 yoshli bemorda uzoq tik turgandan keyin bosh aylanishi va hushdan ketish hissi paydo bo'lgan.",
+        symptoms: [
+            "Bosh aylanishi",
+            "Ko'z oldida qorong'ilashish",
+            "Hol­sizlik",
+            "Hushdan ketish hissi"
+        ]
+    },
+
+    {
+        title: "58 yoshli bemor — qorin shishi",
+        category: "Gastroenterologiya",
+        description: "58 yoshli bemorda qorin hajmi kattalashishi va oyoqlarda shish kuzatilmoqda.",
+        symptoms: [
+            "Qorin kattalashishi",
+            "Oyoq shishi",
             "Hol­sizlik",
             "Ishtaha pasayishi"
         ]
     }
 
-};
+];
 
+
+/* ================================================= */
+/* O'ZGARUVCHILAR */
+/* ================================================= */
 
 let selectedCase = null;
 
 
-function goBack() {
+/* ================================================= */
+/* HOLATLARNI CHIQARISH */
+/* ================================================= */
 
-    window.location.href =
-        "./index.html";
+function renderCases(list = cases) {
+
+    const caseList =
+        document.getElementById("caseList");
+
+    caseList.innerHTML = "";
+
+    document.getElementById("count").textContent =
+        "Jami: " + list.length + " ta klinik holat";
+
+    list.forEach(function(item, index) {
+
+        const card =
+            document.createElement("button");
+
+        card.className = "case-card";
+
+        card.onclick = function() {
+            openCase(
+                cases.indexOf(item)
+            );
+        };
+
+        card.innerHTML =
+            "<h3>" +
+            item.title +
+            "</h3>" +
+
+            "<p>" +
+            item.description +
+            "</p>" +
+
+            '<span class="tag">' +
+            item.category +
+            "</span>";
+
+        caseList.appendChild(card);
+
+    });
 
 }
 
 
-function openCase(id) {
+/* ================================================= */
+/* QIDIRUV */
+/* ================================================= */
 
-    selectedCase = cases[id];
+function filterCases() {
+
+    const query =
+        document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase()
+            .trim();
+
+    const filtered =
+        cases.filter(function(item) {
+
+            return (
+                item.title.toLowerCase().includes(query) ||
+                item.category.toLowerCase().includes(query) ||
+                item.description.toLowerCase().includes(query) ||
+                item.symptoms.join(" ").toLowerCase().includes(query)
+            );
+
+        });
+
+    renderCases(filtered);
+
+}
+
+
+/* ================================================= */
+/* HOLATNI OCHISH */
+/* ================================================= */
+
+function openCase(index) {
+
+    selectedCase =
+        cases[index];
 
     document.getElementById(
         "caseList"
+    ).style.display = "none";
+
+    document.getElementById(
+        "count"
+    ).style.display = "none";
+
+    document.getElementById(
+        "searchInput"
     ).style.display = "none";
 
     document.getElementById(
@@ -373,7 +1243,8 @@ function openCase(id) {
             const li =
                 document.createElement("li");
 
-            li.textContent = symptom;
+            li.textContent =
+                symptom;
 
             list.appendChild(li);
 
@@ -382,11 +1253,15 @@ function openCase(id) {
 
 
     document.getElementById(
-        "aiResult"
+        "detailResult"
     ).style.display = "none";
 
 }
 
+
+/* ================================================= */
+/* RO'YXATGA QAYTISH */
+/* ================================================= */
 
 function showList() {
 
@@ -398,24 +1273,35 @@ function showList() {
         "caseList"
     ).style.display = "flex";
 
+    document.getElementById(
+        "count"
+    ).style.display = "block";
+
+    document.getElementById(
+        "searchInput"
+    ).style.display = "block";
+
 }
 
 
-async function analyzeWithAI() {
+/* ================================================= */
+/* TAYYOR HOLATNI AI TAHLIL */
+/* ================================================= */
+
+async function analyzeSelectedCase() {
 
     if (!selectedCase) {
         return;
     }
 
-
     const button =
         document.getElementById(
-            "aiBtn"
+            "detailAiBtn"
         );
 
     const result =
         document.getElementById(
-            "aiResult"
+            "detailResult"
         );
 
 
@@ -434,12 +1320,14 @@ async function analyzeWithAI() {
 
     const prompt =
 
-        "Quyidagi klinik holatni tibbiyot talabasi uchun tahlil qil.\n\n" +
+        "Quyidagi klinik holatni tibbiyot talabasi uchun " +
+        "o'quv maqsadida tahlil qil.\n\n" +
 
-        "Klinik holat: " +
+        "Holat: " +
         selectedCase.title +
         "\n\n" +
 
+        "Tavsif: " +
         selectedCase.description +
         "\n\n" +
 
@@ -453,19 +1341,155 @@ async function analyzeWithAI() {
 
         "\n\n" +
 
-        "Quyidagi tartibda javob ber:\n" +
+        "Javobni quyidagi tartibda ber:\n" +
 
-        "1. Eng ehtimoliy tashxislar\n" +
-
+        "1. Eng ehtimoliy tashxis yoki tashxislar\n" +
         "2. Differensial tashxis\n" +
+        "3. Kerak bo'lishi mumkin bo'lgan tekshiruvlar\n" +
+        "4. Xavfli belgilar\n" +
+        "5. Qisqa o'quv xulosasi\n\n" +
 
-        "3. Qaysi tekshiruvlar kerak bo'lishi mumkin\n" +
+        "Bu o'quv maqsadidagi tahlil ekanini va " +
+        "real bemor uchun shifokor ko'rigini almashtirmasligini ayt.";
 
-        "4. Qaysi belgilar xavfli\n" +
 
-        "5. Qisqa xulosa\n\n" +
+    try {
 
-        "Bu o'quv maqsadidagi klinik tahlil ekanini eslat.";
+        const response =
+            await fetch(
+                API_URL,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        message: prompt
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+            throw new Error(
+                data.error ||
+                "Server xatosi"
+            );
+        }
+
+
+        result.textContent =
+            data.reply ||
+            "AI javob qaytarmadi.";
+
+
+    } catch (error) {
+
+        result.textContent =
+            "⚠️ AI bilan bog'lanishda xatolik.\n\n" +
+            error.message;
+
+    }
+
+
+    button.disabled = false;
+
+    button.textContent =
+        "🤖 AI bilan qayta tahlil qilish";
+
+}
+
+
+/* ================================================= */
+/* FOYDALANUVCHI O'Z HOLATINI AI GA YUBORADI */
+/* ================================================= */
+
+async function analyzeCustomCase() {
+
+    const input =
+        document.getElementById(
+            "customCase"
+        );
+
+    const button =
+        document.getElementById(
+            "customAiBtn"
+        );
+
+    const result =
+        document.getElementById(
+            "customResult"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+
+        alert(
+            "Iltimos, klinik holatni yozing."
+        );
+
+        input.focus();
+
+        return;
+    }
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "⏳ AI tahlil qilmoqda...";
+
+
+    result.style.display =
+        "block";
+
+    result.textContent =
+        "AI klinik holatni tahlil qilmoqda...";
+
+
+    const prompt =
+
+        "Quyidagi foydalanuvchi yozgan klinik holatni " +
+        "tibbiyot talabasi uchun o'quv maqsadida tahlil qil.\n\n" +
+
+        "FOYDALANUVCHI YOZGAN HOLAT:\n" +
+
+        text +
+
+        "\n\n" +
+
+        "Javobni quyidagi tartibda ber:\n\n" +
+
+        "1. Holatdagi asosiy klinik muammolar\n" +
+
+        "2. Eng ehtimoliy tashxislar\n" +
+
+        "3. Differensial tashxis\n" +
+
+        "4. Kerak bo'lishi mumkin bo'lgan tekshiruvlar\n" +
+
+        "5. Xavfli belgilar va qachon shoshilinch yordam kerakligi\n" +
+
+        "6. Tibbiyot talabasi uchun qisqa tushuntirish\n\n" +
+
+        "Yetarli ma'lumot bo'lmasa, buni aniq ayt va " +
+        "qaysi qo'shimcha ma'lumotlar kerakligini ko'rsat. " +
+
+        "Aniq tashxisni tasdiqlanmagan holatda fakt sifatida aytma. " +
+
+        "Bu o'quv maqsadidagi AI tahlili ekanini va real bemor " +
+        "uchun shifokor ko'rigini almashtirmasligini eslat.";
 
 
     try {
@@ -510,7 +1534,7 @@ async function analyzeWithAI() {
     } catch (error) {
 
         result.textContent =
-            "⚠️ AI bilan bog'lanishda xatolik yuz berdi.\n\n" +
+            "⚠️ AI bilan bog'lanishda xatolik.\n\n" +
             error.message;
 
     }
@@ -519,9 +1543,28 @@ async function analyzeWithAI() {
     button.disabled = false;
 
     button.textContent =
-        "🤖 AI bilan qayta tahlil qilish";
+        "🤖 Klinik holatni qayta tahlil qilish";
 
 }
+
+
+/* ================================================= */
+/* ORQAGA */
+/* ================================================= */
+
+function goBack() {
+
+    window.location.href =
+        "./index.html";
+
+}
+
+
+/* ================================================= */
+/* BOSHLANG'ICH HOLAT */
+/* ================================================= */
+
+renderCases();
 
 </script>
 
