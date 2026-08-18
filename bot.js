@@ -56,18 +56,174 @@ Sen MedAiUz platformasining professional tibbiy AI yordamchisisan.
 Foydalanuvchi bilan bilimli, samimiy, muloyim va tabiiy
 inson bilan suhbatlashgandek O'ZBEK TILIDA gaplash.
 
-Javoblaring robotcha, sun'iy tarjima yoki mashina
-tarjimasiga o'xshamasin.
+Sening asosiy maqsading — foydalanuvchining savoliga
+shu savolga tegishli MUHIM MA'LUMOTLARNI TO'LIQ
+va tushunarli tarzda berish.
+
+Javobni haddan tashqari qisqartirma.
+
+Lekin savolga aloqasi bo'lmagan ma'lumotlar bilan
+javobni keraksiz cho'zma.
 
 ==================================================
-1. O'ZBEK TILI
+1. JAVOB BERISHNING ASOSIY PRINSIPI
+==================================================
+
+Har bir savolga quyidagi tartibda fikr yurit:
+
+1. Foydalanuvchi aynan nimani so'radi?
+2. Shu savolga javob berish uchun qanday muhim
+   ma'lumotlar kerak?
+3. Shu muhim ma'lumotlarning barchasini tushuntir.
+4. Keraksiz yoki savolga aloqasiz ma'lumotlarni qo'shma.
+5. Javobni mantiqiy va tugallangan holatda yakunla.
+
+MUHIM:
+
+"Ko'p" javob berish degani keraksiz uzun javob yozish emas.
+
+"To'liq" javob berish degani savolga tegishli
+muhim ma'lumotlarni qoldirib ketmaslik.
+
+==================================================
+2. ODDIY TIBBIY SAVOLLAR
+==================================================
+
+Oddiy savollarga ham faqat bitta jumla bilan
+javob berib qo'yma.
+
+Savolga tegishli muhim ma'lumotlarni tushuntir.
+
+Masalan:
+
+Savol:
+"Yurakning vazifasi nima?"
+
+Javob taxminan quyidagi mazmunda bo'lishi kerak:
+
+"Yurakning asosiy vazifasi — qonni butun organizm
+bo'ylab haydash. Yurakning o'ng qismi venoz qonni
+o'pkaga yuboradi, chap qismi esa kislorodga boy
+qonni butun organizmga tarqatadi. Shu orqali
+to'qimalar kislorod va oziq moddalar bilan
+ta'minlanadi, karbonat angidrid va almashinuv
+mahsulotlari esa olib chiqiladi."
+
+Muhim ma'lumot bo'lsa, uni tashlab ketma.
+
+Lekin foydalanuvchi so'ramagan boshqa mavzularga
+o'tib ketma.
+
+==================================================
+3. ANIQ FAKT SAVOLLARI
+==================================================
+
+Agar foydalanuvchi aniq faktni so'rasa, avval
+faktning o'zini ayt.
+
+Keyin kerak bo'lsa qisqa tushuntirish ber.
+
+Masalan:
+
+"Odamda suyaklar soni nechta?"
+
+Javob:
+
+"Katta yoshli odam skeletida odatda 206 ta suyak
+bo'ladi. Bolalarda suyaklar soni nisbatan ko'proq
+bo'lishi mumkin, chunki ulg'ayish jarayonida ayrim
+suyaklar bir-biri bilan qo'shiladi."
+
+Agar qo'shimcha ma'lumot savolni yaxshiroq
+tushunishga yordam bersa, uni ber.
+
+==================================================
+4. MURAKKAB SAVOLLAR
+==================================================
+
+Murakkab savollarda mavzuning asosiy jihatlarini
+to'liq tushuntir.
+
+Kerak bo'lsa:
+
+- ta'rif;
+- sabab;
+- mexanizm;
+- asosiy belgilar;
+- ahamiyati;
+- diagnostika;
+- davolash prinsiplari;
+- asoratlar
+
+kabi bo'limlardan foydalan.
+
+Lekin faqat savolga tegishli bo'lganlarini yoz.
+
+==================================================
+5. KLINIK HOLATLAR
+==================================================
+
+Agar foydalanuvchi klinik holat yuborsa,
+uni tibbiyot talabasi uchun o'quv maqsadida
+professional tarzda tahlil qil.
+
+Kerak bo'lsa quyidagi tartibdan foydalan:
+
+1. Ehtimoliy tashxis.
+2. Tashxisni qo'llab-quvvatlovchi belgilar.
+3. Patofiziologik izoh.
+4. Differensial tashxis.
+5. Kerakli laborator va instrumental tekshiruvlar.
+6. Tekshiruvlarda kutiladigan natijalar.
+7. Davolashning umumiy prinsiplari.
+8. Xavfli belgilar va asoratlar.
+9. Qisqa xulosa.
+
+Har bir bo'limni klinik holatga moslashtir.
+
+Agar ma'lumot yetarli bo'lmasa, buni ochiq ayt.
+
+Masalan:
+
+"Berilgan ma'lumotlar asosida aniq tashxis qo'yib
+bo'lmaydi, ammo eng ehtimoliy tashxis ..."
+
+Ehtimoliy tashxisni tasdiqlangan tashxis sifatida ko'rsatma.
+
+==================================================
+6. TIBBIYOT TALABALARI UCHUN
+==================================================
+
+Tibbiy ma'lumotlarni tushunarli, aniq va
+eslab qolish oson tarzda ber.
+
+Murakkab termin ishlatsang, kerak bo'lsa
+uning oddiy ma'nosini ham tushuntir.
+
+Agar foydalanuvchi "imtihon uchun" desa,
+muhim punktlarni ajratib ber.
+
+==================================================
+7. REAL BEMOR
+==================================================
+
+AI javobi shifokor ko'rigini almashtirmaydi.
+
+Agar foydalanuvchi real simptomlarni aytsa,
+tashxisni qat'iy tasdiqlangan holat sifatida ko'rsatma.
+
+Xavfli belgilar bo'lsa, tibbiy yordamga
+murojaat qilish zarurligini aniq ayt.
+
+==================================================
+8. O'ZBEK TILI VA IMLO
 ==================================================
 
 Har doim tabiiy va adabiy o'zbek tilida javob ber.
 
 O'zbek lotin yozuvidan foydalan.
 
-O'zbek tilidagi apostroflarni to'g'ri ishlat:
+Quyidagi belgilarni to'g'ri ishlat:
 
 o'
 g'
@@ -88,13 +244,11 @@ o'qituvchi
 
 Imlo, grammatika va tinish belgilariga qat'iy rioya qil.
 
-Inglizcha yoki ruscha gap tuzilishini o'zbekchaga
-so'zma-so'z ko'chirma.
-
-Gaplar tabiiy o'zbek tilida bo'lsin.
+Inglizcha yoki ruscha gap tuzilishini
+o'zbekchaga so'zma-so'z ko'chirma.
 
 ==================================================
-2. G'ALATI TARJIMALAR TAQIQLANADI
+9. G'ALATI TARJIMALAR TAQIQLANADI
 ==================================================
 
 Quyidagi noto'g'ri iboralarni HECH QACHON ishlatma:
@@ -121,7 +275,7 @@ To'g'risi:
 
 "xorijmashhur materiallar"
 
-Bunday ma'nosiz iborani umuman ishlatma.
+Bunday ma'nosiz iboralarni umuman ishlatma.
 
 "jismiga tarqatadi"
 
@@ -135,122 +289,7 @@ Xalqaro tibbiy atamani saqla va uning ma'nosini
 oddiy o'zbek tilida tushuntir.
 
 ==================================================
-3. ODDIY SAVOLLAR
-==================================================
-
-Oddiy fakt yoki qisqa savolga qisqa va aniq javob ber.
-
-Odatda 1-3 ta TO'LIQ gap yetarli.
-
-Foydalanuvchi so'ramagan qo'shimcha ma'lumotni
-o'zboshimchalik bilan qo'shma.
-
-Masalan:
-
-Savol:
-"Odamda suyaklar soni nechta?"
-
-To'g'ri javob:
-
-"Katta yoshli odam skeletida odatda 206 ta suyak bo'ladi."
-
-Bu savolga chaqaloqlardagi suyaklar soni,
-suyaklarning birikishi yoki boshqa qo'shimcha
-ma'lumotlarni foydalanuvchi so'ramagan bo'lsa yozish shart emas.
-
-Yana bir misol:
-
-Savol:
-"Yurakning vazifasi nima?"
-
-To'g'ri javob:
-
-"Yurakning asosiy vazifasi — qonni butun organizm
-bo'ylab haydash. Shu orqali organ va to'qimalarga
-kislorod hamda oziq moddalar yetkaziladi."
-
-Oddiy savolga maqola yozma.
-
-==================================================
-4. JAVOBNI TO'LIQ TUGATISH
-==================================================
-
-Javobni hech qachon gapning o'rtasida tugatib qo'yma.
-
-Har bir javob grammatik va mazmunan to'liq bo'lsin.
-
-NOTO'G'RI:
-
-"Katta yoshli odam skeletida"
-
-TO'G'RI:
-
-"Katta yoshli odam skeletida odatda 206 ta suyak bo'ladi."
-
-NOTO'G'RI:
-
-"Yurakning asosiy vazifasi — qonni butun organizm"
-
-TO'G'RI:
-
-"Yurakning asosiy vazifasi — qonni butun organizm
-bo'ylab haydash."
-
-Javobni yuborishdan oldin tekshir:
-
-"Bu gap to'liq tugaganmi?"
-
-Agar to'liq bo'lmasa, qayta yoz.
-
-==================================================
-5. IMLO NAZORATI
-==================================================
-
-Har bir javobni yuborishdan OLDIN ichki ravishda
-kamida bir marta qayta o'qi.
-
-Quyidagilarni tekshir:
-
-1. Imlo.
-2. Grammatika.
-3. Tinish belgilari.
-4. Apostroflar.
-5. O'zbekcha maxsus yozuv.
-6. Tibbiy atamalar.
-7. Gaplarning tabiiyligi.
-8. Fikrning mantiqiyligi.
-
-Quyidagi xatolarga yo'l qo'yma:
-
-boladi
-→ bo'ladi
-
-opka
-→ o'pka
-
-tog'ri
-→ to'g'ri
-
-malumot
-→ ma'lumot
-
-qollash
-→ qo'llash
-
-ozbek
-→ o'zbek
-
-oxigen
-→ kislorod
-
-qan
-→ qon
-
-Agar javobda imlo xatosi topsang,
-foydalanuvchiga yuborishdan oldin tuzat.
-
-==================================================
-6. TABIIY SUHBAT
+10. TABIIY SUHBAT
 ==================================================
 
 Foydalanuvchi bilan xuddi ikki inson
@@ -258,151 +297,119 @@ suhbatlashayotgandek tabiiy muloqot qil.
 
 Haddan tashqari rasmiy bo'lma.
 
-Masalan:
+"Albatta, men sizga bu haqda batafsil
+ma'lumot beraman" kabi sun'iy kirishlarni
+keraksiz ishlatma.
 
-Foydalanuvchi:
-"Yurak nima qiladi?"
+To'g'ridan-to'g'ri savolga javob ber.
 
-Javob:
-"Yurakning asosiy vazifasi — qonni butun organizm
-bo'ylab haydash."
-
-Bunday sun'iy kirish gaplarini ko'p ishlatma:
-
-"Albatta, men sizga bu haqda batafsil ma'lumot
-berishga harakat qilaman."
-
-Buning o'rniga to'g'ridan-to'g'ri javob ber.
-
-Foydalanuvchi oldingi savolga bog'liq savol bersa,
-oldingi suhbat mazmunini hisobga ol.
-
-Keraksiz ravishda savolni qayta so'rama.
+Foydalanuvchi oldingi savolga bog'liq
+keyingi savol bersa, kontekstni hisobga ol.
 
 ==================================================
-7. BATAFSIL SAVOLLAR
+11. JAVOBNI TO'LIQ TUGATISH
 ==================================================
 
-Agar foydalanuvchi:
+Javobni hech qachon gapning o'rtasida tugatib qo'yma.
 
-"batafsil tushuntir"
-"nima uchun?"
-"mexanizmi qanday?"
-"imtihon uchun tushuntir"
-"farqi nimada?"
+Har bir gap:
 
-desa, batafsilroq javob ber.
-
-Kerak bo'lsa punktlardan foydalan.
-
-Lekin keraksiz uzunlikdan qoch.
-
-==================================================
-8. KLINIK HOLATLAR
-==================================================
-
-Agar foydalanuvchi klinik holat yuborsa,
-uni professional tarzda tahlil qil.
-
-Kerak bo'lsa:
-
-1. Ehtimoliy tashxis.
-2. Asosiy klinik belgilar.
-3. Tashxisni qo'llab-quvvatlovchi belgilar.
-4. Differensial tashxis.
-5. Kerakli tekshiruvlar.
-6. Davolashning umumiy prinsiplari.
-7. Xavfli belgilar.
-8. Qisqa xulosa.
-
-Barcha bo'limlarni har safar majburan yozma.
-Holatga qarab moslashtir.
-
-Yetarli ma'lumot bo'lmasa:
-
-"Berilgan ma'lumotlar asosida aniq tashxis
-qo'yib bo'lmaydi."
-
-deb ayt.
-
-Ehtimoliy tashxisni tasdiqlangan tashxis
-sifatida ko'rsatma.
-
-==================================================
-9. TIBBIYOT TALABALARI
-==================================================
-
-Javoblar:
-
-- aniq;
-- tushunarli;
-- eslab qolish oson;
-- tibbiy jihatdan to'g'ri;
-- amaliy
+- grammatik jihatdan to'liq;
+- mazmunan tugallangan;
+- tushunarli
 
 bo'lsin.
 
-Agar foydalanuvchi:
+Noto'g'ri:
 
-"Imtihonga qisqa qilib ayt"
+"Yurakning asosiy vazifasi — qonni butun organizm"
 
-desa, juda qisqa va mazmunli javob ber.
+To'g'ri:
 
-==================================================
-10. REAL BEMORLAR
-==================================================
+"Yurakning asosiy vazifasi — qonni butun organizm
+bo'ylab haydash."
 
-AI javobi shifokor ko'rigini almashtirmaydi.
-
-Agar foydalanuvchi o'zidagi jiddiy simptomlarni
-aytsa, kerak bo'lsa shifokorga murojaat qilishni tavsiya qil.
-
-Agar shoshilinch xavf belgilarini sezsang,
-tez tibbiy yordam kerakligini aniq ayt.
+Javob oxirida fikr tugallangan bo'lsin.
 
 ==================================================
-11. YAKUNIY TEKSHIRUV
+12. IMLO TEKSHIRUVI
 ==================================================
 
-Javobni yuborishdan oldin ichki ravishda tekshir:
+Javobni yuborishdan OLDIN ichki ravishda
+qayta o'qi.
 
-1. Savolga to'g'ridan-to'g'ri javob berdimmi?
-2. Javob to'liq tugadimi?
-3. Imlo xatosi bormi?
-4. Grammatika to'g'rimi?
-5. Apostroflar to'g'rimi?
-6. Tibbiy atamalar to'g'rimi?
-7. G'alati tarjima ishlatmadimmi?
-8. Javob tabiiy o'zbek tilidami?
-9. Keraksiz ma'lumot qo'shmaganmanmi?
-10. Foydalanuvchi javobni oson tushunadimi?
+Tekshir:
 
-Agar xato topsang, javobni yuborishdan oldin tuzat.
+1. Imlo.
+2. Grammatika.
+3. Tinish belgilari.
+4. Apostroflar.
+5. Tibbiy atamalar.
+6. Mantiq.
+7. Tabiiylik.
+8. Javobning to'liqligi.
+
+Quyidagilarni noto'g'ri yozma:
+
+boladi ❌
+bo'ladi ✅
+
+opka ❌
+o'pka ✅
+
+tog'ri ❌
+to'g'ri ✅
+
+malumot ❌
+ma'lumot ✅
+
+qollash ❌
+qo'llash ✅
+
+oxigen ❌
+kislorod ✅
+
+qan ❌
+qon ✅
+
+Agar xato topsang, foydalanuvchiga yuborishdan
+oldin tuzat.
 
 ==================================================
-12. ENG MUHIM QOIDA
+13. JAVOB HAJMI
 ==================================================
 
-ANIQLIK > UZUNLIK.
+Javob hajmini savolning mazmuniga qarab belgila.
 
 Oddiy savol:
-qisqa + aniq + to'liq javob.
+savolga tegishli muhim ma'lumotlarning
+barchasini tushuntir.
 
-Batafsil savol:
-batafsil + tushunarli javob.
+Murakkab savol:
+mavzuning asosiy jihatlarini batafsil tushuntir.
 
 Klinik holat:
-professional + ehtiyotkor tahlil.
+to'liq klinik tahlil qil.
 
-Har qanday holatda:
+Faqat javob hajmini ko'paytirish uchun
+keraksiz ma'lumot yozma.
+
+==================================================
+14. ENG MUHIM QOIDA
+==================================================
+
+SAVOLGA TEGISHLI MUHIM MA'LUMOTNI QOLDIRIB KETMA.
+
+KERAKSIZ MA'LUMOT BILAN JAVOBNI CHO'ZMA.
+
 JAVOBNI GAPNING O'RTASIDA TUGATMA.
 
-Har bir javob tabiiy, tushunarli va
-imloviy jihatdan to'g'ri o'zbek tilida bo'lsin.
+HAR BIR JAVOB TABIIY, TUSHUNARLI VA
+IMLOVIY JIHATDAN TO'G'RI O'ZBEK TILIDA BO'LSIN.
 `;
 
 // ==================================================
-// RETRY FUNKSIYASI
+// GEMINI RETRY
 // ==================================================
 
 async function generateWithRetry(
@@ -413,20 +420,26 @@ async function generateWithRetry(
 
     let lastError = null;
 
-    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    for (
+        let attempt = 1;
+        attempt <= maxAttempts;
+        attempt++
+    ) {
 
         try {
 
             console.log(
-                `🧠 Gemini so'rovi, urinish ${attempt}/${maxAttempts}`
+                `🧠 Gemini so'rovi: ${attempt}/${maxAttempts}`
             );
 
             const response =
                 await ai.models.generateContent({
 
-                    model: "gemini-3.6-flash",
+                    model:
+                        "gemini-3.6-flash",
 
-                    contents: message,
+                    contents:
+                        message,
 
                     config: {
 
@@ -447,43 +460,51 @@ async function generateWithRetry(
             lastError = error;
 
             const errorText =
-                String(error.message || error);
+                String(
+                    error.message ||
+                    error
+                );
 
-            const isTemporaryError =
+            console.error(
+                `❌ Gemini xatosi ${attempt}-urinish:`,
+                errorText
+            );
+
+            const temporaryError =
                 errorText.includes("503") ||
                 errorText.includes("UNAVAILABLE") ||
                 errorText.includes("429") ||
                 errorText.includes("RESOURCE_EXHAUSTED") ||
-                errorText.includes("overloaded") ||
-                errorText.includes("high demand");
+                errorText.includes("high demand") ||
+                errorText.includes("overloaded");
 
-            console.error(
-                `❌ Gemini xatosi, urinish ${attempt}:`,
-                errorText
-            );
-
-            // Vaqtinchalik xato bo'lmasa,
-            // darhol to'xtaymiz.
-            if (!isTemporaryError) {
+            if (!temporaryError) {
                 throw error;
             }
 
-            // Oxirgi urinish bo'lsa,
-            // boshqa qayta urinmaymiz.
-            if (attempt === maxAttempts) {
+            if (
+                attempt >=
+                maxAttempts
+            ) {
                 throw error;
             }
 
-            // 1s -> 2s -> 4s
             const delay =
-                Math.pow(2, attempt - 1) * 1000;
+                Math.pow(
+                    2,
+                    attempt - 1
+                ) * 1000;
 
             console.log(
-                `⏳ ${delay / 1000} soniya kutib, qayta uriniladi...`
+                `⏳ ${delay / 1000} soniyadan keyin qayta uriniladi...`
             );
 
             await new Promise(
-                resolve => setTimeout(resolve, delay)
+                resolve =>
+                    setTimeout(
+                        resolve,
+                        delay
+                    )
             );
         }
     }
@@ -495,377 +516,515 @@ async function generateWithRetry(
 // /START
 // ==================================================
 
-bot.onText(/^\/start$/, async (msg) => {
+bot.onText(
+    /^\/start$/,
+    async (msg) => {
 
-    const chatId = msg.chat.id;
+        const chatId =
+            msg.chat.id;
 
-    const firstName =
-        msg.from?.first_name || "Do'stim";
+        const firstName =
+            msg.from?.first_name ||
+            "Do'stim";
 
-    const text =
-        "Assalomu alaykum, " +
-        firstName +
-        "! 👋\n\n" +
+        const text =
+            "Assalomu alaykum, " +
+            firstName +
+            "! 👋\n\n" +
 
-        "🩺 MedAiUz platformasiga xush kelibsiz!\n\n" +
+            "🩺 MedAiUz platformasiga " +
+            "xush kelibsiz!\n\n" +
 
-        "MedAiUz — tibbiyot talabalari va " +
-        "tibbiyot sohasi vakillari uchun " +
-        "darsliklar, testlar, klinik holatlar " +
-        "va AI yordamchi platformasi.\n\n" +
+            "MedAiUz — tibbiyot talabalari " +
+            "va tibbiyot sohasi vakillari " +
+            "uchun darsliklar, testlar, " +
+            "klinik holatlar va AI yordamchi " +
+            "platformasi.\n\n" +
 
-        "Quyidagi tugma orqali platformaga " +
-        "kirishingiz mumkin 👇";
+            "Quyidagi tugma orqali platformaga " +
+            "kirishingiz mumkin 👇";
 
-    try {
+        try {
 
-        await bot.sendMessage(
-            chatId,
-            text,
-            {
-                reply_markup: {
-                    inline_keyboard: [
-                        [
-                            {
-                                text: "🚀 MedAiUz'ni ochish",
-                                web_app: {
-                                    url: MINI_APP_URL
+            await bot.sendMessage(
+                chatId,
+                text,
+                {
+                    reply_markup: {
+                        inline_keyboard: [
+                            [
+                                {
+                                    text:
+                                        "🚀 MedAiUz'ni ochish",
+
+                                    web_app: {
+                                        url:
+                                            MINI_APP_URL
+                                    }
                                 }
-                            }
+                            ]
                         ]
-                    ]
+                    }
                 }
-            }
-        );
+            );
 
-    } catch (error) {
+        } catch (error) {
 
-        console.error(
-            "❌ Telegram xatosi:",
-            error.message
-        );
+            console.error(
+                "❌ Telegram xatosi:",
+                error.message
+            );
 
+        }
     }
-
-});
+);
 
 // ==================================================
 // TELEGRAM POLLING ERROR
 // ==================================================
 
-bot.on("polling_error", (error) => {
+bot.on(
+    "polling_error",
+    (error) => {
 
-    console.error(
-        "⚠️ Telegram polling xatosi:",
-        error.message
-    );
+        console.error(
+            "⚠️ Telegram polling xatosi:",
+            error.message
+        );
 
-});
+    }
+);
 
 // ==================================================
 // EXPRESS SERVER
 // ==================================================
 
-const app = express();
+const app =
+    express();
 
-app.use(express.json());
+app.use(
+    express.json()
+);
 
 // ==================================================
 // CORS
 // ==================================================
 
-app.use((req, res, next) => {
+app.use(
+    (req, res, next) => {
 
-    res.header(
-        "Access-Control-Allow-Origin",
-        "*"
-    );
+        res.header(
+            "Access-Control-Allow-Origin",
+            "*"
+        );
 
-    res.header(
-        "Access-Control-Allow-Methods",
-        "POST, OPTIONS, GET"
-    );
+        res.header(
+            "Access-Control-Allow-Methods",
+            "POST, OPTIONS, GET"
+        );
 
-    res.header(
-        "Access-Control-Allow-Headers",
-        "Content-Type"
-    );
+        res.header(
+            "Access-Control-Allow-Headers",
+            "Content-Type"
+        );
 
-    if (req.method === "OPTIONS") {
-        return res.sendStatus(200);
+        if (
+            req.method ===
+            "OPTIONS"
+        ) {
+
+            return res.sendStatus(
+                200
+            );
+
+        }
+
+        next();
+
     }
-
-    next();
-
-});
+);
 
 // ==================================================
 // AI CHAT API
 // ==================================================
 
-app.post("/api/chat", async (req, res) => {
+app.post(
+    "/api/chat",
+    async (req, res) => {
 
-    try {
+        try {
 
-        const userMessage =
-            req.body.message;
+            const userMessage =
+                req.body.message;
 
-        // ------------------------------------------
-        // XABARNI TEKSHIRISH
-        // ------------------------------------------
+            // --------------------------------------
+            // XABARNI TEKSHIRISH
+            // --------------------------------------
 
-        if (
-            !userMessage ||
-            typeof userMessage !== "string" ||
-            !userMessage.trim()
-        ) {
+            if (
+                !userMessage ||
+                typeof userMessage !==
+                    "string" ||
+                !userMessage.trim()
+            ) {
 
-            return res.status(400).json({
+                return res.status(
+                    400
+                ).json({
 
-                error:
-                    "Xabar bo'sh bo'lishi mumkin emas."
+                    error:
+                        "Xabar bo'sh bo'lishi mumkin emas."
+
+                });
+
+            }
+
+            const cleanMessage =
+                userMessage.trim();
+
+            console.log(
+                "🤖 AI so'rovi:",
+                cleanMessage.substring(
+                    0,
+                    200
+                )
+            );
+
+            // --------------------------------------
+            // SAVOL TURINI ANIQLASH
+            // --------------------------------------
+
+            const lowerMessage =
+                cleanMessage.toLowerCase();
+
+            const isClinical =
+                lowerMessage.includes(
+                    "klinik"
+                ) ||
+                lowerMessage.includes(
+                    "bemor"
+                ) ||
+                lowerMessage.includes(
+                    "anamnez"
+                ) ||
+                lowerMessage.includes(
+                    "tashxis"
+                ) ||
+                lowerMessage.includes(
+                    "differensial"
+                ) ||
+                lowerMessage.includes(
+                    "diagnostika"
+                ) ||
+                lowerMessage.includes(
+                    "davolash"
+                ) ||
+                lowerMessage.includes(
+                    "simptom"
+                ) ||
+                lowerMessage.includes(
+                    "belgi"
+                );
+
+            const isDetailed =
+                lowerMessage.includes(
+                    "batafsil"
+                ) ||
+                lowerMessage.includes(
+                    "tushuntir"
+                ) ||
+                lowerMessage.includes(
+                    "mexanizm"
+                ) ||
+                lowerMessage.includes(
+                    "sababi"
+                ) ||
+                lowerMessage.includes(
+                    "farqi"
+                ) ||
+                lowerMessage.includes(
+                    "imtihon"
+                ) ||
+                cleanMessage.length >
+                    250;
+
+            // --------------------------------------
+            // TOKEN MIQDORI
+            // --------------------------------------
+
+            let outputTokens = 800;
+
+            if (isClinical) {
+
+                outputTokens =
+                    1800;
+
+            } else if (isDetailed) {
+
+                outputTokens =
+                    1200;
+
+            } else {
+
+                outputTokens =
+                    800;
+
+            }
+
+            console.log(
+                "📚 Savol turi:",
+                isClinical
+                    ? "klinik"
+                    : isDetailed
+                    ? "batafsil"
+                    : "oddiy"
+            );
+
+            console.log(
+                "📝 Maksimal token:",
+                outputTokens
+            );
+
+            // --------------------------------------
+            // GEMINI
+            // --------------------------------------
+
+            const response =
+                await generateWithRetry(
+                    cleanMessage,
+                    outputTokens,
+                    3
+                );
+
+            // --------------------------------------
+            // JAVOB
+            // --------------------------------------
+
+            let reply =
+                response.text?.trim();
+
+            if (!reply) {
+
+                return res.status(
+                    500
+                ).json({
+
+                    error:
+                        "AI javob qaytarmadi. " +
+                        "Birozdan so'ng qayta urinib ko'ring."
+
+                });
+
+            }
+
+            // --------------------------------------
+            // TOZALASH
+            // --------------------------------------
+
+            reply =
+                reply
+                    .replace(
+                        /\n{3,}/g,
+                        "\n\n"
+                    )
+                    .trim();
+
+            console.log(
+                "✅ Gemini javobi tayyor"
+            );
+
+            // --------------------------------------
+            // JAVOB
+            // --------------------------------------
+
+            return res.json({
+
+                reply:
+                    reply
 
             });
 
-        }
+        } catch (error) {
 
-        const cleanMessage =
-            userMessage.trim();
-
-        console.log(
-            "🤖 AI so'rovi:",
-            cleanMessage.substring(0, 200)
-        );
-
-        // ------------------------------------------
-        // BATAFSIL SAVOLNI ANIQLASH
-        // ------------------------------------------
-
-        const lowerMessage =
-            cleanMessage.toLowerCase();
-
-        const isDetailedQuestion =
-            lowerMessage.includes("klinik") ||
-            lowerMessage.includes("tahlil") ||
-            lowerMessage.includes("tashxis") ||
-            lowerMessage.includes("differensial") ||
-            lowerMessage.includes("davolash") ||
-            lowerMessage.includes("mexanizm") ||
-            lowerMessage.includes("batafsil") ||
-            lowerMessage.includes("tushuntir") ||
-            lowerMessage.includes("sababi") ||
-            lowerMessage.includes("belgilari") ||
-            lowerMessage.includes("farqi") ||
-            lowerMessage.includes("diagnostika") ||
-            lowerMessage.includes("anamnez") ||
-            lowerMessage.length > 300;
-
-        // ------------------------------------------
-        // TOKEN MIQDORI
-        // ------------------------------------------
-
-        const outputTokens =
-            isDetailedQuestion
-                ? 1200
-                : 400;
-
-        // ------------------------------------------
-        // GEMINI SO'ROVI
-        // ------------------------------------------
-
-        const response =
-            await generateWithRetry(
-                cleanMessage,
-                outputTokens,
-                3
-            );
-
-        // ------------------------------------------
-        // JAVOBNI OLISH
-        // ------------------------------------------
-
-        let reply =
-            response.text?.trim();
-
-        // ------------------------------------------
-        // BO'SH JAVOB
-        // ------------------------------------------
-
-        if (!reply) {
+            const errorText =
+                String(
+                    error.message ||
+                    error
+                );
 
             console.error(
-                "❌ Gemini bo'sh javob qaytardi."
+                "❌ Gemini yakuniy xatosi:",
+                errorText
             );
 
-            return res.status(500).json({
+            // --------------------------------------
+            // API KEY
+            // --------------------------------------
+
+            if (
+                errorText.includes(
+                    "401"
+                ) ||
+                errorText.includes(
+                    "API key"
+                ) ||
+                errorText.includes(
+                    "API_KEY"
+                ) ||
+                errorText.includes(
+                    "UNAUTHENTICATED"
+                )
+            ) {
+
+                return res.status(
+                    500
+                ).json({
+
+                    error:
+                        "Gemini API kaliti noto'g'ri yoki faol emas."
+
+                });
+
+            }
+
+            // --------------------------------------
+            // MODEL
+            // --------------------------------------
+
+            if (
+                errorText.includes(
+                    "404"
+                ) ||
+                errorText.includes(
+                    "NOT_FOUND"
+                )
+            ) {
+
+                return res.status(
+                    500
+                ).json({
+
+                    error:
+                        "Gemini modeli hozir mavjud emas."
+
+                });
+
+            }
+
+            // --------------------------------------
+            // 503
+            // --------------------------------------
+
+            if (
+                errorText.includes(
+                    "503"
+                ) ||
+                errorText.includes(
+                    "UNAVAILABLE"
+                ) ||
+                errorText.includes(
+                    "high demand"
+                )
+            ) {
+
+                return res.status(
+                    503
+                ).json({
+
+                    error:
+                        "AI serveri hozir band. " +
+                        "Bir necha soniyadan so'ng qayta urinib ko'ring."
+
+                });
+
+            }
+
+            // --------------------------------------
+            // 429
+            // --------------------------------------
+
+            if (
+                errorText.includes(
+                    "429"
+                ) ||
+                errorText.includes(
+                    "quota"
+                ) ||
+                errorText.includes(
+                    "RESOURCE_EXHAUSTED"
+                )
+            ) {
+
+                return res.status(
+                    429
+                ).json({
+
+                    error:
+                        "AI xizmatining foydalanish limiti tugagan. " +
+                        "Birozdan so'ng qayta urinib ko'ring."
+
+                });
+
+            }
+
+            // --------------------------------------
+            // UMUMIY XATO
+            // --------------------------------------
+
+            return res.status(
+                500
+            ).json({
 
                 error:
-                    "AI javob qaytarmadi. " +
+                    "AI javob berishda xatolik yuz berdi. " +
                     "Birozdan so'ng qayta urinib ko'ring."
 
             });
 
         }
-
-        // ------------------------------------------
-        // ORTIQCHA BO'SH QATORLARNI TOZALASH
-        // ------------------------------------------
-
-        reply =
-            reply
-                .replace(/\n{3,}/g, "\n\n")
-                .trim();
-
-        console.log(
-            "✅ Gemini javobi tayyor"
-        );
-
-        // ------------------------------------------
-        // JAVOB
-        // ------------------------------------------
-
-        return res.json({
-
-            reply: reply
-
-        });
-
-    } catch (error) {
-
-        const errorText =
-            String(error.message || error);
-
-        console.error(
-            "❌ Gemini yakuniy xatosi:",
-            errorText
-        );
-
-        // ==========================================
-        // API KEY
-        // ==========================================
-
-        if (
-            errorText.includes("401") ||
-            errorText.includes("API key") ||
-            errorText.includes("API_KEY") ||
-            errorText.includes("UNAUTHENTICATED")
-        ) {
-
-            return res.status(500).json({
-
-                error:
-                    "Gemini API kaliti noto'g'ri yoki faol emas."
-
-            });
-
-        }
-
-        // ==========================================
-        // MODEL
-        // ==========================================
-
-        if (
-            errorText.includes("404") ||
-            errorText.includes("NOT_FOUND")
-        ) {
-
-            return res.status(500).json({
-
-                error:
-                    "Gemini modeli hozir mavjud emas."
-
-            });
-
-        }
-
-        // ==========================================
-        // VAQTINCHALIK GEMINI XATOSI
-        // ==========================================
-
-        if (
-            errorText.includes("503") ||
-            errorText.includes("UNAVAILABLE") ||
-            errorText.includes("high demand")
-        ) {
-
-            return res.status(503).json({
-
-                error:
-                    "AI serveri hozir band. " +
-                    "Bir necha soniyadan so'ng qayta urinib ko'ring."
-
-            });
-
-        }
-
-        // ==========================================
-        // LIMIT
-        // ==========================================
-
-        if (
-            errorText.includes("429") ||
-            errorText.includes("quota") ||
-            errorText.includes("RESOURCE_EXHAUSTED")
-        ) {
-
-            return res.status(429).json({
-
-                error:
-                    "AI xizmatining foydalanish limiti tugagan. " +
-                    "Birozdan so'ng qayta urinib ko'ring."
-
-            });
-
-        }
-
-        // ==========================================
-        // UMUMIY XATO
-        // ==========================================
-
-        return res.status(500).json({
-
-            error:
-                "AI javob berishda xatolik yuz berdi. " +
-                "Birozdan so'ng qayta urinib ko'ring."
-
-        });
 
     }
-
-});
+);
 
 // ==================================================
 // SERVER TEST
 // ==================================================
 
-app.get("/", (req, res) => {
+app.get(
+    "/",
+    (req, res) => {
 
-    res.send(
-        "MedAiUz Gemini AI server ishlayapti ✅"
-    );
+        res.send(
+            "MedAiUz Gemini AI server ishlayapti ✅"
+        );
 
-});
+    }
+);
 
 // ==================================================
 // PORT
 // ==================================================
 
 const PORT =
-    process.env.PORT || 3000;
+    process.env.PORT ||
+    3000;
 
 // ==================================================
 // SERVERNI ISHGA TUSHIRISH
 // ==================================================
 
-app.listen(PORT, () => {
+app.listen(
+    PORT,
+    () => {
 
-    console.log(
-        "🌐 MedAiUz AI server ishga tushdi, port: " +
-        PORT
-    );
+        console.log(
+            "🌐 MedAiUz AI server ishga tushdi, port: " +
+            PORT
+        );
 
-    console.log(
-        "🤖 MedAiUz Telegram bot ishga tushdi!"
-    );
+        console.log(
+            "🤖 MedAiUz Telegram bot ishga tushdi!"
+        );
 
-});
+    }
+);
