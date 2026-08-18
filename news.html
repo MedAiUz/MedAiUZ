@@ -24,9 +24,7 @@
             top: 0;
             z-index: 100;
 
-            background: rgba(255,255,255,.97);
-            backdrop-filter: blur(12px);
-
+            background: white;
             border-bottom: 1px solid #e5e7eb;
 
             padding: 15px 18px;
@@ -71,22 +69,54 @@
             padding: 18px;
         }
 
-        .channel-card {
+        .status {
             background: white;
-
             border: 1px solid #e5e7eb;
             border-radius: 18px;
-
             padding: 15px;
-
-            margin-bottom: 16px;
-
+            margin-bottom: 15px;
             font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .status strong {
+            color: #111827;
+        }
+
+        .loading,
+        .empty,
+        .error {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .loading {
             color: #6b7280;
         }
 
-        .channel-card strong {
-            color: #111827;
+        .empty-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .empty h2 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .empty p {
+            color: #6b7280;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .error {
+            color: #be123c;
+            background: #fff1f2;
+            border-color: #fecdd3;
         }
 
         .news-list {
@@ -97,22 +127,16 @@
 
         .news-card {
             background: white;
-
             border: 1px solid #e5e7eb;
             border-radius: 20px;
-
             overflow: hidden;
-
-            box-shadow:
-                0 4px 15px rgba(15,23,42,.05);
         }
 
         .news-image {
             width: 100%;
-            display: block;
-
             max-height: 420px;
             object-fit: cover;
+            display: block;
         }
 
         .news-body {
@@ -122,35 +146,29 @@
         .news-date {
             font-size: 10px;
             color: #6b7280;
-
             margin-bottom: 8px;
         }
 
         .news-title {
             font-size: 17px;
             line-height: 1.45;
-
             margin-bottom: 10px;
         }
 
         .news-text {
             font-size: 13px;
             line-height: 1.65;
-
             color: #4b5563;
-
             white-space: pre-line;
-
             margin-bottom: 15px;
         }
 
         .telegram-btn {
             width: 100%;
+            padding: 13px;
 
             border: none;
             border-radius: 13px;
-
-            padding: 13px;
 
             background: #2563eb;
             color: white;
@@ -161,75 +179,21 @@
             cursor: pointer;
         }
 
-        .loading {
-            background: white;
-            border-radius: 18px;
-            border: 1px solid #e5e7eb;
+        .debug {
+            margin-top: 15px;
+            background: #111827;
+            color: #d1fae5;
 
-            padding: 35px;
+            border-radius: 14px;
+            padding: 14px;
 
-            text-align: center;
+            font-family: monospace;
+            font-size: 11px;
 
-            color: #6b7280;
-            font-size: 13px;
-        }
+            white-space: pre-wrap;
+            word-break: break-word;
 
-        .empty {
-            background: white;
-            border-radius: 18px;
-            border: 1px solid #e5e7eb;
-
-            padding: 35px 20px;
-
-            text-align: center;
-        }
-
-        .empty-icon {
-            font-size: 42px;
-            margin-bottom: 12px;
-        }
-
-        .empty h2 {
-            font-size: 17px;
-            margin-bottom: 8px;
-        }
-
-        .empty p {
-            font-size: 12px;
-            line-height: 1.6;
-            color: #6b7280;
-        }
-
-        .error {
-            background: #fff1f2;
-            border: 1px solid #fecdd3;
-
-            color: #be123c;
-
-            border-radius: 18px;
-
-            padding: 20px;
-
-            text-align: center;
-
-            font-size: 12px;
-            line-height: 1.6;
-        }
-
-        .retry {
-            margin-top: 12px;
-
-            border: none;
-            border-radius: 12px;
-
-            background: #e11d48;
-            color: white;
-
-            padding: 10px 18px;
-
-            font-weight: bold;
-
-            cursor: pointer;
+            display: none;
         }
 
         @media (min-width: 700px) {
@@ -269,12 +233,11 @@
 
 <main class="container">
 
-    <div class="channel-card">
+    <div class="status">
         📢 <strong>@MedAiUz_NEWS</strong>
         <br>
         MedAiUz'dagi eng so‘nggi yangiliklar.
     </div>
-
 
     <div id="newsArea">
 
@@ -284,22 +247,23 @@
 
     </div>
 
+    <div
+        id="debug"
+        class="debug"
+    ></div>
+
 </main>
 
 
 <script>
 
-/* ==================================================
-   MEDAIUZ SERVER
-   ================================================== */
-
 const API_URL =
     "https://medaiuz-bot.onrender.com";
 
 
-/* ==================================================
+/* ==========================================
    ORQAGA
-   ================================================== */
+========================================== */
 
 function goBack() {
 
@@ -309,9 +273,9 @@ function goBack() {
 }
 
 
-/* ==================================================
+/* ==========================================
    HTML XAVFSIZLIGI
-   ================================================== */
+========================================== */
 
 function escapeHtml(value) {
 
@@ -332,9 +296,9 @@ function escapeHtml(value) {
 }
 
 
-/* ==================================================
+/* ==========================================
    SANA
-   ================================================== */
+========================================== */
 
 function formatDate(value) {
 
@@ -359,7 +323,6 @@ function formatDate(value) {
             day: "2-digit",
             month: "2-digit",
             year: "numeric",
-
             hour: "2-digit",
             minute: "2-digit"
         }
@@ -368,9 +331,29 @@ function formatDate(value) {
 }
 
 
-/* ==================================================
+/* ==========================================
+   DEBUG
+========================================== */
+
+function showDebug(message) {
+
+    const debug =
+        document.getElementById(
+            "debug"
+        );
+
+    debug.style.display =
+        "block";
+
+    debug.textContent =
+        message;
+
+}
+
+
+/* ==========================================
    TELEGRAM
-   ================================================== */
+========================================== */
 
 function openTelegram(url) {
 
@@ -386,9 +369,9 @@ function openTelegram(url) {
 }
 
 
-/* ==================================================
+/* ==========================================
    NEWS CARD
-   ================================================== */
+========================================== */
 
 function createNewsCard(item) {
 
@@ -409,7 +392,7 @@ function createNewsCard(item) {
         );
 
 
-    let image = "";
+    let imageHtml = "";
 
 
     if (
@@ -423,17 +406,12 @@ function createNewsCard(item) {
                 item.imageFileId
             );
 
-
-        image = `
+        imageHtml = `
 
             <img
                 class="news-image"
                 src="${imageUrl}"
                 alt="${title}"
-                loading="lazy"
-                onerror="
-                    this.style.display='none'
-                "
             >
 
         `;
@@ -442,14 +420,15 @@ function createNewsCard(item) {
 
 
     const telegramUrl =
-        item.telegramUrl || "";
+        item.telegramUrl ||
+        "";
 
 
     return `
 
         <article class="news-card">
 
-            ${image}
+            ${imageHtml}
 
             <div class="news-body">
 
@@ -487,9 +466,9 @@ function createNewsCard(item) {
 }
 
 
-/* ==================================================
+/* ==========================================
    NEWS CHIQARISH
-   ================================================== */
+========================================== */
 
 function renderNews(items) {
 
@@ -534,12 +513,13 @@ function renderNews(items) {
 
         <div class="news-list">
 
-            ${items
-                .map(
-                    item =>
-                        createNewsCard(item)
-                )
-                .join("")
+            ${
+                items
+                    .map(
+                        item =>
+                            createNewsCard(item)
+                    )
+                    .join("")
             }
 
         </div>
@@ -549,9 +529,9 @@ function renderNews(items) {
 }
 
 
-/* ==================================================
+/* ==========================================
    NEWS YUKLASH
-   ================================================== */
+========================================== */
 
 async function loadNews() {
 
@@ -570,30 +550,31 @@ async function loadNews() {
     `;
 
 
+    showDebug(
+        "Serverga ulanmoqda..."
+    );
+
+
     try {
 
-        console.log(
-            "📰 News API:",
-            API_URL + "/api/news"
-        );
+        const url =
+            API_URL +
+            "/api/news?t=" +
+            Date.now();
 
 
         const response =
             await fetch(
-                API_URL +
-                "/api/news" +
-                "?t=" +
-                Date.now(),
+                url,
                 {
                     method: "GET",
-
                     cache: "no-store"
                 }
             );
 
 
-        console.log(
-            "📰 API status:",
+        showDebug(
+            "API javobi: HTTP " +
             response.status
         );
 
@@ -601,7 +582,7 @@ async function loadNews() {
         if (!response.ok) {
 
             throw new Error(
-                "Server xatosi: " +
+                "HTTP " +
                 response.status
             );
 
@@ -612,8 +593,19 @@ async function loadNews() {
             await response.json();
 
 
+        showDebug(
+            "API muvaffaqiyatli.\n" +
+            "success: " +
+            data.success +
+            "\nchannel: " +
+            data.channel +
+            "\ncount: " +
+            data.count
+        );
+
+
         console.log(
-            "📰 API data:",
+            "MEDAIUZ NEWS:",
             data
         );
 
@@ -623,7 +615,7 @@ async function loadNews() {
         ) {
 
             throw new Error(
-                "API success=false qaytardi."
+                "API success=false"
             );
 
         }
@@ -637,8 +629,14 @@ async function loadNews() {
     } catch (error) {
 
         console.error(
-            "❌ Yangiliklar xatosi:",
+            "MEDAIUZ NEWS ERROR:",
             error
+        );
+
+
+        showDebug(
+            "XATO:\n" +
+            error.message
         );
 
 
@@ -648,15 +646,16 @@ async function loadNews() {
 
                 ❌ Yangiliklarni yuklab bo‘lmadi.
 
-                <br>
+                <br><br>
 
-                Server bilan aloqa qilishda
-                muammo yuz berdi.
+                ${escapeHtml(
+                    error.message
+                )}
 
-                <br>
+                <br><br>
 
                 <button
-                    class="retry"
+                    class="telegram-btn"
                     onclick="loadNews()"
                 >
                     🔄 Qayta urinish
@@ -671,16 +670,16 @@ async function loadNews() {
 }
 
 
-/* ==================================================
-   BOSHLASH
-   ================================================== */
+/* ==========================================
+   START
+========================================== */
 
 loadNews();
 
 
-/* ==================================================
-   HAR 1 DAQIQADA YANGILASH
-   ================================================== */
+/* ==========================================
+   AVTOMATIK YANGILASH
+========================================== */
 
 setInterval(
     loadNews,
