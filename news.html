@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Yangiliklar — MedAiUz</title>
 
     <style>
@@ -23,32 +22,32 @@
         .header {
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 100;
 
-            padding: 16px 18px;
-
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,.97);
+            backdrop-filter: blur(12px);
 
             border-bottom: 1px solid #e5e7eb;
+
+            padding: 15px 18px;
 
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .back-btn {
-            border: none;
-            background: #eff6ff;
-            color: #2563eb;
-
+        .back-btn,
+        .refresh-btn {
             width: 40px;
             height: 40px;
 
+            border: none;
             border-radius: 12px;
 
-            font-size: 19px;
+            background: #eff6ff;
+            color: #2563eb;
 
+            font-size: 19px;
             cursor: pointer;
         }
 
@@ -56,29 +55,14 @@
             flex: 1;
         }
 
-        .header h1 {
+        .header-title h1 {
             font-size: 18px;
             margin-bottom: 3px;
         }
 
-        .header p {
+        .header-title p {
             font-size: 11px;
             color: #6b7280;
-        }
-
-        .refresh-btn {
-            border: none;
-            background: #eff6ff;
-            color: #2563eb;
-
-            width: 40px;
-            height: 40px;
-
-            border-radius: 12px;
-
-            font-size: 18px;
-
-            cursor: pointer;
         }
 
         .container {
@@ -87,13 +71,13 @@
             padding: 18px;
         }
 
-        .status-card {
+        .channel-card {
             background: white;
 
             border: 1px solid #e5e7eb;
             border-radius: 18px;
 
-            padding: 14px 16px;
+            padding: 15px;
 
             margin-bottom: 16px;
 
@@ -101,14 +85,14 @@
             color: #6b7280;
         }
 
-        .status-card strong {
+        .channel-card strong {
             color: #111827;
         }
 
         .news-list {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 15px;
         }
 
         .news-card {
@@ -119,20 +103,20 @@
 
             overflow: hidden;
 
-            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+            box-shadow:
+                0 4px 15px rgba(15,23,42,.05);
         }
 
         .news-image {
             width: 100%;
-            max-height: 360px;
-
-            object-fit: cover;
-
             display: block;
+
+            max-height: 420px;
+            object-fit: cover;
         }
 
-        .news-content {
-            padding: 17px;
+        .news-body {
+            padding: 18px;
         }
 
         .news-date {
@@ -144,11 +128,9 @@
 
         .news-title {
             font-size: 17px;
-            line-height: 1.4;
+            line-height: 1.45;
 
             margin-bottom: 10px;
-
-            color: #111827;
         }
 
         .news-text {
@@ -162,34 +144,40 @@
             margin-bottom: 15px;
         }
 
-        .news-actions {
-            display: flex;
-            gap: 8px;
-        }
-
         .telegram-btn {
-            flex: 1;
+            width: 100%;
 
             border: none;
+            border-radius: 13px;
+
+            padding: 13px;
 
             background: #2563eb;
             color: white;
 
-            padding: 12px;
-
-            border-radius: 13px;
-
-            font-size: 12px;
+            font-size: 13px;
             font-weight: bold;
 
             cursor: pointer;
         }
 
-        .empty-card {
+        .loading {
             background: white;
-
+            border-radius: 18px;
             border: 1px solid #e5e7eb;
-            border-radius: 20px;
+
+            padding: 35px;
+
+            text-align: center;
+
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .empty {
+            background: white;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
 
             padding: 35px 20px;
 
@@ -201,72 +189,53 @@
             margin-bottom: 12px;
         }
 
-        .empty-card h2 {
+        .empty h2 {
             font-size: 17px;
-            margin-bottom: 7px;
+            margin-bottom: 8px;
         }
 
-        .empty-card p {
+        .empty p {
             font-size: 12px;
+            line-height: 1.6;
             color: #6b7280;
-            line-height: 1.5;
         }
 
-        .loading {
-            text-align: center;
-
-            padding: 40px 20px;
-
-            color: #6b7280;
-
-            font-size: 13px;
-        }
-
-        .error-card {
+        .error {
             background: #fff1f2;
-
             border: 1px solid #fecdd3;
-            border-radius: 18px;
-
-            padding: 18px;
-
-            text-align: center;
 
             color: #be123c;
 
+            border-radius: 18px;
+
+            padding: 20px;
+
+            text-align: center;
+
             font-size: 12px;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
-        .retry-btn {
+        .retry {
             margin-top: 12px;
 
             border: none;
+            border-radius: 12px;
 
             background: #e11d48;
             color: white;
 
             padding: 10px 18px;
 
-            border-radius: 12px;
-
-            font-size: 12px;
             font-weight: bold;
 
             cursor: pointer;
         }
 
         @media (min-width: 700px) {
-
             .news-list {
                 display: grid;
-
-                grid-template-columns:
-                    repeat(2, minmax(0, 1fr));
-            }
-
-            .news-card {
-                height: 100%;
+                grid-template-columns: 1fr 1fr;
             }
         }
     </style>
@@ -284,19 +253,13 @@
     </button>
 
     <div class="header-title">
-
         <h1>📰 Yangiliklar</h1>
-
-        <p>
-            MedAiUz yangiliklar kanali
-        </p>
-
+        <p>MedAiUz yangiliklar kanali</p>
     </div>
 
     <button
         class="refresh-btn"
         onclick="loadNews()"
-        title="Yangilash"
     >
         🔄
     </button>
@@ -306,15 +269,10 @@
 
 <main class="container">
 
-    <div class="status-card">
-
-        <strong>📢 @MedAiUz_NEWS</strong>
-
+    <div class="channel-card">
+        📢 <strong>@MedAiUz_NEWS</strong>
         <br>
-
-        Eng so‘nggi tibbiy va MedAiUz
-        yangiliklari shu yerda.
-
+        MedAiUz'dagi eng so‘nggi yangiliklar.
     </div>
 
 
@@ -332,7 +290,7 @@
 <script>
 
 /* ==================================================
-   MEDAIUZ NEWS API
+   MEDAIUZ SERVER
    ================================================== */
 
 const API_URL =
@@ -340,7 +298,7 @@ const API_URL =
 
 
 /* ==================================================
-   ORQAGA QAYTISH
+   ORQAGA
    ================================================== */
 
 function goBack() {
@@ -352,48 +310,19 @@ function goBack() {
 
 
 /* ==================================================
-   SANANI FORMATLASH
-   ================================================== */
-
-function formatDate(dateString) {
-
-    try {
-
-        const date =
-            new Date(dateString);
-
-        return date.toLocaleString(
-            "uz-UZ",
-            {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-
-                hour: "2-digit",
-                minute: "2-digit"
-            }
-        );
-
-    } catch (error) {
-
-        return "";
-
-    }
-
-}
-
-
-/* ==================================================
    HTML XAVFSIZLIGI
    ================================================== */
 
-function escapeHtml(text) {
+function escapeHtml(value) {
 
-    if (!text) {
+    if (
+        value === null ||
+        value === undefined
+    ) {
         return "";
     }
 
-    return String(text)
+    return String(value)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
@@ -404,7 +333,43 @@ function escapeHtml(text) {
 
 
 /* ==================================================
-   YANGILIKNI OCHISH
+   SANA
+   ================================================== */
+
+function formatDate(value) {
+
+    if (!value) {
+        return "";
+    }
+
+    const date =
+        new Date(value);
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+        return "";
+    }
+
+    return date.toLocaleString(
+        "uz-UZ",
+        {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+
+            hour: "2-digit",
+            minute: "2-digit"
+        }
+    );
+
+}
+
+
+/* ==================================================
+   TELEGRAM
    ================================================== */
 
 function openTelegram(url) {
@@ -422,59 +387,71 @@ function openTelegram(url) {
 
 
 /* ==================================================
-   BIRTA YANGILIK
+   NEWS CARD
    ================================================== */
 
-function createNewsCard(news) {
+function createNewsCard(item) {
 
     const title =
         escapeHtml(
-            news.title ||
+            item.title ||
             "MedAiUz yangiliklari"
         );
 
     const text =
         escapeHtml(
-            news.text || ""
+            item.text || ""
         );
 
     const date =
         formatDate(
-            news.date
+            item.date
         );
 
-    let imageHtml = "";
+
+    let image = "";
+
 
     if (
-        news.imageFileId
+        item.imageFileId
     ) {
 
         const imageUrl =
             API_URL +
             "/api/news/image/" +
             encodeURIComponent(
-                news.imageFileId
+                item.imageFileId
             );
 
-        imageHtml = `
+
+        image = `
+
             <img
                 class="news-image"
                 src="${imageUrl}"
                 alt="${title}"
                 loading="lazy"
-                onerror="this.style.display='none'"
+                onerror="
+                    this.style.display='none'
+                "
             >
+
         `;
 
     }
+
+
+    const telegramUrl =
+        item.telegramUrl || "";
+
 
     return `
 
         <article class="news-card">
 
-            ${imageHtml}
+            ${image}
 
-            <div class="news-content">
+            <div class="news-body">
 
                 <div class="news-date">
                     📅 ${date}
@@ -494,16 +471,12 @@ function createNewsCard(news) {
                         : ""
                 }
 
-                <div class="news-actions">
-
-                    <button
-                        class="telegram-btn"
-                        onclick="openTelegram('${news.telegramUrl || ""}')"
-                    >
-                        📢 Telegramda ko‘rish
-                    </button>
-
-                </div>
+                <button
+                    class="telegram-btn"
+                    onclick='openTelegram(${JSON.stringify(telegramUrl)})'
+                >
+                    📢 Telegramda ko‘rish
+                </button>
 
             </div>
 
@@ -515,25 +488,25 @@ function createNewsCard(news) {
 
 
 /* ==================================================
-   YANGILIKLARNI CHIQARISH
+   NEWS CHIQARISH
    ================================================== */
 
-function renderNews(news) {
+function renderNews(items) {
 
-    const newsArea =
+    const area =
         document.getElementById(
             "newsArea"
         );
 
+
     if (
-        !news ||
-        !Array.isArray(news) ||
-        news.length === 0
+        !Array.isArray(items) ||
+        items.length === 0
     ) {
 
-        newsArea.innerHTML = `
+        area.innerHTML = `
 
-            <div class="empty-card">
+            <div class="empty">
 
                 <div class="empty-icon">
                     📰
@@ -545,9 +518,8 @@ function renderNews(news) {
 
                 <p>
                     @MedAiUz_NEWS kanaliga
-                    yangi post joylanganda
-                    u shu yerda avtomatik
-                    paydo bo‘ladi.
+                    yangi post yuborilganda
+                    shu yerda ko‘rinadi.
                 </p>
 
             </div>
@@ -558,21 +530,16 @@ function renderNews(news) {
     }
 
 
-    newsArea.innerHTML = `
+    area.innerHTML = `
 
         <div class="news-list">
 
-            ${
-
-                news
-                    .map(
-                        item =>
-                            createNewsCard(
-                                item
-                            )
-                    )
-                    .join("")
-
+            ${items
+                .map(
+                    item =>
+                        createNewsCard(item)
+                )
+                .join("")
             }
 
         </div>
@@ -583,18 +550,18 @@ function renderNews(news) {
 
 
 /* ==================================================
-   YANGILIKLARNI YUKLASH
+   NEWS YUKLASH
    ================================================== */
 
 async function loadNews() {
 
-    const newsArea =
+    const area =
         document.getElementById(
             "newsArea"
         );
 
 
-    newsArea.innerHTML = `
+    area.innerHTML = `
 
         <div class="loading">
             📰 Yangiliklar yuklanmoqda...
@@ -605,10 +572,18 @@ async function loadNews() {
 
     try {
 
+        console.log(
+            "📰 News API:",
+            API_URL + "/api/news"
+        );
+
+
         const response =
             await fetch(
                 API_URL +
-                "/api/news",
+                "/api/news" +
+                "?t=" +
+                Date.now(),
                 {
                     method: "GET",
 
@@ -617,10 +592,17 @@ async function loadNews() {
             );
 
 
+        console.log(
+            "📰 API status:",
+            response.status
+        );
+
+
         if (!response.ok) {
 
             throw new Error(
-                "Server javob bermadi."
+                "Server xatosi: " +
+                response.status
             );
 
         }
@@ -630,12 +612,18 @@ async function loadNews() {
             await response.json();
 
 
+        console.log(
+            "📰 API data:",
+            data
+        );
+
+
         if (
             !data.success
         ) {
 
             throw new Error(
-                "Yangiliklar API xatosi."
+                "API success=false qaytardi."
             );
 
         }
@@ -649,26 +637,26 @@ async function loadNews() {
     } catch (error) {
 
         console.error(
-            "Yangiliklar xatosi:",
+            "❌ Yangiliklar xatosi:",
             error
         );
 
 
-        newsArea.innerHTML = `
+        area.innerHTML = `
 
-            <div class="error-card">
+            <div class="error">
 
                 ❌ Yangiliklarni yuklab bo‘lmadi.
 
                 <br>
 
-                Internet yoki server
-                aloqasini tekshiring.
+                Server bilan aloqa qilishda
+                muammo yuz berdi.
 
                 <br>
 
                 <button
-                    class="retry-btn"
+                    class="retry"
                     onclick="loadNews()"
                 >
                     🔄 Qayta urinish
@@ -684,20 +672,20 @@ async function loadNews() {
 
 
 /* ==================================================
-   AVTOMATIK YANGILASH
+   BOSHLASH
+   ================================================== */
+
+loadNews();
+
+
+/* ==================================================
+   HAR 1 DAQIQADA YANGILASH
    ================================================== */
 
 setInterval(
     loadNews,
     60000
 );
-
-
-/* ==================================================
-   BOSHLANGANDA YUKLASH
-   ================================================== */
-
-loadNews();
 
 </script>
 
