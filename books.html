@@ -111,7 +111,10 @@ course6:{title:"6-kurs",subjects:[["Neyroxirurgiya","🧠"]]}
 
 const booksBySubject={
 "Anatomiya":[
-{name:"Ahmedov 2018",url:"data/books/Anatomiya%201%20jild.pdf",icon:"📕"},
+{name:"Ahmedov 2018",icon:"📚",type:"folder",children:[
+{name:"Anatomiya 1 jild",url:"data/books/Anatomiya%201%20jild.pdf",icon:"📕"},
+{name:"Ahmedov. anatomiya 2 jild",url:"data/books/Ahmedov.%20anatomiya_2_jild.pdf",icon:"📕"}
+]},
 {name:"Ahmedov Atlas",url:"",icon:"🗺️"},
 {name:"Teshayev",url:"",icon:"📕"},
 {name:"Gadayev Mirsharapov",url:"",icon:"📕"},
@@ -158,15 +161,15 @@ const item=document.createElement("article");item.className="book";
 item.innerHTML=`
 <div class="book-top">
 <div class="book-icon">${book.icon}</div>
-<div class="book-info"><h3>${escapeHtml(book.name)}</h3><p>${escapeHtml(currentSubject)} • MedAiUz</p><span class="tag">${book.url?"PDF mavjud":"Tez orada"}</span></div>
+<div class="book-info"><h3>${escapeHtml(book.name)}</h3><p>${escapeHtml(currentSubject)} • MedAiUz</p><span class="tag">${book.type==="folder"?"Ichida darsliklar":book.url?"PDF mavjud":"Tez orada"}</span></div>
 </div>
 <div class="actions">
-<button class="action read">📖 O‘qish</button>
+<button class="action read">📖 ${book.type==="folder"?"Ochish":"O‘qish"}</button>
 <button class="action save">💾 Saqlash</button>
 <button class="action share">📤 Yuborish</button>
 <button class="action download">⬇️ Yuklab olish</button>
 </div>`;
-item.querySelector(".read").onclick=()=>readBook(book);
+item.querySelector(".read").onclick=()=>book.type==="folder"?openBookFolder(book):readBook(book);
 item.querySelector(".save").onclick=()=>saveBook(book);
 item.querySelector(".share").onclick=()=>shareBook(book);
 item.querySelector(".download").onclick=()=>downloadBook(book);
@@ -177,6 +180,21 @@ bookList.appendChild(item);
 function readBook(book){
 if(!book.url){alert("📚 "+book.name+"\n\nBu darslik hali PDF sifatida joylanmagan.");return}
 window.open(book.url,"_blank");
+}
+
+function openBookFolder(folder){
+bookList.innerHTML="";
+bookCount.textContent=folder.children.length+" ta kitob";
+const back=document.createElement("button");
+back.className="back-small";
+back.textContent="← Anatomiya kitoblariga qaytish";
+back.onclick=()=>renderBooks();
+bookList.appendChild(back);
+folder.children.forEach(book=>{
+const item=document.createElement("article");item.className="book";
+item.innerHTML=`<div class="book-top"><div class="book-icon">${book.icon}</div><div class="book-info"><h3>${escapeHtml(book.name)}</h3><p>Ahmedov 2018 • Anatomiya</p><span class="tag">PDF mavjud</span></div></div><div class="actions"><button class="action read">📖 O‘qish</button><button class="action save">💾 Saqlash</button><button class="action share">📤 Yuborish</button><button class="action download">⬇️ Yuklab olish</button></div>`;
+item.querySelector(".read").onclick=()=>readBook(book);item.querySelector(".save").onclick=()=>saveBook(book);item.querySelector(".share").onclick=()=>shareBook(book);item.querySelector(".download").onclick=()=>downloadBook(book);bookList.appendChild(item);
+});
 }
 
 function storageKey(){
