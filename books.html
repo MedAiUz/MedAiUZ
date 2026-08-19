@@ -164,10 +164,11 @@ item.innerHTML=`
 <div class="book-info"><h3>${escapeHtml(book.name)}</h3><p>${escapeHtml(currentSubject)} • MedAiUz</p><span class="tag">${book.type==="folder"?"Ichida darsliklar":book.url?"PDF mavjud":"Tez orada"}</span></div>
 </div>
 <div class="actions">
-<button class="action read">📖 ${book.type==="folder"?"Ochish":"O‘qish"}</button>
+<button class="action read">${book.type==="folder"?"📚 Kitoblar":"📖 O‘qish"}</button>
+${book.type==="folder" ? "" : `
 <button class="action save">💾 Saqlash</button>
 <button class="action share">📤 Yuborish</button>
-<button class="action download">⬇️ Yuklab olish</button>
+<button class="action download">⬇️ Yuklab olish</button>`}
 </div>`;
 item.querySelector(".read").onclick=()=>book.type==="folder"?openBookFolder(book):readBook(book);
 item.querySelector(".save").onclick=()=>saveBook(book);
