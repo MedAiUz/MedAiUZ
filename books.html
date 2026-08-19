@@ -2,56 +2,23 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MedAiUz — Darsliklar</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f5f7fb;color:#111827;padding-bottom:30px}
-button,input{font-family:inherit}button{cursor:pointer}
-.header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #e5e7eb;padding:16px}
-.top{max-width:950px;margin:auto;display:flex;align-items:center;gap:12px}
-.back{width:42px;height:42px;border:0;border-radius:13px;background:#eff6ff;font-size:20px}
-.top h1{font-size:20px}.top p{font-size:11px;color:#6b7280;margin-top:3px}
-.container{max-width:950px;margin:auto;padding:18px}
-.hero{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border-radius:24px;padding:24px;margin-bottom:20px}
-.hero h2{font-size:23px;margin-bottom:8px}.hero p{font-size:12px;line-height:1.6;opacity:.9}
-.search{width:100%;margin-top:18px;padding:15px 17px;border:0;border-radius:14px;outline:none;font-size:14px}
-.section-title{margin:22px 0 12px;font-size:19px}
-.categories{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.category{background:#fff;border:1px solid #e5e7eb;border-radius:17px;padding:15px;text-align:left}
-.category-icon{font-size:25px;margin-bottom:7px}.category h3{font-size:13px}.category p{color:#6b7280;font-size:10px;margin-top:4px}
-.back-small{border:0;background:#eff6ff;color:#2563eb;padding:10px 13px;border-radius:12px;margin-bottom:12px;font-weight:bold}
-.hidden{display:none!important}.subjects{display:grid;gap:10px}
-.subject{width:100%;display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #e5e7eb;border-radius:17px;padding:15px;text-align:left}
-.subject-icon{width:45px;height:45px;border-radius:13px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-.subject-info{flex:1}.subject-info h3{font-size:14px}.subject-info p{font-size:10px;color:#6b7280;margin-top:4px}
-.subject-arrow{font-size:20px;color:#9ca3af}
-.books{display:grid;gap:12px}.book{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:15px}
-.book-top{display:flex;align-items:center;gap:13px}.book-icon{width:52px;height:62px;flex-shrink:0;border-radius:12px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:27px}
-.book-info{flex:1}.book-info h3{font-size:14px;margin-bottom:5px}.book-info p{font-size:10px;color:#6b7280;line-height:1.4}
-.tag{display:inline-block;margin-top:6px;padding:4px 7px;background:#f3f4f6;border-radius:7px;font-size:9px;color:#4b5563}
-.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px}.action{border:0;border-radius:10px;padding:10px 7px;font-size:10px;font-weight:bold}
-.read{background:#2563eb;color:#fff}.save{background:#dcfce7;color:#166534}.share{background:#ffedd5;color:#9a3412}.download{background:#e0e7ff;color:#3730a3}
-.empty{display:none;background:#fff;border-radius:18px;padding:35px 20px;text-align:center;color:#6b7280}.count{font-size:11px;color:#6b7280;margin-bottom:12px}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;background:#f5f7fb;color:#111827;padding-bottom:30px}button,input{font-family:inherit}button{cursor:pointer}
+.header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #e5e7eb;padding:16px}.top{max-width:950px;margin:auto;display:flex;align-items:center;gap:12px}.back{width:42px;height:42px;border:0;border-radius:13px;background:#eff6ff;font-size:20px}.top h1{font-size:20px}.top p{font-size:11px;color:#6b7280;margin-top:3px}
+.container{max-width:950px;margin:auto;padding:18px}.hero{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border-radius:24px;padding:24px;margin-bottom:20px}.hero h2{font-size:23px;margin-bottom:8px}.hero p{font-size:12px;line-height:1.6;opacity:.9}.search{width:100%;margin-top:18px;padding:15px 17px;border:0;border-radius:14px;outline:none;font-size:14px}
+.section-title{margin:22px 0 12px;font-size:19px}.categories{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.category{background:#fff;border:1px solid #e5e7eb;border-radius:17px;padding:15px;text-align:left}.category-icon{font-size:25px;margin-bottom:7px}.category h3{font-size:13px}.category p{color:#6b7280;font-size:10px;margin-top:4px}
+.back-small{border:0;background:#eff6ff;color:#2563eb;padding:10px 13px;border-radius:12px;margin-bottom:12px;font-weight:bold}.hidden{display:none!important}.subjects{display:grid;gap:10px}.subject{width:100%;display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #e5e7eb;border-radius:17px;padding:15px;text-align:left}.subject-icon{width:45px;height:45px;border-radius:13px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}.subject-info{flex:1}.subject-info h3{font-size:14px}.subject-info p{font-size:10px;color:#6b7280;margin-top:4px}.subject-arrow{font-size:20px;color:#9ca3af}
+.books{display:grid;gap:12px}.book{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:15px}.book-top{display:flex;align-items:center;gap:13px}.book-icon{width:52px;height:62px;flex-shrink:0;border-radius:12px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:27px}.book-info{flex:1}.book-info h3{font-size:14px;margin-bottom:5px}.book-info p{font-size:10px;color:#6b7280;line-height:1.4}.tag{display:inline-block;margin-top:6px;padding:4px 7px;background:#f3f4f6;border-radius:7px;font-size:9px;color:#4b5563}.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px}.action{border:0;border-radius:10px;padding:10px 7px;font-size:10px;font-weight:bold}.read{background:#2563eb;color:#fff}.save{background:#dcfce7;color:#166534}.share{background:#ffedd5;color:#9a3412}.download{background:#e0e7ff;color:#3730a3}.empty{display:none;background:#fff;border-radius:18px;padding:35px 20px;text-align:center;color:#6b7280}.count{font-size:11px;color:#6b7280;margin-bottom:12px}
 @media(max-width:600px){.actions{grid-template-columns:1fr 1fr}.categories{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
-<header class="header"><div class="top">
-<button class="back" onclick="goBack()">←</button>
-<div><h1>📚 Darsliklar</h1><p>MedAiUz tibbiy elektron kutubxonasi</p></div>
-</div></header>
-
+<header class="header"><div class="top"><button class="back" onclick="goBack()">←</button><div><h1>📚 Darsliklar</h1><p>MedAiUz tibbiy elektron kutubxonasi</p></div></div></header>
 <main class="container">
-<section class="hero">
-<h2>📚 Tibbiy kutubxona</h2>
-<p>Fanlar bo‘yicha darsliklarni toping, o‘qing, saqlang va boshqa chatlarga yuboring.</p>
-<input id="search" class="search" type="text" placeholder="🔍 Fan yoki darslik qidiring..." oninput="searchAll()">
-</section>
-
-<div id="homeView">
-<h2 class="section-title">📚 Bo‘limlar</h2>
-<div class="categories">
+<section class="hero"><h2>📚 Tibbiy kutubxona</h2><p>Fanlar bo‘yicha darsliklarni toping, o‘qing, saqlang va yuboring.</p><input id="search" class="search" placeholder="🔍 Fan yoki darslik qidiring..." oninput="searchAll()"></section>
+<div id="homeView"><h2 class="section-title">📚 Bo‘limlar</h2><div class="categories">
 <button class="category" onclick="openSection('level1')"><div class="category-icon">1️⃣</div><h3>1-darajali fanlar</h3><p>Asosiy tibbiy fanlar</p></button>
 <button class="category" onclick="openSection('level2')"><div class="category-icon">2️⃣</div><h3>2-darajali fanlar</h3><p>Umumiy va yordamchi fanlar</p></button>
 <button class="category" onclick="openSection('course3')"><div class="category-icon">3️⃣</div><h3>3-kurs</h3><p>3-kurs fanlari</p></button>
@@ -59,137 +26,52 @@ button,input{font-family:inherit}button{cursor:pointer}
 <button class="category" onclick="openSection('course5')"><div class="category-icon">5️⃣</div><h3>5-kurs</h3><p>5-kurs fanlari</p></button>
 <button class="category" onclick="openSection('course6')"><div class="category-icon">6️⃣</div><h3>6-kurs</h3><p>6-kurs fanlari</p></button>
 </div></div>
-
-<div id="sectionView" class="hidden">
-<button class="back-small" onclick="showHome()">← Bo‘limlarga qaytish</button>
-<h2 id="sectionTitle" class="section-title"></h2><div id="subjectList" class="subjects"></div>
-</div>
-
-<div id="subjectView" class="hidden">
-<button class="back-small" onclick="backToSection()">← Fanlarga qaytish</button>
-<h2 id="subjectTitle" class="section-title"></h2><div id="bookCount" class="count"></div>
-<div id="bookList" class="books"></div>
-<div id="bookEmpty" class="empty">📚<br><br><strong>Hozircha darslik yo‘q</strong><br><br>Bu fanga darsliklar keyin qo‘shiladi.</div>
-</div>
-
-<div id="searchView" class="hidden">
-<h2 class="section-title">🔍 Qidiruv natijalari</h2><div id="searchCount" class="count"></div>
-<div id="searchResults" class="subjects"></div>
-<div id="searchEmpty" class="empty">📚<br><br><strong>Darslik yoki fan topilmadi</strong></div>
-</div>
+<div id="sectionView" class="hidden"><button class="back-small" onclick="showHome()">← Bo‘limlarga qaytish</button><h2 id="sectionTitle" class="section-title"></h2><div id="subjectList" class="subjects"></div></div>
+<div id="subjectView" class="hidden"><button class="back-small" onclick="backToSection()">← Fanlarga qaytish</button><h2 id="subjectTitle" class="section-title"></h2><div id="bookCount" class="count"></div><div id="bookList" class="books"></div><div id="bookEmpty" class="empty">📚<br><br><strong>Hozircha darslik yo‘q</strong></div></div>
+<div id="searchView" class="hidden"><h2 class="section-title">🔍 Qidiruv natijalari</h2><div id="searchCount" class="count"></div><div id="searchResults" class="subjects"></div><div id="searchEmpty" class="empty">📚<br><br><strong>Topilmadi</strong></div></div>
 </main>
-
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>
-try{window.Telegram?.WebApp?.ready();window.Telegram?.WebApp?.expand()}catch(e){}
-
+try{Telegram.WebApp.ready();Telegram.WebApp.expand()}catch(e){}
 const sections={
-level1:{title:"1-darajali fanlar",subjects:[
-["Anatomiya","🫀"],["Fiziologiya","❤️"],["Gistologiya","🔬"],["Biokimyo","🧪"],["Mikrobiologiya","🦠"],["Gigiyena","🧼"],["Patologiya","🧬"],["IKP va BKP","🩺"],["Farmakologiya","💊"]]},
-level2:{title:"2-darajali fanlar",subjects:[
-["Lotin tili","🔤"],["Ingliz tili","🇬🇧"],["Tibbiy biologiya","🧬"],["Tibbiy kimyo","⚗️"],["TKK","📘"],["Hayot xavfsizligi","🛡️"],["Biofizika","⚛️"],["Bioetika","⚕️"],["Falsafa","💭"],["O‘zbekiston tarixi","🏛️"],["Informatika TAT","💻"]]},
-course3:{title:"3-kurs",subjects:[
-["OXTA","🩺"],["Radiologiya","🩻"],["Transfuziologiya","🩸"],["Tibbiy genetika","🧬"],["Pediatriya","👶"],["Ichki kasalliklar","🫀"],["Klinik laborator diagnostika","🔬"],["Umumiy xirurgiya","🩹"],["Tibbiy psixologiya","🧠"],["Gematologiya","🩸"]]},
-course4:{title:"4-kurs",subjects:[
-["Pediatriya","👶"],["Radiologiya","🩻"],["Pulmonologiya","🫁"],["Travmatologiya","🦴"],["Fiziatriya","🏥"],["Urologiya","🩺"],["Akusherlik","🤰"],["Endokrinologiya","🧪"],["Sud tibbiyot","⚖️"],["Dermatologiya","🩹"]]},
-course5:{title:"5-kurs",subjects:[
-["Bolalar xirurgiyasi","👶"],["Ginekologiya","👩‍⚕️"],["Klinik farmakologiya","💊"],["LOR","👂"],["Onkologiya","🎗️"],["Epidemiologiya","🌍"],["Yuqumli kasalliklar","🦠"],["Xirurgiya","🩹"],["Neonatologiya","👶"],["Nevrologiya","🧠"],["Oftalmologiya","👁️"],["Anesteziologiya","💉"]]},
+level1:{title:"1-darajali fanlar",subjects:[["Anatomiya","🫀"],["Fiziologiya","❤️"],["Gistologiya","🔬"],["Biokimyo","🧪"],["Mikrobiologiya","🦠"],["Gigiyena","🧼"],["Patologiya","🧬"],["IKP va BKP","🩺"],["Farmakologiya","💊"]]},
+level2:{title:"2-darajali fanlar",subjects:[["Lotin tili","🔤"],["Ingliz tili","🇬🇧"],["Tibbiy biologiya","🧬"],["Tibbiy kimyo","⚗️"],["TKK","📘"],["Hayot xavfsizligi","🛡️"],["Biofizika","⚛️"],["Bioetika","⚕️"],["Falsafa","💭"],["O‘zbekiston tarixi","🏛️"],["Informatika TAT","💻"]]},
+course3:{title:"3-kurs",subjects:[["OXTA","🩺"],["Radiologiya","🩻"],["Transfuziologiya","🩸"],["Tibbiy genetika","🧬"],["Pediatriya","👶"],["Ichki kasalliklar","🫀"],["Klinik laborator diagnostika","🔬"],["Umumiy xirurgiya","🩹"],["Tibbiy psixologiya","🧠"],["Gematologiya","🩸"]]},
+course4:{title:"4-kurs",subjects:[["Pediatriya","👶"],["Radiologiya","🩻"],["Pulmonologiya","🫁"],["Travmatologiya","🦴"],["Fiziatriya","🏥"],["Urologiya","🩺"],["Akusherlik","🤰"],["Endokrinologiya","🧪"],["Sud tibbiyot","⚖️"],["Dermatologiya","🩹"]]},
+course5:{title:"5-kurs",subjects:[["Bolalar xirurgiyasi","👶"],["Ginekologiya","👩‍⚕️"],["Klinik farmakologiya","💊"],["LOR","👂"],["Onkologiya","🎗️"],["Epidemiologiya","🌍"],["Yuqumli kasalliklar","🦠"],["Xirurgiya","🩹"],["Neonatologiya","👶"],["Nevrologiya","🧠"],["Oftalmologiya","👁️"],["Anesteziologiya","💉"]]},
 course6:{title:"6-kurs",subjects:[["Neyroxirurgiya","🧠"]]}
 };
-
+const R="https://github.com/MedAiUz/MedAiUZ/releases/download/v1.0.0/";
 const booksBySubject={
 "Anatomiya":[
 {name:"Ahmedov 2018",icon:"📚",type:"folder",folderTitle:"Kitoblar",children:[
-{name:"Anatomiya 1 jild",url:"data/books/Anatomiya%201%20jild.pdf",icon:"📕"},
-{name:"Ahmedov. anatomiya 2 jild",url:"data/books/Ahmedov.%20anatomiya_2_jild.pdf",icon:"📕"}
-]},
-{name:"Ahmedov Atlas",url:"",icon:"🗺️"},
-{name:"Teshayev",url:"",icon:"📕"},
-{name:"Gadayev Mirsharapov",url:"",icon:"📕"},
-{name:"Xudoyberdiyev",url:"",icon:"📕"},
-{name:"Bahodirov",url:"",icon:"📕"},
-{name:"Sinelnikov",url:"",icon:"📕"}
+{name:"Anatomiya 1 jild",url:R+"Anatomiya.1-jild.A.Ahmedov.2018.pdf",icon:"📕"},
+{name:"Ahmedov. anatomiya 2 jild",url:R+"Ahmedov.anatomiya_2_jild.pdf",icon:"📕"}]},
+{name:"Ahmedov Atlas",icon:"📚",type:"folder",folderTitle:"Kitoblar",children:[
+{name:"Odam anatomiyasi Atlas 1-jild",url:R+"Odam.anatomiyasi.Atlas.1-jild.N.Ahmedov.pdf",icon:"📕"},
+{name:"Odam anatomiyasi Atlas 2-jild",url:R+"Odam.anatomiyasi.Atlas.2-jild.N.Ahmedov.pdf",icon:"📕"}]},
+{name:"Teshayev",icon:"📚",type:"folder",folderTitle:"Kitoblar",children:[{name:"Odam anatomiyasi Atlas — Teshayev",url:R+"Odam.anatomiyasi.Atlas.Sh.J.Teshaev.pdf",icon:"📕"}]},
+{name:"Gadayev Mirsharapov",icon:"📚",type:"folder",folderTitle:"Kitoblar",children:[{name:"Gadayev Mirsharapov — Odam anatomiyasi",url:R+"Gadayev.Mirsharapov.Odam.anat.si.pdf",icon:"📕"}]},
+{name:"Xudoyberdiyev",icon:"📚",type:"folder",folderTitle:"Kitoblar",children:[{name:"Anatomiya — Xudoyberdiyev",url:R+"Anatomiya.Xudoyberdiyev.pdf",icon:"📕"}]},
+{name:"Bahodirov",icon:"📚",type:"folder",folderTitle:"Kitoblar",children:[{name:"Odam anatomiyasi — F. Bahodirov",url:R+"Odam.anatomiyas.F.Bahodirov.pdf",icon:"📕"}]},
+{name:"Sinelnikov",icon:"📚",type:"folder",folderTitle:"Kitoblar",children:[{name:"Atlas odam anatomiyasi — Sinelnikov",url:R+"ATLAS.ODAM.ANATOMIYASI.I-TOM.SINELNIKOV.O.zbekcha.pdf",icon:"📕"}]}
 ]};
-
 let currentSection="",currentSubject="";
-
 function goBack(){window.location.href="index.html"}
-
-function openSection(key){
-currentSection=key;homeView.classList.add("hidden");searchView.classList.add("hidden");subjectView.classList.add("hidden");sectionView.classList.remove("hidden");
-sectionTitle.textContent=sections[key].title;subjectList.innerHTML="";
-sections[key].subjects.forEach(([name,icon])=>{
-const b=document.createElement("button");b.className="subject";
-b.innerHTML=`<div class="subject-icon">${icon}</div><div class="subject-info"><h3>${name}</h3><p>Darsliklar va o‘quv materiallari</p></div><div class="subject-arrow">›</div>`;
-b.onclick=()=>openSubject(name);subjectList.appendChild(b);
-});}
-
+function openSection(key){currentSection=key;homeView.classList.add("hidden");searchView.classList.add("hidden");subjectView.classList.add("hidden");sectionView.classList.remove("hidden");sectionTitle.textContent=sections[key].title;subjectList.innerHTML="";sections[key].subjects.forEach(([name,icon])=>{const b=document.createElement("button");b.className="subject";b.innerHTML=`<div class="subject-icon">${icon}</div><div class="subject-info"><h3>${name}</h3><p>Darsliklar va o‘quv materiallari</p></div><div class="subject-arrow">›</div>`;b.onclick=()=>openSubject(name);subjectList.appendChild(b)})}
 function showHome(){sectionView.classList.add("hidden");subjectView.classList.add("hidden");searchView.classList.add("hidden");homeView.classList.remove("hidden")}
 function backToSection(){subjectView.classList.add("hidden");sectionView.classList.remove("hidden")}
-
-function openSubject(name){
-currentSubject=name;sectionView.classList.add("hidden");searchView.classList.add("hidden");subjectView.classList.remove("hidden");
-subjectTitle.textContent=name;renderBooks();
-}
-
-function renderBooks(){
-const books=booksBySubject[currentSubject]||[];bookList.innerHTML="";bookCount.textContent=books.length+" ta darslik";bookEmpty.style.display=books.length?"none":"block";
-books.forEach(book=>{
-const item=document.createElement("article");item.className="book";
-if(book.type==="folder"){
-item.innerHTML=`<div class="book-top"><div class="book-icon">📚</div><div class="book-info"><h3>${escapeHtml(book.name)}</h3><p>${escapeHtml(currentSubject)} • MedAiUz</p><span class="tag">Kitoblar</span></div></div><div class="actions"><button class="action read">📚 Kitoblar</button></div>`;
-item.querySelector(".read").onclick=()=>openBookFolder(book);
-}else{
-item.innerHTML=`<div class="book-top"><div class="book-icon">${book.icon}</div><div class="book-info"><h3>${escapeHtml(book.name)}</h3><p>${escapeHtml(currentSubject)} • MedAiUz</p><span class="tag">${book.url?"PDF mavjud":"Tez orada"}</span></div></div><div class="actions"><button class="action read">📖 O‘qish</button><button class="action save">💾 Saqlash</button><button class="action share">📤 Yuborish</button><button class="action download">⬇️ Yuklab olish</button></div>`;
-item.querySelector(".read").onclick=()=>readBook(book);item.querySelector(".save").onclick=()=>saveBook(book);item.querySelector(".share").onclick=()=>shareBook(book);item.querySelector(".download").onclick=()=>downloadBook(book);
-}
-bookList.appendChild(item);
-});}
-
-function openBookFolder(folder){
-bookList.innerHTML="";
-bookCount.textContent=folder.children.length+" ta kitob";
-const back=document.createElement("button");back.className="back-small";back.textContent="← Ahmedov 2018 ga qaytish";back.onclick=()=>renderBooks();bookList.appendChild(back);
-folder.children.forEach(book=>{
-const item=document.createElement("article");item.className="book";
-item.innerHTML=`<div class="book-top"><div class="book-icon">${book.icon}</div><div class="book-info"><h3>${escapeHtml(book.name)}</h3><p>Ahmedov 2018 • Anatomiya</p><span class="tag">PDF mavjud</span></div></div><div class="actions"><button class="action read">📖 O‘qish</button><button class="action save">💾 Saqlash</button><button class="action share">📤 Yuborish</button><button class="action download">⬇️ Yuklab olish</button></div>`;
-item.querySelector(".read").onclick=()=>readBook(book);item.querySelector(".save").onclick=()=>saveBook(book);item.querySelector(".share").onclick=()=>shareBook(book);item.querySelector(".download").onclick=()=>downloadBook(book);
-bookList.appendChild(item);
-});}
-
-function readBook(book){
-if(!book.url){
-alert("📚 "+book.name+"\\n\\nBu darslik hali PDF sifatida joylanmagan.");
-return;
-}
-
-const readerUrl =
-"reader.html?pdf=" +
-encodeURIComponent(book.url) +
-"&title=" +
-encodeURIComponent(book.name);
-
-window.location.href = readerUrl;
-}
-function storageKey(){const user=window.Telegram?.WebApp?.initDataUnsafe?.user;return user?.id?"medaiuz_saved_materials_"+user.id:"medaiuz_saved_materials_guest"}
-function getSavedLocal(){try{return JSON.parse(localStorage.getItem(storageKey())||"[]")}catch(e){return[]}}
-function setSavedLocal(list){localStorage.setItem(storageKey(),JSON.stringify(list))}
-function saveBook(book){if(!book.url){alert("📚 "+book.name+"\n\nBu darslik hali PDF sifatida joylanmagan.");return}const list=getSavedLocal();if(list.some(x=>x.url===book.url)){alert("✅ Bu darslik allaqachon saqlangan.");return}list.push({name:book.name,url:book.url,subject:currentSubject,date:new Date().toISOString()});setSavedLocal(list);alert("💾 Saqlandi!\n\nProfil → Saqlangan materiallar bo‘limidan ko‘rishingiz mumkin.")}
-async function shareBook(book){if(!book.url){alert("📚 Bu darslik hali PDF sifatida joylanmagan.");return}const url=new URL(book.url,location.href).href;if(navigator.share){try{await navigator.share({title:"MedAiUz — "+book.name,text:"📚 "+book.name,url});return}catch(e){}}window.open("https://t.me/share/url?url="+encodeURIComponent(url)+"&text="+encodeURIComponent("📚 "+book.name),"_blank")}
-function downloadBook(book){if(!book.url){alert("📚 Bu darslik hali PDF sifatida joylanmagan.");return}const a=document.createElement("a");a.href=book.url;a.download=book.name+".pdf";a.target="_blank";document.body.appendChild(a);a.click();a.remove()}
-
-function searchAll(){
-const q=search.value.trim().toLowerCase();if(!q){searchView.classList.add("hidden");if(currentSection)sectionView.classList.remove("hidden");else homeView.classList.remove("hidden");return}
-homeView.classList.add("hidden");sectionView.classList.add("hidden");subjectView.classList.add("hidden");searchView.classList.remove("hidden");
-const results=[];
-Object.entries(sections).forEach(([key,sec])=>sec.subjects.forEach(([name,icon])=>{if(name.toLowerCase().includes(q))results.push({type:"subject",key,name,icon})}));
-Object.entries(booksBySubject).forEach(([subject,books])=>books.forEach(book=>{
-if(book.name.toLowerCase().includes(q))results.push({type:"book",subject,book});
-if(book.type==="folder")book.children.forEach(child=>{if(child.name.toLowerCase().includes(q))results.push({type:"book",subject,book:child})});
-}));
-searchResults.innerHTML="";searchCount.textContent=results.length+" ta natija";searchEmpty.style.display=results.length?"none":"block";
-results.forEach(r=>{const b=document.createElement("button");b.className="subject";const icon=r.type==="book"?r.book.icon:r.icon;const name=r.type==="book"?r.book.name:r.name;b.innerHTML=`<div class="subject-icon">${icon}</div><div class="subject-info"><h3>${escapeHtml(name)}</h3><p>${escapeHtml(r.type==="book"?r.subject:"Fan")}</p></div><div class="subject-arrow">›</div>`;b.onclick=()=>r.type==="book"?openSubject(r.subject):openSection(r.key);searchResults.appendChild(b)});
-}
+function openSubject(name){currentSubject=name;sectionView.classList.add("hidden");searchView.classList.add("hidden");subjectView.classList.remove("hidden");subjectTitle.textContent=name;renderBooks()}
+function renderBooks(){const books=booksBySubject[currentSubject]||[];bookList.innerHTML="";bookCount.textContent=books.length+" ta darslik";bookEmpty.style.display=books.length?"none":"block";books.forEach(book=>{const item=document.createElement("article");item.className="book";if(book.type==="folder"){item.innerHTML=`<div class="book-top"><div class="book-icon">📚</div><div class="book-info"><h3>${escapeHtml(book.name)}</h3><p>${escapeHtml(currentSubject)} • MedAiUz</p><span class="tag">Kitoblar</span></div></div><div class="actions"><button class="action read">📚 Kitoblar</button></div>`;item.querySelector(".read").onclick=()=>openBookFolder(book)}else{makeBookCard(item,book)}bookList.appendChild(item)})}
+function makeBookCard(item,book){item.innerHTML=`<div class="book-top"><div class="book-icon">${book.icon}</div><div class="book-info"><h3>${escapeHtml(book.name)}</h3><p>${escapeHtml(currentSubject)} • MedAiUz</p><span class="tag">PDF mavjud</span></div></div><div class="actions"><button class="action read">📖 O‘qish</button><button class="action save">💾 Saqlash</button><button class="action share">📤 Yuborish</button><button class="action download">⬇️ Yuklab olish</button></div>`;item.querySelector(".read").onclick=()=>readBook(book);item.querySelector(".save").onclick=()=>saveBook(book);item.querySelector(".share").onclick=()=>shareBook(book);item.querySelector(".download").onclick=()=>downloadBook(book)}
+function openBookFolder(folder){bookList.innerHTML="";bookCount.textContent=folder.children.length+" ta kitob";const back=document.createElement("button");back.className="back-small";back.textContent="← "+currentSubject+" ga qaytish";back.onclick=()=>renderBooks();bookList.appendChild(back);folder.children.forEach(book=>{const item=document.createElement("article");item.className="book";makeBookCard(item,book);bookList.appendChild(item)})}
+function readBook(book){if(!book.url){alert("Bu darslik hali PDF sifatida joylanmagan.");return}window.location.href="reader.html?pdf="+encodeURIComponent(book.url)+"&title="+encodeURIComponent(book.name)}
+function storageKey(){const u=window.Telegram?.WebApp?.initDataUnsafe?.user;return u?.id?"medaiuz_saved_materials_"+u.id:"medaiuz_saved_materials_guest"}
+function getSaved(){try{return JSON.parse(localStorage.getItem(storageKey())||"[]")}catch(e){return[]}}
+function saveBook(book){if(!book.url){alert("Bu darslik hali PDF sifatida joylanmagan.");return}const a=getSaved();if(a.some(x=>x.url===book.url)){alert("✅ Bu darslik allaqachon saqlangan.");return}a.push({name:book.name,url:book.url,subject:currentSubject,date:new Date().toISOString()});localStorage.setItem(storageKey(),JSON.stringify(a));alert("💾 Saqlandi!")}
+async function shareBook(book){if(!book.url){alert("Bu darslik hali PDF sifatida joylanmagan.");return}const u=new URL(book.url,location.href).href;if(navigator.share){try{await navigator.share({title:book.name,text:"📚 "+book.name,url:u});return}catch(e){}}window.open("https://t.me/share/url?url="+encodeURIComponent(u)+"&text="+encodeURIComponent("📚 "+book.name),"_blank")}
+function downloadBook(book){if(!book.url){alert("Bu darslik hali PDF sifatida joylanmagan.");return}const a=document.createElement("a");a.href=book.url;a.download=book.name+".pdf";a.target="_blank";document.body.appendChild(a);a.click();a.remove()}
+function searchAll(){const q=search.value.trim().toLowerCase();if(!q){searchView.classList.add("hidden");if(currentSection)sectionView.classList.remove("hidden");else homeView.classList.remove("hidden");return}homeView.classList.add("hidden");sectionView.classList.add("hidden");subjectView.classList.add("hidden");searchView.classList.remove("hidden");const r=[];Object.entries(sections).forEach(([key,s])=>s.subjects.forEach(([name,icon])=>{if(name.toLowerCase().includes(q))r.push({type:"subject",key,name,icon})}));Object.entries(booksBySubject).forEach(([subject,books])=>books.forEach(book=>{if(book.name.toLowerCase().includes(q))r.push({type:"book",subject,book});if(book.children)book.children.forEach(c=>{if(c.name.toLowerCase().includes(q))r.push({type:"book",subject,book:c})})}));searchResults.innerHTML="";searchCount.textContent=r.length+" ta natija";searchEmpty.style.display=r.length?"none":"block";r.forEach(x=>{const b=document.createElement("button");b.className="subject";const icon=x.type==="book"?x.book.icon:x.icon,name=x.type==="book"?x.book.name:x.name;b.innerHTML=`<div class="subject-icon">${icon}</div><div class="subject-info"><h3>${escapeHtml(name)}</h3><p>${escapeHtml(x.type==="book"?x.subject:"Fan")}</p></div><div class="subject-arrow">›</div>`;b.onclick=()=>x.type==="book"?openSubject(x.subject):openSection(x.key);searchResults.appendChild(b)})}
 function escapeHtml(v){return String(v).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 </script>
 </body>
