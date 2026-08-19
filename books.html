@@ -7,8 +7,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Arial,sans-serif;background:#f5f7fb;color:#111827;padding-bottom:30px}
-button,input{font-family:inherit}
-button{cursor:pointer}
+button,input{font-family:inherit}button{cursor:pointer}
 .header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #e5e7eb;padding:16px}
 .top{max-width:950px;margin:auto;display:flex;align-items:center;gap:12px}
 .back{width:42px;height:42px;border:0;border-radius:13px;background:#eff6ff;font-size:20px}
@@ -22,33 +21,26 @@ button{cursor:pointer}
 .category{background:#fff;border:1px solid #e5e7eb;border-radius:17px;padding:15px;text-align:left}
 .category-icon{font-size:25px;margin-bottom:7px}.category h3{font-size:13px}.category p{color:#6b7280;font-size:10px;margin-top:4px}
 .back-small{border:0;background:#eff6ff;color:#2563eb;padding:10px 13px;border-radius:12px;margin-bottom:12px;font-weight:bold}
-.hidden{display:none!important}
-.subjects{display:grid;gap:10px}
+.hidden{display:none!important}.subjects{display:grid;gap:10px}
 .subject{width:100%;display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #e5e7eb;border-radius:17px;padding:15px;text-align:left}
 .subject-icon{width:45px;height:45px;border-radius:13px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
 .subject-info{flex:1}.subject-info h3{font-size:14px}.subject-info p{font-size:10px;color:#6b7280;margin-top:4px}
 .subject-arrow{font-size:20px;color:#9ca3af}
-.books{display:grid;gap:12px}
-.book{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:15px}
-.book-top{display:flex;align-items:center;gap:13px}
-.book-icon{width:52px;height:62px;flex-shrink:0;border-radius:12px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:27px}
+.books{display:grid;gap:12px}.book{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:15px}
+.book-top{display:flex;align-items:center;gap:13px}.book-icon{width:52px;height:62px;flex-shrink:0;border-radius:12px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:27px}
 .book-info{flex:1}.book-info h3{font-size:14px;margin-bottom:5px}.book-info p{font-size:10px;color:#6b7280;line-height:1.4}
 .tag{display:inline-block;margin-top:6px;padding:4px 7px;background:#f3f4f6;border-radius:7px;font-size:9px;color:#4b5563}
-.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px}
-.action{border:0;border-radius:10px;padding:10px 7px;font-size:10px;font-weight:bold}
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px}.action{border:0;border-radius:10px;padding:10px 7px;font-size:10px;font-weight:bold}
 .read{background:#2563eb;color:#fff}.save{background:#dcfce7;color:#166534}.share{background:#ffedd5;color:#9a3412}.download{background:#e0e7ff;color:#3730a3}
-.empty{display:none;background:#fff;border-radius:18px;padding:35px 20px;text-align:center;color:#6b7280}
-.count{font-size:11px;color:#6b7280;margin-bottom:12px}
+.empty{display:none;background:#fff;border-radius:18px;padding:35px 20px;text-align:center;color:#6b7280}.count{font-size:11px;color:#6b7280;margin-bottom:12px}
 @media(max-width:600px){.actions{grid-template-columns:1fr 1fr}.categories{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
-<header class="header">
-<div class="top">
+<header class="header"><div class="top">
 <button class="back" onclick="goBack()">←</button>
 <div><h1>📚 Darsliklar</h1><p>MedAiUz tibbiy elektron kutubxonasi</p></div>
-</div>
-</header>
+</div></header>
 
 <main class="container">
 <section class="hero">
@@ -66,26 +58,22 @@ button{cursor:pointer}
 <button class="category" onclick="openSection('course4')"><div class="category-icon">4️⃣</div><h3>4-kurs</h3><p>4-kurs fanlari</p></button>
 <button class="category" onclick="openSection('course5')"><div class="category-icon">5️⃣</div><h3>5-kurs</h3><p>5-kurs fanlari</p></button>
 <button class="category" onclick="openSection('course6')"><div class="category-icon">6️⃣</div><h3>6-kurs</h3><p>6-kurs fanlari</p></button>
-</div>
-</div>
+</div></div>
 
 <div id="sectionView" class="hidden">
 <button class="back-small" onclick="showHome()">← Bo‘limlarga qaytish</button>
-<h2 id="sectionTitle" class="section-title"></h2>
-<div id="subjectList" class="subjects"></div>
+<h2 id="sectionTitle" class="section-title"></h2><div id="subjectList" class="subjects"></div>
 </div>
 
 <div id="subjectView" class="hidden">
 <button class="back-small" onclick="backToSection()">← Fanlarga qaytish</button>
-<h2 id="subjectTitle" class="section-title"></h2>
-<div id="bookCount" class="count"></div>
+<h2 id="subjectTitle" class="section-title"></h2><div id="bookCount" class="count"></div>
 <div id="bookList" class="books"></div>
 <div id="bookEmpty" class="empty">📚<br><br><strong>Hozircha darslik yo‘q</strong><br><br>Bu fanga darsliklar keyin qo‘shiladi.</div>
 </div>
 
 <div id="searchView" class="hidden">
-<h2 class="section-title">🔍 Qidiruv natijalari</h2>
-<div id="searchCount" class="count"></div>
+<h2 class="section-title">🔍 Qidiruv natijalari</h2><div id="searchCount" class="count"></div>
 <div id="searchResults" class="subjects"></div>
 <div id="searchEmpty" class="empty">📚<br><br><strong>Darslik yoki fan topilmadi</strong></div>
 </div>
@@ -111,7 +99,7 @@ course6:{title:"6-kurs",subjects:[["Neyroxirurgiya","🧠"]]}
 
 const booksBySubject={
 "Anatomiya":[
-{name:"Ahmedov 2018",icon:"📚",type:"folder",children:[
+{name:"Ahmedov 2018",icon:"📚",type:"folder",folderTitle:"Kitoblar",children:[
 {name:"Anatomiya 1 jild",url:"data/books/Anatomiya%201%20jild.pdf",icon:"📕"},
 {name:"Ahmedov. anatomiya 2 jild",url:"data/books/Ahmedov.%20anatomiya_2_jild.pdf",icon:"📕"}
 ]},
@@ -120,138 +108,75 @@ const booksBySubject={
 {name:"Gadayev Mirsharapov",url:"",icon:"📕"},
 {name:"Xudoyberdiyev",url:"",icon:"📕"},
 {name:"Bahodirov",url:"",icon:"📕"},
-{name:"Sinelnikov",url:"",icon:"📕"}]
-};
+{name:"Sinelnikov",url:"",icon:"📕"}
+]};
 
-let currentSection="";
-let currentSubject="";
+let currentSection="",currentSubject="";
 
 function goBack(){window.location.href="index.html"}
 
 function openSection(key){
-currentSection=key;
-homeView.classList.add("hidden");searchView.classList.add("hidden");subjectView.classList.add("hidden");sectionView.classList.remove("hidden");
-sectionTitle.textContent=sections[key].title;
-subjectList.innerHTML="";
+currentSection=key;homeView.classList.add("hidden");searchView.classList.add("hidden");subjectView.classList.add("hidden");sectionView.classList.remove("hidden");
+sectionTitle.textContent=sections[key].title;subjectList.innerHTML="";
 sections[key].subjects.forEach(([name,icon])=>{
 const b=document.createElement("button");b.className="subject";
 b.innerHTML=`<div class="subject-icon">${icon}</div><div class="subject-info"><h3>${name}</h3><p>Darsliklar va o‘quv materiallari</p></div><div class="subject-arrow">›</div>`;
 b.onclick=()=>openSubject(name);subjectList.appendChild(b);
-});
-}
+});}
 
-function showHome(){
-sectionView.classList.add("hidden");subjectView.classList.add("hidden");searchView.classList.add("hidden");homeView.classList.remove("hidden");
-}
-
+function showHome(){sectionView.classList.add("hidden");subjectView.classList.add("hidden");searchView.classList.add("hidden");homeView.classList.remove("hidden")}
 function backToSection(){subjectView.classList.add("hidden");sectionView.classList.remove("hidden")}
 
 function openSubject(name){
-currentSubject=name;
-sectionView.classList.add("hidden");searchView.classList.add("hidden");subjectView.classList.remove("hidden");
+currentSubject=name;sectionView.classList.add("hidden");searchView.classList.add("hidden");subjectView.classList.remove("hidden");
 subjectTitle.textContent=name;renderBooks();
 }
 
 function renderBooks(){
-const books=booksBySubject[currentSubject]||[];
-bookList.innerHTML="";bookCount.textContent=books.length+" ta darslik";
-bookEmpty.style.display=books.length?"none":"block";
+const books=booksBySubject[currentSubject]||[];bookList.innerHTML="";bookCount.textContent=books.length+" ta darslik";bookEmpty.style.display=books.length?"none":"block";
 books.forEach(book=>{
 const item=document.createElement("article");item.className="book";
-item.innerHTML=`
-<div class="book-top">
-<div class="book-icon">${book.icon}</div>
-<div class="book-info"><h3>${escapeHtml(book.name)}</h3><p>${escapeHtml(currentSubject)} • MedAiUz</p><span class="tag">${book.type==="folder"?"Ichida darsliklar":book.url?"PDF mavjud":"Tez orada"}</span></div>
-</div>
-<div class="actions">
-<button class="action read">${book.type==="folder" ? "📚 Kitoblar" : "📖 O‘qish"}</button>
-${book.type !== "folder" ? `
-<button class="action save">💾 Saqlash</button>
-<button class="action share">📤 Yuborish</button>
-<button class="action download">⬇️ Yuklab olish</button>` : ""}
-</div>`;
-item.querySelector(".read").onclick=()=>book.type==="folder"?openBookFolder(book):readBook(book);
-item.querySelector(".save").onclick=()=>saveBook(book);
-item.querySelector(".share").onclick=()=>shareBook(book);
-item.querySelector(".download").onclick=()=>downloadBook(book);
+if(book.type==="folder"){
+item.innerHTML=`<div class="book-top"><div class="book-icon">📚</div><div class="book-info"><h3>${escapeHtml(book.name)}</h3><p>${escapeHtml(currentSubject)} • MedAiUz</p><span class="tag">Kitoblar</span></div></div><div class="actions"><button class="action read">📚 Kitoblar</button></div>`;
+item.querySelector(".read").onclick=()=>openBookFolder(book);
+}else{
+item.innerHTML=`<div class="book-top"><div class="book-icon">${book.icon}</div><div class="book-info"><h3>${escapeHtml(book.name)}</h3><p>${escapeHtml(currentSubject)} • MedAiUz</p><span class="tag">${book.url?"PDF mavjud":"Tez orada"}</span></div></div><div class="actions"><button class="action read">📖 O‘qish</button><button class="action save">💾 Saqlash</button><button class="action share">📤 Yuborish</button><button class="action download">⬇️ Yuklab olish</button></div>`;
+item.querySelector(".read").onclick=()=>readBook(book);item.querySelector(".save").onclick=()=>saveBook(book);item.querySelector(".share").onclick=()=>shareBook(book);item.querySelector(".download").onclick=()=>downloadBook(book);
+}
 bookList.appendChild(item);
-});
-}
-
-function readBook(book){
-if(!book.url){alert("📚 "+book.name+"\n\nBu darslik hali PDF sifatida joylanmagan.");return}
-window.open(book.url,"_blank");
-}
+});}
 
 function openBookFolder(folder){
 bookList.innerHTML="";
 bookCount.textContent=folder.children.length+" ta kitob";
-const back=document.createElement("button");
-back.className="back-small";
-back.textContent="← Anatomiya kitoblariga qaytish";
-back.onclick=()=>renderBooks();
-bookList.appendChild(back);
+const back=document.createElement("button");back.className="back-small";back.textContent="← Ahmedov 2018 ga qaytish";back.onclick=()=>renderBooks();bookList.appendChild(back);
 folder.children.forEach(book=>{
 const item=document.createElement("article");item.className="book";
 item.innerHTML=`<div class="book-top"><div class="book-icon">${book.icon}</div><div class="book-info"><h3>${escapeHtml(book.name)}</h3><p>Ahmedov 2018 • Anatomiya</p><span class="tag">PDF mavjud</span></div></div><div class="actions"><button class="action read">📖 O‘qish</button><button class="action save">💾 Saqlash</button><button class="action share">📤 Yuborish</button><button class="action download">⬇️ Yuklab olish</button></div>`;
-item.querySelector(".read").onclick=()=>readBook(book);item.querySelector(".save").onclick=()=>saveBook(book);item.querySelector(".share").onclick=()=>shareBook(book);item.querySelector(".download").onclick=()=>downloadBook(book);bookList.appendChild(item);
-});
-}
+item.querySelector(".read").onclick=()=>readBook(book);item.querySelector(".save").onclick=()=>saveBook(book);item.querySelector(".share").onclick=()=>shareBook(book);item.querySelector(".download").onclick=()=>downloadBook(book);
+bookList.appendChild(item);
+});}
 
-function storageKey(){
-const user=window.Telegram?.WebApp?.initDataUnsafe?.user;
-return user?.id?"medaiuz_saved_materials_"+user.id:"medaiuz_saved_materials_guest";
-}
-
-function getSavedLocal(){
-try{return JSON.parse(localStorage.getItem(storageKey())||"[]")}catch(e){return[]}
-}
+function readBook(book){if(!book.url){alert("📚 "+book.name+"\n\nBu darslik hali PDF sifatida joylanmagan.");return}window.open(book.url,"_blank")}
+function storageKey(){const user=window.Telegram?.WebApp?.initDataUnsafe?.user;return user?.id?"medaiuz_saved_materials_"+user.id:"medaiuz_saved_materials_guest"}
+function getSavedLocal(){try{return JSON.parse(localStorage.getItem(storageKey())||"[]")}catch(e){return[]}}
 function setSavedLocal(list){localStorage.setItem(storageKey(),JSON.stringify(list))}
-
-function saveBook(book){
-if(!book.url){alert("📚 "+book.name+"\n\nBu darslik hali PDF sifatida joylanmagan.");return}
-const list=getSavedLocal();
-if(list.some(x=>x.url===book.url)){alert("✅ Bu darslik allaqachon saqlangan.");return}
-list.push({name:book.name,url:book.url,subject:currentSubject,date:new Date().toISOString()});
-setSavedLocal(list);
-alert("💾 Saqlandi!\n\nProfil → Saqlangan materiallar bo‘limidan ko‘rishingiz mumkin.");
-}
-
-async function shareBook(book){
-if(!book.url){alert("📚 Bu darslik hali PDF sifatida joylanmagan.");return}
-const url=new URL(book.url,location.href).href;
-if(navigator.share){
-try{await navigator.share({title:"MedAiUz — "+book.name,text:"📚 "+book.name,url});return}catch(e){}
-}
-window.open("https://t.me/share/url?url="+encodeURIComponent(url)+"&text="+encodeURIComponent("📚 "+book.name),"_blank");
-}
-
-function downloadBook(book){
-if(!book.url){alert("📚 Bu darslik hali PDF sifatida joylanmagan.");return}
-const a=document.createElement("a");a.href=book.url;a.download=book.name+".pdf";a.target="_blank";document.body.appendChild(a);a.click();a.remove();
-}
+function saveBook(book){if(!book.url){alert("📚 "+book.name+"\n\nBu darslik hali PDF sifatida joylanmagan.");return}const list=getSavedLocal();if(list.some(x=>x.url===book.url)){alert("✅ Bu darslik allaqachon saqlangan.");return}list.push({name:book.name,url:book.url,subject:currentSubject,date:new Date().toISOString()});setSavedLocal(list);alert("💾 Saqlandi!\n\nProfil → Saqlangan materiallar bo‘limidan ko‘rishingiz mumkin.")}
+async function shareBook(book){if(!book.url){alert("📚 Bu darslik hali PDF sifatida joylanmagan.");return}const url=new URL(book.url,location.href).href;if(navigator.share){try{await navigator.share({title:"MedAiUz — "+book.name,text:"📚 "+book.name,url});return}catch(e){}}window.open("https://t.me/share/url?url="+encodeURIComponent(url)+"&text="+encodeURIComponent("📚 "+book.name),"_blank")}
+function downloadBook(book){if(!book.url){alert("📚 Bu darslik hali PDF sifatida joylanmagan.");return}const a=document.createElement("a");a.href=book.url;a.download=book.name+".pdf";a.target="_blank";document.body.appendChild(a);a.click();a.remove()}
 
 function searchAll(){
-const q=search.value.trim().toLowerCase();
-if(!q){searchView.classList.add("hidden");if(currentSection) sectionView.classList.remove("hidden");else homeView.classList.remove("hidden");return}
+const q=search.value.trim().toLowerCase();if(!q){searchView.classList.add("hidden");if(currentSection)sectionView.classList.remove("hidden");else homeView.classList.remove("hidden");return}
 homeView.classList.add("hidden");sectionView.classList.add("hidden");subjectView.classList.add("hidden");searchView.classList.remove("hidden");
 const results=[];
-Object.entries(sections).forEach(([key,sec])=>sec.subjects.forEach(([name,icon])=>{
-if(name.toLowerCase().includes(q))results.push({type:"subject",key,name,icon});
-}));
+Object.entries(sections).forEach(([key,sec])=>sec.subjects.forEach(([name,icon])=>{if(name.toLowerCase().includes(q))results.push({type:"subject",key,name,icon})}));
 Object.entries(booksBySubject).forEach(([subject,books])=>books.forEach(book=>{
 if(book.name.toLowerCase().includes(q))results.push({type:"book",subject,book});
+if(book.type==="folder")book.children.forEach(child=>{if(child.name.toLowerCase().includes(q))results.push({type:"book",subject,book:child})});
 }));
 searchResults.innerHTML="";searchCount.textContent=results.length+" ta natija";searchEmpty.style.display=results.length?"none":"block";
-results.forEach(r=>{
-const b=document.createElement("button");b.className="subject";
-const icon=r.type==="book"?r.book.icon:r.icon;const name=r.type==="book"?r.book.name:r.name;
-b.innerHTML=`<div class="subject-icon">${icon}</div><div class="subject-info"><h3>${escapeHtml(name)}</h3><p>${escapeHtml(r.type==="book"?r.subject:"Fan")}</p></div><div class="subject-arrow">›</div>`;
-b.onclick=()=>r.type==="book"?(currentSection="level1",openSubject(r.subject)):openSection(r.key);
-searchResults.appendChild(b);
-});
+results.forEach(r=>{const b=document.createElement("button");b.className="subject";const icon=r.type==="book"?r.book.icon:r.icon;const name=r.type==="book"?r.book.name:r.name;b.innerHTML=`<div class="subject-icon">${icon}</div><div class="subject-info"><h3>${escapeHtml(name)}</h3><p>${escapeHtml(r.type==="book"?r.subject:"Fan")}</p></div><div class="subject-arrow">›</div>`;b.onclick=()=>r.type==="book"?openSubject(r.subject):openSection(r.key);searchResults.appendChild(b)});
 }
-
 function escapeHtml(v){return String(v).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 </script>
 </body>
