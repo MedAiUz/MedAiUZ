@@ -1,2176 +1,239 @@
-```html
 <!DOCTYPE html>
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>MedAiUz — Darsliklar</title>
-
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f5f7fb;
-    color: #111827;
-    padding-bottom: 30px;
-}
-
-button,
-input {
-    font-family: inherit;
-}
-
-button {
-    cursor: pointer;
-}
-
-.header {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    background: white;
-    border-bottom: 1px solid #e5e7eb;
-    padding: 16px;
-}
-
-.top {
-    max-width: 950px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.back {
-    width: 42px;
-    height: 42px;
-    border: 0;
-    border-radius: 13px;
-    background: #eff6ff;
-    font-size: 20px;
-}
-
-.top h1 {
-    font-size: 20px;
-}
-
-.top p {
-    font-size: 11px;
-    color: #6b7280;
-    margin-top: 3px;
-}
-
-.container {
-    max-width: 950px;
-    margin: auto;
-    padding: 18px;
-}
-
-.hero {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    color: white;
-    border-radius: 24px;
-    padding: 24px;
-    margin-bottom: 20px;
-}
-
-.hero h2 {
-    font-size: 23px;
-    margin-bottom: 8px;
-}
-
-.hero p {
-    font-size: 12px;
-    line-height: 1.6;
-    opacity: .9;
-}
-
-.search {
-    width: 100%;
-    margin-top: 18px;
-    padding: 15px 17px;
-    border: 0;
-    border-radius: 14px;
-    outline: none;
-    font-size: 14px;
-}
-
-.section-title {
-    margin: 22px 0 12px;
-    font-size: 19px;
-}
-
-.categories {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-}
-
-.category {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 17px;
-    padding: 15px;
-    text-align: left;
-}
-
-.category.active {
-    border: 2px solid #2563eb;
-    background: #eff6ff;
-}
-
-.category-icon {
-    font-size: 25px;
-    margin-bottom: 7px;
-}
-
-.category h3 {
-    font-size: 13px;
-}
-
-.category p {
-    color: #6b7280;
-    font-size: 10px;
-    margin-top: 4px;
-}
-
-.books {
-    display: grid;
-    gap: 12px;
-}
-
-.book {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 18px;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    gap: 13px;
-}
-
-.book-icon {
-    width: 55px;
-    height: 65px;
-    flex-shrink: 0;
-    border-radius: 12px;
-    background: #eff6ff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-}
-
-.book-info {
-    flex: 1;
-}
-
-.book-info h3 {
-    font-size: 14px;
-    margin-bottom: 5px;
-}
-
-.book-info p {
-    font-size: 10px;
-    color: #6b7280;
-    line-height: 1.4;
-}
-
-.tag {
-    display: inline-block;
-    margin-top: 6px;
-    padding: 4px 7px;
-    background: #f3f4f6;
-    border-radius: 7px;
-    font-size: 9px;
-    color: #4b5563;
-}
-
-.read {
-    border: 0;
-    background: #2563eb;
-    color: white;
-    padding: 10px 12px;
-    border-radius: 11px;
-    font-size: 11px;
-    font-weight: bold;
-}
-
-.read:hover {
-    background: #1d4ed8;
-}
-
-.empty {
-    display: none;
-    background: white;
-    border-radius: 18px;
-    padding: 35px 20px;
-    text-align: center;
-    color: #6b7280;
-}
-
-.count {
-    font-size: 11px;
-    color: #6b7280;
-    margin-bottom: 12px;
-}
-
-@media (max-width: 520px) {
-
-    .book {
-        padding: 12px;
-    }
-
-    .book-icon {
-        width: 48px;
-        height: 58px;
-        font-size: 24px;
-    }
-
-    .read {
-        padding: 9px 10px;
-    }
-
-    .categories {
-        grid-template-columns: 1fr 1fr;
-    }
-}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f5f7fb;color:#111827;padding-bottom:30px}
+button,input{font-family:inherit}
+button{cursor:pointer}
+.header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #e5e7eb;padding:16px}
+.top{max-width:950px;margin:auto;display:flex;align-items:center;gap:12px}
+.back{width:42px;height:42px;border:0;border-radius:13px;background:#eff6ff;font-size:20px}
+.top h1{font-size:20px}.top p{font-size:11px;color:#6b7280;margin-top:3px}
+.container{max-width:950px;margin:auto;padding:18px}
+.hero{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border-radius:24px;padding:24px;margin-bottom:20px}
+.hero h2{font-size:23px;margin-bottom:8px}.hero p{font-size:12px;line-height:1.6;opacity:.9}
+.search{width:100%;margin-top:18px;padding:15px 17px;border:0;border-radius:14px;outline:none;font-size:14px}
+.section-title{margin:22px 0 12px;font-size:19px}
+.categories{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.category{background:#fff;border:1px solid #e5e7eb;border-radius:17px;padding:15px;text-align:left}
+.category-icon{font-size:25px;margin-bottom:7px}.category h3{font-size:13px}.category p{color:#6b7280;font-size:10px;margin-top:4px}
+.back-small{border:0;background:#eff6ff;color:#2563eb;padding:10px 13px;border-radius:12px;margin-bottom:12px;font-weight:bold}
+.hidden{display:none!important}
+.subjects{display:grid;gap:10px}
+.subject{width:100%;display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #e5e7eb;border-radius:17px;padding:15px;text-align:left}
+.subject-icon{width:45px;height:45px;border-radius:13px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.subject-info{flex:1}.subject-info h3{font-size:14px}.subject-info p{font-size:10px;color:#6b7280;margin-top:4px}
+.subject-arrow{font-size:20px;color:#9ca3af}
+.books{display:grid;gap:12px}
+.book{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:15px}
+.book-top{display:flex;align-items:center;gap:13px}
+.book-icon{width:52px;height:62px;flex-shrink:0;border-radius:12px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:27px}
+.book-info{flex:1}.book-info h3{font-size:14px;margin-bottom:5px}.book-info p{font-size:10px;color:#6b7280;line-height:1.4}
+.tag{display:inline-block;margin-top:6px;padding:4px 7px;background:#f3f4f6;border-radius:7px;font-size:9px;color:#4b5563}
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px}
+.action{border:0;border-radius:10px;padding:10px 7px;font-size:10px;font-weight:bold}
+.read{background:#2563eb;color:#fff}.save{background:#dcfce7;color:#166534}.share{background:#ffedd5;color:#9a3412}.download{background:#e0e7ff;color:#3730a3}
+.empty{display:none;background:#fff;border-radius:18px;padding:35px 20px;text-align:center;color:#6b7280}
+.count{font-size:11px;color:#6b7280;margin-bottom:12px}
+@media(max-width:600px){.actions{grid-template-columns:1fr 1fr}.categories{grid-template-columns:1fr 1fr}}
 </style>
 </head>
-
 <body>
-
 <header class="header">
-
-    <div class="top">
-
-        <button class="back" onclick="goBack()">
-            ←
-        </button>
-
-        <div>
-
-            <h1>📚 Darsliklar</h1>
-
-            <p>
-                MedAiUz tibbiy kutubxonasi
-            </p>
-
-        </div>
-
-    </div>
-
+<div class="top">
+<button class="back" onclick="goBack()">←</button>
+<div><h1>📚 Darsliklar</h1><p>MedAiUz tibbiy elektron kutubxonasi</p></div>
+</div>
 </header>
 
-
 <main class="container">
-
-
 <section class="hero">
-
-    <h2>
-        Tibbiy kutubxona 📖
-    </h2>
-
-    <p>
-        Tibbiyot fanlari bo‘yicha darsliklar,
-        qo‘llanmalar va o‘quv materiallarini
-        bir joydan toping.
-    </p>
-
-    <input
-        id="search"
-        class="search"
-        type="text"
-        placeholder="🔍 Darslik yoki fan qidiring..."
-        oninput="searchBooks()"
-    >
-
+<h2>📚 Tibbiy kutubxona</h2>
+<p>Fanlar bo‘yicha darsliklarni toping, o‘qing, saqlang va boshqa chatlarga yuboring.</p>
+<input id="search" class="search" type="text" placeholder="🔍 Fan yoki darslik qidiring..." oninput="searchAll()">
 </section>
 
-
-
-<h2 class="section-title">
-    📚 Fanlar
-</h2>
-
-
-<section class="categories">
-
-
-<button
-    class="category active"
-    onclick="filterBooks('all', this)"
->
-
-    <div class="category-icon">
-        📚
-    </div>
-
-    <h3>
-        Barchasi
-    </h3>
-
-    <p>
-        Barcha darsliklar
-    </p>
-
-</button>
-
-
-
-<button
-    class="category"
-    onclick="filterBooks('fundamental', this)"
->
-
-    <div class="category-icon">
-        🧬
-    </div>
-
-    <h3>
-        Fundamental
-    </h3>
-
-    <p>
-        Asosiy tibbiy fanlar
-    </p>
-
-</button>
-
-
-
-<button
-    class="category"
-    onclick="filterBooks('preclinical', this)"
->
-
-    <div class="category-icon">
-        🦠
-    </div>
-
-    <h3>
-        Preklinik
-    </h3>
-
-    <p>
-        Preklinik fanlar
-    </p>
-
-</button>
-
-
-
-<button
-    class="category"
-    onclick="filterBooks('clinical', this)"
->
-
-    <div class="category-icon">
-        🩺
-    </div>
-
-    <h3>
-        Klinik
-    </h3>
-
-    <p>
-        Klinik tibbiyot
-    </p>
-
-</button>
-
-
-
-<button
-    class="category"
-    onclick="filterBooks('pediatrics', this)"
->
-
-    <div class="category-icon">
-        👶
-    </div>
-
-    <h3>
-        Pediatriya
-    </h3>
-
-    <p>
-        Bolalar tibbiyoti
-    </p>
-
-</button>
-
-
-
-<button
-    class="category"
-    onclick="filterBooks('surgery', this)"
->
-
-    <div class="category-icon">
-        🩹
-    </div>
-
-    <h3>
-        Jarrohlik
-    </h3>
-
-    <p>
-        Jarrohlik fanlari
-    </p>
-
-</button>
-
-
-
-<button
-    class="category"
-    onclick="filterBooks('obgyn', this)"
->
-
-    <div class="category-icon">
-        🤰
-    </div>
-
-    <h3>
-        Akusherlik va ginekologiya
-    </h3>
-
-    <p>
-        Ayollar salomatligi
-    </p>
-
-</button>
-
-
-
-<button
-    class="category"
-    onclick="filterBooks('neuro', this)"
->
-
-    <div class="category-icon">
-        🧠
-    </div>
-
-    <h3>
-        Nevrologiya
-    </h3>
-
-    <p>
-        Asab tizimi
-    </p>
-
-</button>
-
-
-
-<button
-    class="category"
-    onclick="filterBooks('other', this)"
->
-
-    <div class="category-icon">
-        🔬
-    </div>
-
-    <h3>
-        Boshqa fanlar
-    </h3>
-
-    <p>
-        Qo‘shimcha fanlar
-    </p>
-
-</button>
-
-
-</section>
-
-
-
-<h2 class="section-title">
-    📖 Darsliklar
-</h2>
-
-<div
-    id="count"
-    class="count"
-></div>
-
-
-
-<section
-    id="books"
-    class="books"
->
-
-
-<!-- ==================== FUNDAMENTAL ==================== -->
-
-
-<article
-    class="book"
-    data-category="fundamental"
-    data-title="Odam anatomiyasi Anatomiya 1 jild"
->
-
-    <div class="book-icon">
-        🫀
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Odam anatomiyasi — 1 jild
-        </h3>
-
-        <p>
-            Inson organizmining tuzilishi
-            va anatomik asoslari.
-        </p>
-
-        <span class="tag">
-            Fundamental
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="openBook('data/books/Anatomiya 1 jild.pdf')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="fundamental"
-    data-title="Gistologiya"
->
-
-    <div class="book-icon">
-        🔬
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Gistologiya
-        </h3>
-
-        <p>
-            To‘qimalar va organlarning
-            mikroskopik tuzilishi.
-        </p>
-
-        <span class="tag">
-            Fundamental
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Gistologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="fundamental"
-    data-title="Sitologiya"
->
-
-    <div class="book-icon">
-        🧫
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Sitologiya
-        </h3>
-
-        <p>
-            Hujayra tuzilishi va
-            biologik jarayonlari.
-        </p>
-
-        <span class="tag">
-            Fundamental
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Sitologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="fundamental"
-    data-title="Tibbiy biokimyo Biokimyo"
->
-
-    <div class="book-icon">
-        🧪
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Tibbiy biokimyo
-        </h3>
-
-        <p>
-            Organizmdagi biokimyoviy
-            jarayonlar.
-        </p>
-
-        <span class="tag">
-            Fundamental
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Tibbiy biokimyo')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="fundamental"
-    data-title="Normal fiziologiya Fiziologiya"
->
-
-    <div class="book-icon">
-        ❤️
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Normal fiziologiya
-        </h3>
-
-        <p>
-            Organizmning normal faoliyati
-            va funksiyalari.
-        </p>
-
-        <span class="tag">
-            Fundamental
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Normal fiziologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="fundamental"
-    data-title="Tibbiy genetika Genetika"
->
-
-    <div class="book-icon">
-        🧬
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Tibbiy genetika
-        </h3>
-
-        <p>
-            Irsiyat, genlar va irsiy
-            kasalliklar.
-        </p>
-
-        <span class="tag">
-            Fundamental
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Tibbiy genetika')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="fundamental"
-    data-title="Molekulyar biologiya"
->
-
-    <div class="book-icon">
-        🧬
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Molekulyar biologiya
-        </h3>
-
-        <p>
-            DNK, RNK, oqsil sintezi
-            va gen ekspressiyasi.
-        </p>
-
-        <span class="tag">
-            Fundamental
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Molekulyar biologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="fundamental"
-    data-title="Immunologiya"
->
-
-    <div class="book-icon">
-        🛡️
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Immunologiya
-        </h3>
-
-        <p>
-            Immun tizimi va himoya
-            mexanizmlari.
-        </p>
-
-        <span class="tag">
-            Fundamental
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Immunologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="fundamental"
-    data-title="Mikrobiologiya"
->
-
-    <div class="book-icon">
-        🦠
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Mikrobiologiya
-        </h3>
-
-        <p>
-            Mikroorganizmlar va ularning
-            tibbiyotdagi ahamiyati.
-        </p>
-
-        <span class="tag">
-            Fundamental
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Mikrobiologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="fundamental"
-    data-title="Neyroanatomiya"
->
-
-    <div class="book-icon">
-        🧠
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Neyroanatomiya
-        </h3>
-
-        <p>
-            Markaziy va periferik
-            asab tizimi anatomiyasi.
-        </p>
-
-        <span class="tag">
-            Fundamental
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Neyroanatomiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<!-- ==================== PRECLINICAL ==================== -->
-
-
-<article
-    class="book"
-    data-category="preclinical"
-    data-title="Patologik anatomiya"
->
-
-    <div class="book-icon">
-        🔬
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Patologik anatomiya
-        </h3>
-
-        <p>
-            Kasalliklarda morfologik
-            o‘zgarishlar.
-        </p>
-
-        <span class="tag">
-            Preklinik
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Patologik anatomiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="preclinical"
-    data-title="Patofiziologiya"
->
-
-    <div class="book-icon">
-        🧠
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Patofiziologiya
-        </h3>
-
-        <p>
-            Kasalliklarning funksional
-            mexanizmlari.
-        </p>
-
-        <span class="tag">
-            Preklinik
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Patofiziologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="preclinical"
-    data-title="Farmakologiya"
->
-
-    <div class="book-icon">
-        💊
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Farmakologiya
-        </h3>
-
-        <p>
-            Dorilar ta’siri, mexanizmi
-            va qo‘llanilishi.
-        </p>
-
-        <span class="tag">
-            Preklinik
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Farmakologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="preclinical"
-    data-title="Tibbiy parazitologiya Parazitologiya"
->
-
-    <div class="book-icon">
-        🦠
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Tibbiy parazitologiya
-        </h3>
-
-        <p>
-            Parazitlar va parazitar
-            kasalliklar.
-        </p>
-
-        <span class="tag">
-            Preklinik
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Tibbiy parazitologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<!-- ==================== CLINICAL ==================== -->
-
-
-<article
-    class="book"
-    data-category="clinical"
-    data-title="Ichki kasalliklar"
->
-
-    <div class="book-icon">
-        🩺
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Ichki kasalliklar
-        </h3>
-
-        <p>
-            Ichki a’zolar kasalliklari
-            va diagnostika.
-        </p>
-
-        <span class="tag">
-            Klinik
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Ichki kasalliklar')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="clinical"
-    data-title="Kardiologiya"
->
-
-    <div class="book-icon">
-        ❤️
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Kardiologiya
-        </h3>
-
-        <p>
-            Yurak va qon tomir
-            kasalliklari.
-        </p>
-
-        <span class="tag">
-            Klinik
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Kardiologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="clinical"
-    data-title="Pulmonologiya"
->
-
-    <div class="book-icon">
-        🫁
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Pulmonologiya
-        </h3>
-
-        <p>
-            Nafas olish tizimi
-            kasalliklari.
-        </p>
-
-        <span class="tag">
-            Klinik
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Pulmonologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="clinical"
-    data-title="Gastroenterologiya"
->
-
-    <div class="book-icon">
-        🩺
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Gastroenterologiya
-        </h3>
-
-        <p>
-            Ovqat hazm qilish tizimi
-            kasalliklari.
-        </p>
-
-        <span class="tag">
-            Klinik
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Gastroenterologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="clinical"
-    data-title="Endokrinologiya"
->
-
-    <div class="book-icon">
-        🧪
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Endokrinologiya
-        </h3>
-
-        <p>
-            Endokrin tizim va
-            gormonal kasalliklar.
-        </p>
-
-        <span class="tag">
-            Klinik
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Endokrinologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="clinical"
-    data-title="Infeksion kasalliklar"
->
-
-    <div class="book-icon">
-        🦠
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Infeksion kasalliklar
-        </h3>
-
-        <p>
-            Yuqumli kasalliklar
-            diagnostikasi va davolash.
-        </p>
-
-        <span class="tag">
-            Klinik
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Infeksion kasalliklar')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="clinical"
-    data-title="Dermatologiya"
->
-
-    <div class="book-icon">
-        🩹
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Dermatologiya
-        </h3>
-
-        <p>
-            Teri kasalliklari va
-            ularning diagnostikasi.
-        </p>
-
-        <span class="tag">
-            Klinik
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Dermatologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="clinical"
-    data-title="Urologiya"
->
-
-    <div class="book-icon">
-        🩺
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Urologiya
-        </h3>
-
-        <p>
-            Siydik chiqarish tizimi
-            kasalliklari.
-        </p>
-
-        <span class="tag">
-            Klinik
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Urologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<!-- ==================== PEDIATRICS ==================== -->
-
-
-<article
-    class="book"
-    data-category="pediatrics"
-    data-title="Pediatriya"
->
-
-    <div class="book-icon">
-        👶
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Pediatriya
-        </h3>
-
-        <p>
-            Bolalar kasalliklari va
-            pediatrik amaliyot.
-        </p>
-
-        <span class="tag">
-            Pediatriya
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Pediatriya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="pediatrics"
-    data-title="Neonatologiya"
->
-
-    <div class="book-icon">
-        👶
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Neonatologiya
-        </h3>
-
-        <p>
-            Yangi tug‘ilgan chaqaloqlar
-            tibbiyoti.
-        </p>
-
-        <span class="tag">
-            Pediatriya
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Neonatologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="pediatrics"
-    data-title="Bolalar infeksion kasalliklari"
->
-
-    <div class="book-icon">
-        🦠
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Bolalar infeksion kasalliklari
-        </h3>
-
-        <p>
-            Bolalardagi yuqumli
-            kasalliklar.
-        </p>
-
-        <span class="tag">
-            Pediatriya
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Bolalar infeksion kasalliklari')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<!-- ==================== SURGERY ==================== -->
-
-
-<article
-    class="book"
-    data-category="surgery"
-    data-title="Umumiy jarrohlik"
->
-
-    <div class="book-icon">
-        🩹
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Umumiy jarrohlik
-        </h3>
-
-        <p>
-            Jarrohlik kasalliklari va
-            asosiy amaliyot.
-        </p>
-
-        <span class="tag">
-            Jarrohlik
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Umumiy jarrohlik')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="surgery"
-    data-title="Travmatologiya"
->
-
-    <div class="book-icon">
-        🦴
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Travmatologiya
-        </h3>
-
-        <p>
-            Jarohatlar, sinishlar va
-            travmatik holatlar.
-        </p>
-
-        <span class="tag">
-            Jarrohlik
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Travmatologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="surgery"
-    data-title="Ortopediya"
->
-
-    <div class="book-icon">
-        🦴
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Ortopediya
-        </h3>
-
-        <p>
-            Tayanch-harakat tizimi
-            kasalliklari.
-        </p>
-
-        <span class="tag">
-            Jarrohlik
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Ortopediya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="surgery"
-    data-title="Anesteziologiya va reanimatologiya"
->
-
-    <div class="book-icon">
-        💉
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Anesteziologiya va reanimatologiya
-        </h3>
-
-        <p>
-            Anesteziya va intensiv
-            terapiya asoslari.
-        </p>
-
-        <span class="tag">
-            Jarrohlik
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Anesteziologiya va reanimatologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<!-- ==================== OB/GYN ==================== -->
-
-
-<article
-    class="book"
-    data-category="obgyn"
-    data-title="Akusherlik"
->
-
-    <div class="book-icon">
-        🤰
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Akusherlik
-        </h3>
-
-        <p>
-            Homiladorlik, tug‘ruq va
-            tug‘ruqdan keyingi davr.
-        </p>
-
-        <span class="tag">
-            OB/GYN
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Akusherlik')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="obgyn"
-    data-title="Ginekologiya"
->
-
-    <div class="book-icon">
-        👩‍⚕️
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Ginekologiya
-        </h3>
-
-        <p>
-            Ayollar reproduktiv tizimi
-            kasalliklari.
-        </p>
-
-        <span class="tag">
-            OB/GYN
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Ginekologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="obgyn"
-    data-title="Reproduktiv tibbiyot"
->
-
-    <div class="book-icon">
-        🌸
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Reproduktiv tibbiyot
-        </h3>
-
-        <p>
-            Reproduktiv salomatlik va
-            zamonaviy yondashuvlar.
-        </p>
-
-        <span class="tag">
-            OB/GYN
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Reproduktiv tibbiyot')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<!-- ==================== NEURO ==================== -->
-
-
-<article
-    class="book"
-    data-category="neuro"
-    data-title="Nevrologiya"
->
-
-    <div class="book-icon">
-        🧠
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Nevrologiya
-        </h3>
-
-        <p>
-            Asab tizimi kasalliklari
-            va diagnostikasi.
-        </p>
-
-        <span class="tag">
-            Nevrologiya
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Nevrologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="neuro"
-    data-title="Neyroxirurgiya"
->
-
-    <div class="book-icon">
-        🧠
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Neyroxirurgiya
-        </h3>
-
-        <p>
-            Asab tizimining jarrohlik
-            kasalliklari.
-        </p>
-
-        <span class="tag">
-            Nevrologiya
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Neyroxirurgiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="neuro"
-    data-title="Klinik neyrofiziologiya"
->
-
-    <div class="book-icon">
-        ⚡
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Klinik neyrofiziologiya
-        </h3>
-
-        <p>
-            Asab tizimi faoliyatini
-            tekshirish usullari.
-        </p>
-
-        <span class="tag">
-            Nevrologiya
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Klinik neyrofiziologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<!-- ==================== OTHER ==================== -->
-
-
-<article
-    class="book"
-    data-category="other"
-    data-title="Epidemiologiya"
->
-
-    <div class="book-icon">
-        🌍
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Epidemiologiya
-        </h3>
-
-        <p>
-            Kasalliklarning tarqalishi
-            va nazorati.
-        </p>
-
-        <span class="tag">
-            Boshqa
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Epidemiologiya')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="other"
-    data-title="Tibbiy statistika"
->
-
-    <div class="book-icon">
-        📊
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Tibbiy statistika
-        </h3>
-
-        <p>
-            Tibbiy ma’lumotlarni
-            statistik tahlil qilish.
-        </p>
-
-        <span class="tag">
-            Boshqa
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Tibbiy statistika')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="other"
-    data-title="Jamoat salomatligi"
->
-
-    <div class="book-icon">
-        🏥
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Jamoat salomatligi
-        </h3>
-
-        <p>
-            Aholi salomatligini
-            muhofaza qilish asoslari.
-        </p>
-
-        <span class="tag">
-            Boshqa
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Jamoat salomatligi')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-
-<article
-    class="book"
-    data-category="other"
-    data-title="Tibbiy etika"
->
-
-    <div class="book-icon">
-        ⚕️
-    </div>
-
-    <div class="book-info">
-
-        <h3>
-            Tibbiy etika
-        </h3>
-
-        <p>
-            Shifokor etikasi va
-            professional tamoyillar.
-        </p>
-
-        <span class="tag">
-            Boshqa
-        </span>
-
-    </div>
-
-    <button
-        class="read"
-        onclick="bookUnavailable('Tibbiy etika')"
-    >
-        O‘qish
-    </button>
-
-</article>
-
-
-</section>
-
-
-
-<div
-    id="empty"
-    class="empty"
->
-
-    📚
-
-    <br><br>
-
-    <strong>
-        Darslik topilmadi
-    </strong>
-
-    <br><br>
-
-    Qidiruv so‘zini yoki fan bo‘limini
-    o‘zgartirib ko‘ring.
-
+<div id="homeView">
+<h2 class="section-title">📚 Bo‘limlar</h2>
+<div class="categories">
+<button class="category" onclick="openSection('level1')"><div class="category-icon">1️⃣</div><h3>1-darajali fanlar</h3><p>Asosiy tibbiy fanlar</p></button>
+<button class="category" onclick="openSection('level2')"><div class="category-icon">2️⃣</div><h3>2-darajali fanlar</h3><p>Umumiy va yordamchi fanlar</p></button>
+<button class="category" onclick="openSection('course3')"><div class="category-icon">3️⃣</div><h3>3-kurs</h3><p>3-kurs fanlari</p></button>
+<button class="category" onclick="openSection('course4')"><div class="category-icon">4️⃣</div><h3>4-kurs</h3><p>4-kurs fanlari</p></button>
+<button class="category" onclick="openSection('course5')"><div class="category-icon">5️⃣</div><h3>5-kurs</h3><p>5-kurs fanlari</p></button>
+<button class="category" onclick="openSection('course6')"><div class="category-icon">6️⃣</div><h3>6-kurs</h3><p>6-kurs fanlari</p></button>
+</div>
 </div>
 
+<div id="sectionView" class="hidden">
+<button class="back-small" onclick="showHome()">← Bo‘limlarga qaytish</button>
+<h2 id="sectionTitle" class="section-title"></h2>
+<div id="subjectList" class="subjects"></div>
+</div>
 
+<div id="subjectView" class="hidden">
+<button class="back-small" onclick="backToSection()">← Fanlarga qaytish</button>
+<h2 id="subjectTitle" class="section-title"></h2>
+<div id="bookCount" class="count"></div>
+<div id="bookList" class="books"></div>
+<div id="bookEmpty" class="empty">📚<br><br><strong>Hozircha darslik yo‘q</strong><br><br>Bu fanga darsliklar keyin qo‘shiladi.</div>
+</div>
+
+<div id="searchView" class="hidden">
+<h2 class="section-title">🔍 Qidiruv natijalari</h2>
+<div id="searchCount" class="count"></div>
+<div id="searchResults" class="subjects"></div>
+<div id="searchEmpty" class="empty">📚<br><br><strong>Darslik yoki fan topilmadi</strong></div>
+</div>
 </main>
 
-
-
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>
+try{window.Telegram?.WebApp?.ready();window.Telegram?.WebApp?.expand()}catch(e){}
 
-let currentCategory = "all";
+const sections={
+level1:{title:"1-darajali fanlar",subjects:[
+["Anatomiya","🫀"],["Fiziologiya","❤️"],["Gistologiya","🔬"],["Biokimyo","🧪"],["Mikrobiologiya","🦠"],["Gigiyena","🧼"],["Patologiya","🧬"],["IKP va BKP","🩺"],["Farmakologiya","💊"]]},
+level2:{title:"2-darajali fanlar",subjects:[
+["Lotin tili","🔤"],["Ingliz tili","🇬🇧"],["Tibbiy biologiya","🧬"],["Tibbiy kimyo","⚗️"],["TKK","📘"],["Hayot xavfsizligi","🛡️"],["Biofizika","⚛️"],["Bioetika","⚕️"],["Falsafa","💭"],["O‘zbekiston tarixi","🏛️"],["Informatika TAT","💻"]]},
+course3:{title:"3-kurs",subjects:[
+["OXTA","🩺"],["Radiologiya","🩻"],["Transfuziologiya","🩸"],["Tibbiy genetika","🧬"],["Pediatriya","👶"],["Ichki kasalliklar","🫀"],["Klinik laborator diagnostika","🔬"],["Umumiy xirurgiya","🩹"],["Tibbiy psixologiya","🧠"],["Gematologiya","🩸"]]},
+course4:{title:"4-kurs",subjects:[
+["Pediatriya","👶"],["Radiologiya","🩻"],["Pulmonologiya","🫁"],["Travmatologiya","🦴"],["Fiziatriya","🏥"],["Urologiya","🩺"],["Akusherlik","🤰"],["Endokrinologiya","🧪"],["Sud tibbiyot","⚖️"],["Dermatologiya","🩹"]]},
+course5:{title:"5-kurs",subjects:[
+["Bolalar xirurgiyasi","👶"],["Ginekologiya","👩‍⚕️"],["Klinik farmakologiya","💊"],["LOR","👂"],["Onkologiya","🎗️"],["Epidemiologiya","🌍"],["Yuqumli kasalliklar","🦠"],["Xirurgiya","🩹"],["Neonatologiya","👶"],["Nevrologiya","🧠"],["Oftalmologiya","👁️"],["Anesteziologiya","💉"]]},
+course6:{title:"6-kurs",subjects:[["Neyroxirurgiya","🧠"]]}
+};
 
+const booksBySubject={
+"Anatomiya":[
+{name:"Ahmedov 2018",url:"data/books/Anatomiya%201%20jild.pdf",icon:"📕"},
+{name:"Ahmedov Atlas",url:"",icon:"🗺️"},
+{name:"Teshayev",url:"",icon:"📕"},
+{name:"Gadayev Mirsharapov",url:"",icon:"📕"},
+{name:"Xudoyberdiyev",url:"",icon:"📕"},
+{name:"Bahodirov",url:"",icon:"📕"},
+{name:"Sinelnikov",url:"",icon:"📕"}]
+};
 
-function goBack() {
+let currentSection="";
+let currentSubject="";
 
-    window.location.href = "index.html";
+function goBack(){window.location.href="index.html"}
 
+function openSection(key){
+currentSection=key;
+homeView.classList.add("hidden");searchView.classList.add("hidden");subjectView.classList.add("hidden");sectionView.classList.remove("hidden");
+sectionTitle.textContent=sections[key].title;
+subjectList.innerHTML="";
+sections[key].subjects.forEach(([name,icon])=>{
+const b=document.createElement("button");b.className="subject";
+b.innerHTML=`<div class="subject-icon">${icon}</div><div class="subject-info"><h3>${name}</h3><p>Darsliklar va o‘quv materiallari</p></div><div class="subject-arrow">›</div>`;
+b.onclick=()=>openSubject(name);subjectList.appendChild(b);
+});
 }
 
-
-function filterBooks(category, button) {
-
-    currentCategory = category;
-
-    document
-        .querySelectorAll(".category")
-        .forEach(function(item) {
-
-            item.classList.remove("active");
-
-        });
-
-    button.classList.add("active");
-
-    searchBooks();
-
+function showHome(){
+sectionView.classList.add("hidden");subjectView.classList.add("hidden");searchView.classList.add("hidden");homeView.classList.remove("hidden");
 }
 
+function backToSection(){subjectView.classList.add("hidden");sectionView.classList.remove("hidden")}
 
-function searchBooks() {
-
-    const searchInput =
-        document.getElementById("search");
-
-    const query =
-        searchInput.value
-        .toLowerCase()
-        .trim();
-
-
-    const books =
-        document.querySelectorAll(".book");
-
-
-    let visible = 0;
-
-
-    books.forEach(function(book) {
-
-        const category =
-            book.dataset.category;
-
-
-        const title =
-            book.dataset.title
-            .toLowerCase();
-
-
-        const categoryOK =
-            currentCategory === "all" ||
-            category === currentCategory;
-
-
-        const searchOK =
-            title.includes(query);
-
-
-        if (categoryOK && searchOK) {
-
-            book.style.display = "flex";
-
-            visible++;
-
-        } else {
-
-            book.style.display = "none";
-
-        }
-
-    });
-
-
-    document.getElementById("count")
-        .textContent =
-        visible + " ta darslik";
-
-
-    document.getElementById("empty")
-        .style.display =
-        visible === 0
-        ? "block"
-        : "none";
-
+function openSubject(name){
+currentSubject=name;
+sectionView.classList.add("hidden");searchView.classList.add("hidden");subjectView.classList.remove("hidden");
+subjectTitle.textContent=name;renderBooks();
 }
 
-
-function openBook(path) {
-
-    window.open(
-        path,
-        "_blank"
-    );
-
+function renderBooks(){
+const books=booksBySubject[currentSubject]||[];
+bookList.innerHTML="";bookCount.textContent=books.length+" ta darslik";
+bookEmpty.style.display=books.length?"none":"block";
+books.forEach(book=>{
+const item=document.createElement("article");item.className="book";
+item.innerHTML=`
+<div class="book-top">
+<div class="book-icon">${book.icon}</div>
+<div class="book-info"><h3>${escapeHtml(book.name)}</h3><p>${escapeHtml(currentSubject)} • MedAiUz</p><span class="tag">${book.url?"PDF mavjud":"Tez orada"}</span></div>
+</div>
+<div class="actions">
+<button class="action read">📖 O‘qish</button>
+<button class="action save">💾 Saqlash</button>
+<button class="action share">📤 Yuborish</button>
+<button class="action download">⬇️ Yuklab olish</button>
+</div>`;
+item.querySelector(".read").onclick=()=>readBook(book);
+item.querySelector(".save").onclick=()=>saveBook(book);
+item.querySelector(".share").onclick=()=>shareBook(book);
+item.querySelector(".download").onclick=()=>downloadBook(book);
+bookList.appendChild(item);
+});
 }
 
-
-function bookUnavailable(name) {
-
-    alert(
-        "📚 " + name +
-        "\n\n" +
-        "Bu darslik hali PDF sifatida " +
-        "MedAiUz kutubxonasiga joylanmagan."
-    );
-
+function readBook(book){
+if(!book.url){alert("📚 "+book.name+"\n\nBu darslik hali PDF sifatida joylanmagan.");return}
+window.open(book.url,"_blank");
 }
 
+function storageKey(){
+const user=window.Telegram?.WebApp?.initDataUnsafe?.user;
+return user?.id?"medaiuz_saved_materials_"+user.id:"medaiuz_saved_materials_guest";
+}
 
-searchBooks();
+function getSavedLocal(){
+try{return JSON.parse(localStorage.getItem(storageKey())||"[]")}catch(e){return[]}
+}
+function setSavedLocal(list){localStorage.setItem(storageKey(),JSON.stringify(list))}
 
+function saveBook(book){
+if(!book.url){alert("📚 "+book.name+"\n\nBu darslik hali PDF sifatida joylanmagan.");return}
+const list=getSavedLocal();
+if(list.some(x=>x.url===book.url)){alert("✅ Bu darslik allaqachon saqlangan.");return}
+list.push({name:book.name,url:book.url,subject:currentSubject,date:new Date().toISOString()});
+setSavedLocal(list);
+alert("💾 Saqlandi!\n\nProfil → Saqlangan materiallar bo‘limidan ko‘rishingiz mumkin.");
+}
+
+async function shareBook(book){
+if(!book.url){alert("📚 Bu darslik hali PDF sifatida joylanmagan.");return}
+const url=new URL(book.url,location.href).href;
+if(navigator.share){
+try{await navigator.share({title:"MedAiUz — "+book.name,text:"📚 "+book.name,url});return}catch(e){}
+}
+window.open("https://t.me/share/url?url="+encodeURIComponent(url)+"&text="+encodeURIComponent("📚 "+book.name),"_blank");
+}
+
+function downloadBook(book){
+if(!book.url){alert("📚 Bu darslik hali PDF sifatida joylanmagan.");return}
+const a=document.createElement("a");a.href=book.url;a.download=book.name+".pdf";a.target="_blank";document.body.appendChild(a);a.click();a.remove();
+}
+
+function searchAll(){
+const q=search.value.trim().toLowerCase();
+if(!q){searchView.classList.add("hidden");if(currentSection) sectionView.classList.remove("hidden");else homeView.classList.remove("hidden");return}
+homeView.classList.add("hidden");sectionView.classList.add("hidden");subjectView.classList.add("hidden");searchView.classList.remove("hidden");
+const results=[];
+Object.entries(sections).forEach(([key,sec])=>sec.subjects.forEach(([name,icon])=>{
+if(name.toLowerCase().includes(q))results.push({type:"subject",key,name,icon});
+}));
+Object.entries(booksBySubject).forEach(([subject,books])=>books.forEach(book=>{
+if(book.name.toLowerCase().includes(q))results.push({type:"book",subject,book});
+}));
+searchResults.innerHTML="";searchCount.textContent=results.length+" ta natija";searchEmpty.style.display=results.length?"none":"block";
+results.forEach(r=>{
+const b=document.createElement("button");b.className="subject";
+const icon=r.type==="book"?r.book.icon:r.icon;const name=r.type==="book"?r.book.name:r.name;
+b.innerHTML=`<div class="subject-icon">${icon}</div><div class="subject-info"><h3>${escapeHtml(name)}</h3><p>${escapeHtml(r.type==="book"?r.subject:"Fan")}</p></div><div class="subject-arrow">›</div>`;
+b.onclick=()=>r.type==="book"?(currentSection="level1",openSubject(r.subject)):openSection(r.key);
+searchResults.appendChild(b);
+});
+}
+
+function escapeHtml(v){return String(v).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 </script>
-
 </body>
 </html>
-```

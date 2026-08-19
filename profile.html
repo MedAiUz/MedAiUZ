@@ -251,6 +251,17 @@
             color: #2563eb;
             font-weight: bold;
         }
+    
+        .saved-overlay{display:none;position:fixed;inset:0;background:rgba(17,24,39,.5);z-index:300;align-items:flex-end;justify-content:center}
+        .saved-modal{width:100%;max-width:900px;max-height:82vh;overflow:auto;background:#fff;border-top-left-radius:24px;border-top-right-radius:24px;padding:20px}
+        .saved-modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
+        .saved-modal-head h3{font-size:17px}.saved-close{border:0;background:#eff6ff;border-radius:11px;width:36px;height:36px;font-size:18px}
+        .saved-item{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid #e5e7eb;border-radius:14px;margin-bottom:9px}
+        .saved-icon{font-size:22px}.saved-info{flex:1;min-width:0}.saved-info strong{display:block;font-size:12px}.saved-info span{display:block;font-size:10px;color:#6b7280;margin-top:3px}
+        .saved-actions{display:flex;gap:6px}.saved-actions button{border:0;border-radius:9px;padding:8px;font-size:11px}
+        .saved-read{background:#2563eb;color:#fff}.saved-share{background:#ffedd5;color:#9a3412}.saved-delete{background:#fee2e2;color:#991b1b}
+        .saved-empty{text-align:center;padding:30px 10px;color:#6b7280;font-size:12px}
+
     </style>
 </head>
 
@@ -298,7 +309,7 @@
             </div>
             <div class="row-chev">›</div>
         </button>
-        <button class="row" onclick="alert('Saqlangan materiallar keyingi bosqichda qo\'shiladi.')">
+        <button class="row" onclick="openSavedMaterials()">
             <div class="row-icon">🔖</div>
             <div class="row-text">
                 <div class="row-title">Saqlangan materiallar</div>
@@ -331,6 +342,17 @@
     </section>
 
 </main>
+
+<div id="savedOverlay" class="saved-overlay" onclick="closeSavedByBackdrop(event)">
+    <div class="saved-modal">
+        <div class="saved-modal-head">
+            <h3>💾 Saqlangan materiallar</h3>
+            <button class="saved-close" onclick="closeSavedMaterials()">×</button>
+        </div>
+        <div id="savedMaterialsList"></div>
+    </div>
+</div>
+
 
 <!-- Profilni tahrirlash oynasi -->
 <div id="editOverlay" style="display:none; position:fixed; inset:0; background:rgba(17,24,39,.5); align-items:flex-end; justify-content:center; z-index:200;">
@@ -472,6 +494,119 @@
         saveProfile();
         renderProfile();
         closeEdit();
+    }
+
+
+    // ==================================================
+    // SAQLANGAN MATERIALAR — books.html bilan bir xil kalit
+    // ==================================================
+    function savedStorageKey() {
+        const user = tg && tg.initDataUnsafe && tg.initDataUnsafe.user;
+        return user && user.id
+            ? "medaiuz_saved_materials_" + user.id
+            : "medaiuz_saved_materials_guest";
+    }
+
+    function getSavedMaterials() {
+        try {
+            return JSON.parse(localStorage.getItem(savedStorageKey()) || "[]");
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function setSavedMaterials(list) {
+        localStorage.setItem(savedStorageKey(), JSON.stringify(list));
+    }
+
+    function openSavedMaterials() {
+        renderSavedMaterials();
+        document.getElementById("savedOverlay").style.display = "flex";
+    }
+
+    function closeSavedMaterials() {
+        document.getElementById("savedOverlay").style.display = "none";
+    }
+
+    function closeSavedByBackdrop(event) {
+        if (event.target.id === "savedOverlay") closeSavedMaterials();
+    }
+
+    function renderSavedMaterials() {
+        const box = document.getElementById("savedMaterialsList");
+        const list = getSavedMaterials();
+        box.innerHTML = "";
+
+        if (!list.length) {
+            box.innerHTML =
+                '<div class="saved-empty">📚 Hozircha saqlangan material yo‘q.<br><br>Darslikdan 💾 Saqlash tugmasini bosing.</div>';
+            return;
+        }
+
+        list.forEach(function(item, index) {
+            const row = document.createElement("div");
+            row.className = "saved-item";
+            row.innerHTML =
+                '<div class="saved-icon">📕</div>' +
+                '<div class="saved-info">' +
+                    '<strong>' + escapeSaved(item.name) + '</strong>' +
+                    '<span>' + escapeSaved(item.subject || "Darslik") + '</span>' +
+                '</div>' +
+                '<div class="saved-actions">' +
+                    '<button class="saved-read">📖</button>' +
+                    '<button class="saved-share">📤</button>' +
+                    '<button class="saved-delete">🗑️</button>' +
+                '</div>';
+
+            row.querySelector(".saved-read").onclick = function() {
+                if (item.url) window.open(item.url, "_blank");
+            };
+
+            row.querySelector(".saved-share").onclick = async function() {
+                if (!item.url) return;
+                const url = new URL(item.url, location.href).href;
+
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: "MedAiUz — " + item.name,
+                            text: "📚 " + item.name,
+                            url: url
+                        });
+                        return;
+                    } catch (e) {}
+                }
+
+                window.open(
+                    "https://t.me/share/url?url=" +
+                    encodeURIComponent(url) +
+                    "&text=" +
+                    encodeURIComponent("📚 " + item.name),
+                    "_blank"
+                );
+            };
+
+            row.querySelector(".saved-delete").onclick = function() {
+                const current = getSavedMaterials();
+                current.splice(index, 1);
+                setSavedMaterials(current);
+                renderSavedMaterials();
+            };
+
+            box.appendChild(row);
+        });
+    }
+
+    function escapeSaved(value) {
+        return String(value || "").replace(/[&<>"']/g, function(m) {
+            return {
+                "&":"&amp;",
+                "<":"&lt;",
+                ">":"&gt;",
+                '"':"&quot;",
+                "'":"&#039;"
+            }[m];
+        });
     }
 
     function openBooks() {
