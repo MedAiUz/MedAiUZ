@@ -163,22 +163,13 @@ alert("📚 "+book.name+"\\n\\nBu darslik hali PDF sifatida joylanmagan.");
 return;
 }
 
-/*
-  Telegram WebApp ichida GitHub PDF ba'zan "PDF yuklanmoqda"
-  holatida qolishi mumkin. Shuning uchun avval Telegramning
-  ichki openLink funksiyasidan foydalanamiz.
-  GitHub faylining o'zi o'zgarmaydi.
-*/
-const pdfUrl=new URL(book.url,location.href).href;
+const readerUrl =
+"reader.html?pdf=" +
+encodeURIComponent(book.url) +
+"&title=" +
+encodeURIComponent(book.name);
 
-try{
-if(window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.openLink){
-window.Telegram.WebApp.openLink(pdfUrl,{try_instant_view:false});
-return;
-}
-}catch(e){}
-
-window.location.href=pdfUrl;
+window.location.href = readerUrl;
 }
 function storageKey(){const user=window.Telegram?.WebApp?.initDataUnsafe?.user;return user?.id?"medaiuz_saved_materials_"+user.id:"medaiuz_saved_materials_guest"}
 function getSavedLocal(){try{return JSON.parse(localStorage.getItem(storageKey())||"[]")}catch(e){return[]}}

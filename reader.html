@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedAiUz — Kitob o‘qish</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    background:#111827;
+    font-family:Arial,sans-serif;
+    overflow:hidden;
+}
+
+.reader-header{
+    height:58px;
+    background:#ffffff;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:8px 12px;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:10;
+    box-shadow:0 1px 8px rgba(0,0,0,.18);
+}
+
+.back{
+    width:42px;
+    height:42px;
+    border:0;
+    border-radius:12px;
+    background:#eff6ff;
+    color:#2563eb;
+    font-size:21px;
+}
+
+.title{
+    flex:1;
+    min-width:0;
+}
+
+.title strong{
+    display:block;
+    font-size:14px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.title span{
+    display:block;
+    margin-top:2px;
+    color:#6b7280;
+    font-size:10px;
+}
+
+.open-btn{
+    border:0;
+    border-radius:10px;
+    padding:10px 12px;
+    background:#2563eb;
+    color:#fff;
+    font-weight:bold;
+    font-size:11px;
+}
+
+.viewer{
+    position:fixed;
+    top:58px;
+    left:0;
+    right:0;
+    bottom:0;
+    background:#111827;
+}
+
+#pdfFrame{
+    width:100%;
+    height:100%;
+    border:0;
+    background:#fff;
+}
+
+.loading{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    text-align:center;
+    font-size:13px;
+    z-index:-1;
+}
+</style>
+</head>
+
+<body>
+
+<header class="reader-header">
+    <button class="back" onclick="goBack()">←</button>
+
+    <div class="title">
+        <strong id="bookTitle">📚 Kitob</strong>
+        <span>MedAiUz</span>
+    </div>
+
+    <button class="open-btn" onclick="openPdf()">↗ Ochish</button>
+</header>
+
+<main class="viewer">
+    <div class="loading" id="loading">
+        📖 PDF yuklanmoqda...
+    </div>
+
+    <iframe
+        id="pdfFrame"
+        title="PDF viewer"
+        allow="fullscreen">
+    </iframe>
+</main>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<script>
+try{
+    Telegram.WebApp.ready();
+    Telegram.WebApp.expand();
+}catch(e){}
+
+const params = new URLSearchParams(window.location.search);
+
+const pdf = params.get("pdf");
+const title = params.get("title") || "Kitob";
+
+document.getElementById("bookTitle").textContent = "📚 " + title;
+
+function goBack(){
+    history.back();
+}
+
+function getPdfUrl(){
+    if(!pdf){
+        return "";
+    }
+
+    return new URL(pdf, window.location.href).href;
+}
+
+function loadPdf(){
+    const url = getPdfUrl();
+
+    if(!url){
+        document.getElementById("loading").textContent =
+            "❌ PDF manzili topilmadi.";
+        return;
+    }
+
+    /*
+      Brauzerning o'z PDF viewer'i.
+      PDF GitHub'dagi asl fayl bo'lib qoladi.
+    */
+    document.getElementById("pdfFrame").src = url;
+
+    document.getElementById("pdfFrame").onload = function(){
+        document.getElementById("loading").style.display = "none";
+    };
+}
+
+function openPdf(){
+    const url = getPdfUrl();
+
+    if(!url){
+        alert("PDF manzili topilmadi.");
+        return;
+    }
+
+    try{
+        if(
+            window.Telegram &&
+            Telegram.WebApp &&
+            Telegram.WebApp.openLink
+        ){
+            Telegram.WebApp.openLink(url,{
+                try_instant_view:false
+            });
+            return;
+        }
+    }catch(e){}
+
+    window.open(url,"_blank");
+}
+
+loadPdf();
+</script>
+
+</body>
+</html>
